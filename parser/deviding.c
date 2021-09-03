@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   deviding.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/09/03 23:00:07 by bdomitil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/parse.h"
 
 void	tmp(t_parse_lst *current_pars, char **command_params,\
@@ -35,6 +47,7 @@ char	*cut_str_by_devider(char *str, t_deviders *dev_lst, char ***command_params,
 {
 	t_parse_lst *new_pars;
 	str[dev_lst->pos_in_str] = '\0';
+	printf("str = %s\n", str);
 	*command_params = split_out_quotes(str, ' ');
 	new_pars = init_pars_lst();
 	ft_shell_lst_add_back(pars_lst, new_pars);
@@ -71,7 +84,7 @@ int fill_lst(char *str, t_parse_lst *pars_lst)
 		free(temp);
 	}
 	command_params = split_out_quotes(str, ' ');
-	tmp(current_pars, command_params, dev_lst, prev_type);
+	// tmp(current_pars, command_params, dev_lst, prev_type);
 
 	return (1);
 }

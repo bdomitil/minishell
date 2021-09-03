@@ -11,8 +11,8 @@ typedef enum e_types_of_found
 {
 	pipe_is_next,
 	redir_is_next,
-	back_redir_is_next,
 	double_redir_is_next,
+	back_redir_is_next,
 	double_back_redir_is_next,
 	none
 }				t_found;

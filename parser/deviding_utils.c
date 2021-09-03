@@ -48,13 +48,13 @@ t_deviders *get_deviders_list(char *str)
 			qt_opened = find_next_quote(str, i, '\"');
 		if (str[i] == '|' && qt_opened == -1)
 			lstadd_back_devide(&deviders, lstnew_devide(&pos, pipe_is_next));
-		else if (str[i] == '<' && qt_opened == -1)
+		else if (str[i] == '<' && str[i + 1] == '<' && qt_opened == -1)
 		{
-			if (str[i + 1] == '<')
-				i++;
-			else
-				lstadd_back_devide(&deviders, lstnew_devide(&pos, back_redir_is_next));
+			lstadd_back_devide(&deviders, lstnew_devide(&pos, double_back_redir_is_next));
+			i += 2;
 		}
+		else if (str[i] == '<' && qt_opened == -1)
+				lstadd_back_devide(&deviders, lstnew_devide(&pos, back_redir_is_next));
 		else if (str[i] == '>' && str[i + 1] == '>' && qt_opened == -1)
 		{
 			lstadd_back_devide(&deviders, lstnew_devide(&pos, double_redir_is_next));
