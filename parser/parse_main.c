@@ -36,12 +36,12 @@ int parser(char **str, t_parse_lst **pars_lst)
 	{
 		if (parse_str(&pars_tmp->command, pars_tmp) == -1)
 			return (-1);
-		// while (args_tmp != NULL)
-		// {
-			// if (parse_str(&args_tmp->arg, pars_tmp) == -1)
-				// return (-1);
-			// args_tmp = args_tmp->next;
-		// }
+		while (args_tmp != NULL)
+		{
+			if (parse_str(&args_tmp->arg, pars_tmp) == -1)
+				return (-1);
+			args_tmp = args_tmp->next;
+		}
 		pars_tmp = pars_tmp->next;
 	}
 

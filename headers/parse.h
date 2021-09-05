@@ -6,6 +6,7 @@
 # include <errno.h>
 # include "../libft/libft.h"
 # include <stdbool.h>
+# include <fcntl.h>
 
 typedef enum e_types_of_found
 {
@@ -34,7 +35,10 @@ typedef struct s_main_parse_list
 	struct s_main_parse_list	*next;
 	struct s_main_parse_list	*previous;
 	t_args						*args;
-	t_found						type_of_next_command;
+	// t_found						type_of_next_command;
+	bool						pipe;
+	bool						redir_in;
+	bool						redir_out;
 	int							file_fd;
 	int							exit_status;
 	char						*command;
@@ -48,8 +52,6 @@ typedef struct	s_spec_deviders
 	struct	s_spec_deviders *next;
 }				t_deviders;
 //||
-//init lists and it's fields fell by 0
-void		init_main_lists(t_parse_lst *main_list);
 //||
 void		ft_shell_lst_add_back(t_parse_lst *lst, t_parse_lst *new_lst);
 void		ft_args_lst_add_back(t_parse_lst *lst, t_args *new);

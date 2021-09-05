@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "/Users/bdomitil/minishell/a.out",
             "args": [],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
