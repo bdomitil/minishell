@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/12 16:08:38 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/12 22:30:54 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int fill_lst(char *str, t_parse_lst *pars_lst)
 	{
 		if (!get_redir_fd(current_pars, &dev_lst, &str))
 			return(0);
+
 		str = cut_str_by_devider(str, dev_lst, &command_params, pars_lst);
 		if (dev_lst->type == pipe_is_next)
 			current_pars->pipe = true;
@@ -81,6 +82,5 @@ int fill_lst(char *str, t_parse_lst *pars_lst)
 	}
 	command_params = split_out_quotes(str, ' ');
 	commands_args_fill(current_pars, command_params, dev_lst);
-
 	return (1);
 }

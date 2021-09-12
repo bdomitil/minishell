@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:00:58 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/12 15:57:03 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/12 21:59:58 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_deviders *get_deviders_list(char *str)
 	{
 		if (qt_opened >= 0 && find_next_quote(str, i, '\"') != qt_opened)
 			qt_opened = -1;
-		else if (str[i] != '\0' && str[i + 1] == '\"')
+		else if (str[i] != '\0' && str[i + 1] == '\"' && str[i] != '\\')
 			qt_opened = find_next_quote(str, i, '\"');
 		if (str[i] == '|' && qt_opened == -1)
 			lstadd_back_devide(&deviders, lstnew_devide(&pos, pipe_is_next), str);		

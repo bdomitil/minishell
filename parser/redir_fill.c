@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:26:54 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/12 16:36:48 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/12 22:29:37 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,32 +58,59 @@ int	one_redir_fd(char **str, int pos_in_str, t_found type)
 		fd = open(file_name, O_CREAT | O_APPEND | O_WRONLY, 0777);
 	if (type == back_redir_is_next)
 		fd = open(file_name, O_RDONLY);
-	*str = cut_char(*str, pos_in_str);
+	(*str)[pos_in_str] = ' ';
 	free(file_name);
 	return (fd);
 }
 
-int	get_redir_fd(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
+int	get_fd_out(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 {
-	int			fd;
+	int			fd_out;
 	t_deviders	*tmp_dev;
 
-	fd = -1;
-	while ((*dev_lst) && (*dev_lst)->type != pipe_is_next && (*dev_lst)->type != none)
+	fd_out = -1;
+	while ((*dev_lst) && (*dev_lst)->type == back_redir_is_next)
 	{
-		close(fd);
-		if ((*dev_lst)->type == redir_is_next || (*dev_lst)->type == back_redir_is_next)
-			fd = one_redir_fd(str, (*dev_lst)->pos_in_str, (*dev_lst)->type);
-		if (fd == -1)
+		close(fd_out);
+		fd_out = one_redir_fd(str, (*dev_lst)->pos_in_str, (*dev_lst)->type);
+		if (fd_out == -1)
 			return(0);
-		if ((*dev_lst)->type == redir_is_next)
-			curr_pars->redir_out = true;
-		else if ((*dev_lst)->type == back_redir_is_next)
-			curr_pars->redir_in = true;
 		tmp_dev = *dev_lst;
 		*dev_lst = get_deviders_list(*str);
-		curr_pars->file_fd = fd;
+		curr_pars->fd_out = fd_out;
 		free(tmp_dev);
 	}
 	return (1);
+}
+
+int	get_fd_in(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
+{
+	int			fd_in;
+	t_deviders	*tmp_dev;
+
+	fd_in = -1;
+	while ((*dev_lst) && (*dev_lst)->type == redir_is_next)
+	{
+		close(fd_in);
+		fd_in = one_redir_fd(str, (*dev_lst)->pos_in_str, (*dev_lst)->type);
+		if (fd_in == -1)
+			return(0);
+		tmp_dev = *dev_lst;
+		*dev_lst = get_deviders_list(*str);
+		curr_pars->fd_in= fd_in;
+		free(tmp_dev);
+	}
+	return (1);
+}
+
+int	get_redir_fd(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
+{
+	int res;
+
+	res = 0;
+	if ((*dev_lst)->type == redir_is_next)
+		res = get_fd_in(curr_pars, dev_lst, str);
+	else if ((*dev_lst)->type == back_redir_is_next)
+		res = get_fd_out(curr_pars, dev_lst, str);
+	return(res);
 }

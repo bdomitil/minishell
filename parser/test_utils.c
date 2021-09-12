@@ -9,9 +9,15 @@ void print_pars_lst(t_parse_lst **lst)
 	while (pars_tmp)
 	{
 		arg_temp = pars_tmp->args;
-		// if (pars_tmp->redir_out)
-		// 	write(pars_tmp->file_fd, "hello", 5);
-		printf("command = ||%s||  pipe = ||%d|| redir_in = ||%d||  repid_out = ||%d||\n ", pars_tmp->command, pars_tmp->pipe, pars_tmp->redir_in, pars_tmp->redir_out);
+
+		printf("command = ||%s||  \
+		pipe = ||%d|| \
+		redir_in = ||%d|| \
+		redir_out = ||%d||\n ",
+		 pars_tmp->command, \
+		 pars_tmp->pipe, \
+		pars_tmp->fd_in, \
+		pars_tmp->fd_out);
 		while (arg_temp)
 		{
 			printf("%d arg = ||%s||\n", i, arg_temp->arg);

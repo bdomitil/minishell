@@ -29,8 +29,9 @@ t_parse_lst	*init_pars_lst(void)
 	lst->args = NULL;
 	// lst->type_of_next_command = none;
 	lst->pipe = false;
-	lst->redir_in = false;
-	lst->redir_out = false;
+	lst->double_back = 0;
+	lst->fd_in = 0;
+	lst->fd_out = 0;
 	lst->exit_status = 0;
 	lst->command = NULL;
 	return (lst);

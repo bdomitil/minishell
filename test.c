@@ -2,7 +2,8 @@
 
 int main(int argc, char **argv)
 {
-	char *str = ft_strdup("echo \\\\\" hello > file world > file2 > file3 and \"another world\"  | grep qwe");
+	// char *str = ft_strdup("echo hello \\\"> file world < file2 > file3 and \"another world\"  | grep qwe");
+	char *str= ft_strdup ("cat > file");
 	t_parse_lst *lst;
 	printf("\n%s\n", str);
 
