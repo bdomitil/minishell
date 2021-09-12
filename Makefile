@@ -6,7 +6,7 @@
 #    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/09/05 20:32:55 by bdomitil         ###   ########.fr        #
+#    Updated: 2021/09/12 19:29:21 by bdomitil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ lib_compil:
 
 %.o : %.c 
 		@gcc $(CFLAGS)  -c  $<  -o $@
-		@echo "\033[36m$<\033[0m \033[35m is compiled!\033[0m"
+		@echo "\033[36m$<\033[0m \033[35m is compiled!\033[0m" 
 
 clean :  
 		@rm -f $(files.o)
