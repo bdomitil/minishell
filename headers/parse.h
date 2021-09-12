@@ -69,6 +69,6 @@ t_args		*init_arg_lst(void);
 t_parse_lst	*init_pars_lst(void);
 t_deviders	*get_deviders_list(char *str);
 void		print_pars_lst(t_parse_lst **lst);
-int			get_redir_fd(t_found type, t_parse_lst *curr_pars, char *filename);
+int			get_redir_fd(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str);
 
 #endif 

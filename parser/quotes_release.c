@@ -65,7 +65,6 @@ char	*relese_quoutes(char *str, t_parse_lst *pars_lst)
 			dq_open = i;
 			str = screen_chars(str, dq_open, &i, pars_lst);
 			dq_close = i;
-			// dq_close = find_next_quote(str, i, '\"');
 			str = cut_quotes(&str, &dq_open, &dq_close);
 		}
 		else if (str[i] == '$' && (i == 0 || str[i - 1] != '\\') && 

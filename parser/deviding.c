@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/05 20:46:10 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/12 02:55:16 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int fill_lst(char *str, t_parse_lst *pars_lst)
 	
 	while (dev_lst)
 	{
+		current_pars->file_fd = get_redir_fd(current_pars, &dev_lst, &str);
 		str = cut_str_by_devider(str, dev_lst, &command_params, pars_lst);
-		printf("str = %s\n", str);
 		temp = dev_lst;
 		commnads_args_fill(current_pars, command_params, dev_lst);
 		dev_lst  = dev_lst->next;

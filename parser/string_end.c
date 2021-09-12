@@ -37,7 +37,7 @@ int	not_ending_string(char **str)
 			else
 				i = next_quote;
 		}
-		else if ((*str)[i] == '|' && ft_isempty_str(&(*str)[i]))
+		else if ((*str)[i] == '|' && ft_isempty_str(&(*str)[i + 1]))
 				return (false);
 		else if ((slash % 2) != 0 && (*str)[i] == '\\' && (*str)[i + 1] == '\0')
 			return (false);
