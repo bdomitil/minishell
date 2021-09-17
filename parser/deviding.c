@@ -6,14 +6,13 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/17 20:21:34 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/18 01:15:27 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/parse.h"
 
-void	commands_args_fill(t_parse_lst *current_pars, char **command_params,\
-	t_deviders *dev_lst)
+void	commands_args_fill(t_parse_lst *current_pars, char **command_params)
 {
 	t_args      *new_args;
 	if (!command_params)
@@ -74,13 +73,13 @@ int fill_lst(char *str, t_parse_lst *pars_lst)
 		if (dev_lst->type == pipe_is_next)
 			current_pars->pipe = true;
 		temp = dev_lst;
-		commands_args_fill(current_pars, command_params, dev_lst);
+		commands_args_fill(current_pars, command_params);
 		current_pars = current_pars->next;
 		free(temp);
 		if (dev_lst)
 			dev_lst = dev_lst->next;
 	}
 	command_params = split_out_quotes(str, ' ');
-	commands_args_fill(current_pars, command_params, dev_lst);
+	commands_args_fill(current_pars, command_params);
 	return (1);
 }

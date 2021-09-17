@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:00:58 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/12 21:59:58 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/18 01:16:31 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_deviders	*lstnew_devide(int *pos, t_found devider_type)
 	return (new_list);
 }
 
-static int	lstadd_back_devide(t_deviders **lst, t_deviders *new, char *str)
+static int	lstadd_back_devide(t_deviders **lst, t_deviders *new)
 {
 	t_deviders *temp;
 
@@ -61,21 +61,21 @@ t_deviders *get_deviders_list(char *str)
 		else if (str[i] != '\0' && str[i + 1] == '\"' && str[i] != '\\')
 			qt_opened = find_next_quote(str, i, '\"');
 		if (str[i] == '|' && qt_opened == -1)
-			lstadd_back_devide(&deviders, lstnew_devide(&pos, pipe_is_next), str);		
+			lstadd_back_devide(&deviders, lstnew_devide(&pos, pipe_is_next));		
 		else if (str[i] == '<' && str[i + 1] == '<' && qt_opened == -1)
 		{
-			lstadd_back_devide(&deviders, lstnew_devide(&pos, double_back_redir_is_next), str);
+			lstadd_back_devide(&deviders, lstnew_devide(&pos, double_back_redir_is_next));
 			i += 2;
 		}
 		else if (str[i] == '<' && qt_opened == -1)
-				lstadd_back_devide(&deviders, lstnew_devide(&pos, back_redir_is_next), str);
+				lstadd_back_devide(&deviders, lstnew_devide(&pos, back_redir_is_next));
 		else if (str[i] == '>' && str[i + 1] == '>' && qt_opened == -1)
 		{
-			lstadd_back_devide(&deviders, lstnew_devide(&pos, double_redir_is_next), str);
+			lstadd_back_devide(&deviders, lstnew_devide(&pos, double_redir_is_next));
 			i++;
 		}
 		else if (str[i] == '>' && qt_opened == -1)
-			lstadd_back_devide(&deviders, lstnew_devide(&pos, redir_is_next), str);
+			lstadd_back_devide(&deviders, lstnew_devide(&pos, redir_is_next));
 		pos++;
 		i++;
 	}

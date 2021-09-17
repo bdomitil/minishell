@@ -24,10 +24,6 @@ int	find_next_quote(char *str, int i, char quote)
 
 static char *cut_quotes(char **str, int *open, int *close)
 {
-	char	*tmp;
-	int		str_len;
-
-
 	(*str)[*open] = 0;
 	(*str)[*close] = 0;
 	ft_memmove(&(*str)[*close], &(*str)[*close + 1], ft_ft_strlen(&(*str)[*close + 1]));

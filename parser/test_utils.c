@@ -5,7 +5,6 @@ void print_pars_lst(t_parse_lst **lst)
 	int i = 1;
 	t_parse_lst *pars_tmp = *lst;
 	t_args		*arg_temp;
-	char *types[] = { "pipe","redir", "double redir", "back_redir",  "double back", "none"};
 	while (pars_tmp)
 	{
 		arg_temp = pars_tmp->args;

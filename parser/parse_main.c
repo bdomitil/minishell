@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_main.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/18 00:48:30 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/09/18 00:48:31 by bdomitil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/parse.h"
 
 int	parse_str(char **str, t_parse_lst *pars_lst)
 {
-	if (not_ending_string(str) == false)
+	if (*str && not_ending_string(str) == false)
 	{
 		printf("syntax error: unexpected end of file\n");
 		return (-1);
@@ -16,7 +28,7 @@ int parser(char **str, t_parse_lst **pars_lst)
 	t_parse_lst *pars_tmp;
 	t_args		*args_tmp;
 
-	if (!(*str) || (**str) == '\0')
+	if (!(*str) || (**str) == '\0' || ft_isempty_str(*str))
 		return (1);
 	*pars_lst = init_pars_lst();
 	if (!*pars_lst)
@@ -35,11 +47,11 @@ int parser(char **str, t_parse_lst **pars_lst)
 	args_tmp = pars_tmp->args;
 	while (pars_tmp)
 	{
-		if (parse_str(&pars_tmp->command, pars_tmp) == -1)
-			return (-1);
+		if (pars_tmp->command && parse_str(&pars_tmp->command, pars_tmp) == -1)
+			return (-1);		
 		while (args_tmp != NULL)
 		{
-			if (parse_str(&args_tmp->arg, pars_tmp) == -1)
+			if (args_tmp->arg && parse_str(&args_tmp->arg, pars_tmp) == -1)
 				return (-1);
 			args_tmp = args_tmp->next;
 		}
