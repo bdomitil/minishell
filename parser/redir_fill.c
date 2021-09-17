@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:26:54 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/17 20:33:45 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/18 02:03:33 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char *get_file_name(char *str, char **to_ret_str)
 	return (file_name);
 }
 
-int	one_redir_fd(char **str, int pos_in_str, t_found type)
+int	single_redir_fd(char **str, int pos_in_str, t_found type)
 {
 	int		i;
 	char	*file_name;
@@ -73,9 +73,9 @@ int	get_fd_out(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 	while ((*dev_lst) && (*dev_lst)->type == back_redir_is_next)
 	{
 		close(fd_out);
-		fd_out = one_redir_fd(str, (*dev_lst)->pos_in_str, (*dev_lst)->type);
-		if (fd_out == -1)
-			return(0);
+		fd_out = single_redir_fd(str, (*dev_lst)->pos_in_str, (*dev_lst)->type);
+		if (curr_pars->fd_in == -1 || fd_out == -1)
+			return(-1);
 		tmp_dev = *dev_lst;
 		*dev_lst = get_deviders_list(*str);
 		curr_pars->fd_out = fd_out;
@@ -93,9 +93,9 @@ int	get_fd_in(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 	while ((*dev_lst) && (*dev_lst)->type == redir_is_next)
 	{
 		close(fd_in);
-		fd_in = one_redir_fd(str, (*dev_lst)->pos_in_str, (*dev_lst)->type);
-		if (fd_in == -1)
-			return(0);
+		fd_in = single_redir_fd(str, (*dev_lst)->pos_in_str, (*dev_lst)->type);
+		if (curr_pars->fd_out == -1 || fd_in == -1)
+			return(-1);
 		tmp_dev = *dev_lst;
 		*dev_lst = get_deviders_list(*str);
 		curr_pars->fd_in= fd_in;
