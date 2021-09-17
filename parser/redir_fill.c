@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:26:54 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/12 22:29:37 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/17 20:33:45 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ char *get_file_name(char *str, char **to_ret_str)
 	else
 		file_name = ft_strdup(str);
 	*tmp_word = '\0';
-	*to_ret_str = ft_strjoin(*to_ret_str, &(str[i + 1]));
+	if (ft_isprint (str[i + 1]))
+		*to_ret_str = ft_strjoin(*to_ret_str, &(str[i + 1]));
 	// free(tmp_word);
 	return (file_name);
 }
