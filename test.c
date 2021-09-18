@@ -2,8 +2,8 @@
 
 int main(void)
 {
-	// char *str= ft_strdup ("echo some text >>> file1 >> file2 < file3");
-	char *str = ft_strdup("echo  \\z");
+	char *str= ft_strdup ("echo some text gg  here >> file1 >> file2 < file3 << stop << stop1 << stop2");
+	// char *str = ft_strdup("echo  \\z");
 	t_parse_lst *lst;
 	printf("str = %s\n", str);
 	errno = 0;

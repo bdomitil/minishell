@@ -35,9 +35,8 @@ typedef struct s_main_parse_list
 	struct s_main_parse_list	*next;
 	struct s_main_parse_list	*previous;
 	t_args						*args;
-	// t_found						type_of_next_command;
 	bool						pipe;
-	char						*double_back;
+	char						*stop_word;
 	int							fd_in;
 	int							fd_out;
 	int							exit_status;
@@ -70,5 +69,6 @@ t_parse_lst	*init_pars_lst(void);
 t_deviders	*get_deviders_list(char *str);
 void		print_pars_lst(t_parse_lst **lst);
 int			get_redir_fd(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str);
+void		free_dev_lst(t_deviders **devider);
 
 #endif 

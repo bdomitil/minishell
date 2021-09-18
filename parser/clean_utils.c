@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   clean_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 20:01:04 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/18 23:11:48 by bdomitil         ###   ########.fr       */
+/*   Created: 2021/09/19 01:13:51 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/09/19 01:35:10 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/parse.h"
 
-size_t	ft_strlen(const char *str)
+void	free_dev_lst(t_deviders **devider)
 {
-	size_t	i;
+	t_deviders *tmp;
 
-	if (!str)
-		return(0);
-	i = 0;
-	while (*str++)
-		i++;
-	return (i);
+	while (*devider)
+	{
+		tmp = *devider;
+		(*devider) = (*devider)->next;
+		free(tmp);
+	}
 }

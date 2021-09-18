@@ -6,14 +6,14 @@
 #    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/09/18 01:13:34 by bdomitil         ###   ########.fr        #
+#    Updated: 2021/09/19 01:35:34 by bdomitil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/parse_main.c parser/string_end.c parser/quotes_release.c parser/screen_chars.c \
 		 parser/get_var_mean.c parser/general_utils.c parser/split_out_quotes.c parser/deviding.c \
-		 parser/deviding_utils.c parser/redir_fill.c test.c
+		 parser/deviding_utils.c parser/redir_fill.c test.c parser/clean_utils.c
 
 CFLAGS = -g -Wall -Wextra -Werror
 files.o = $(files.c:.c=.o)
