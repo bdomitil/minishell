@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:00:58 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/18 02:26:14 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/18 16:02:00 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ static t_deviders	*lstnew_devide(int *pos, t_found devider_type)
 	new_list = malloc(sizeof(t_deviders));
 	if (!new_list)
 		return (NULL);
-	new_list->pos_in_str = *pos;
+	if (devider_type == double_redir_is_next || \
+								devider_type == double_back_redir_is_next)
+		new_list->pos_in_str = *pos + 1;
+	else
+		new_list->pos_in_str = *pos;
 	new_list->type = devider_type;
 	new_list->next = NULL;
 	if (devider_type == pipe_is_next)

@@ -2,11 +2,11 @@
 
 int main(void)
 {
-	char *str= ft_strdup ("echo \"some text is here\" > file1 > file2 | cat file1 < file3");
-	// char *str = "echo text";
+	// char *str= ft_strdup ("echo some text >>> file1 >> file2 < file3");
+	char *str = ft_strdup("echo  \\z");
 	t_parse_lst *lst;
 	printf("str = %s\n", str);
-
+	errno = 0;
 	if (parser(&str, &lst) == -1)
 		printf("\n\n______ERROR______\n\n");
 	else

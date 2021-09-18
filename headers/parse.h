@@ -37,7 +37,7 @@ typedef struct s_main_parse_list
 	t_args						*args;
 	// t_found						type_of_next_command;
 	bool						pipe;
-	bool						double_back;
+	char						*double_back;
 	int							fd_in;
 	int							fd_out;
 	int							exit_status;

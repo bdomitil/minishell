@@ -28,7 +28,7 @@ t_parse_lst	*init_pars_lst(void)
 	lst->previous = NULL;
 	lst->args = NULL;
 	lst->pipe = false;
-	lst->double_back = 0;
+	lst->double_back = NULL;
 	lst->fd_in = 0;
 	lst->fd_out = 0;
 	lst->exit_status = 0;
