@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:26:54 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/19 19:55:23 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/19 22:02:43 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char *get_file_name(char *str, char **to_ret_str)
 	file_name = NULL;
 	while (!ft_isprint(*str))
 		str++;
-	while(ft_isprint(str[i]))
+	while(ft_isprint(str[i])) //fix getting file-name because it stops if in quotes
 		i++;
 	if (str[i] != '\0')
 	{
@@ -131,7 +131,7 @@ int	get_fd_out(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 		tmp_dev = *dev_lst;
 		*dev_lst = get_deviders_list(*str);
 		curr_pars->fd_out = fd_out;
-		// free_dev_lst(dev_lst);
+		free_dev_lst(dev_lst);
 	}
 	return (1);
 }
@@ -158,7 +158,7 @@ int	get_fd_in(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 		tmp_dev = *dev_lst;
 		*dev_lst = get_deviders_list(*str);
 		curr_pars->fd_in= fd_in;
-		// free_dev_lst(dev_lst);
+		free_dev_lst(dev_lst);
 	}
 	return (1);
 }

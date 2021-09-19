@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 04:36:44 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/19 19:53:21 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/19 21:38:36 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_isprint(int q)
 {
+	if (q == 32)
+		return (0);
 	if (q > 31 && q < 127)
 		return (1);
 	else

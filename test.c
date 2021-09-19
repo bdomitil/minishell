@@ -2,7 +2,7 @@
 
 int main(void)
 {
- 	char *str= ft_strdup ("echo some text gg  here > \"file or file2\" ");
+ 	char *str= ft_strdup ("echo some text gg  here > \"file or file2\" << stop1 << stop2 << stop3");
 	// char *str = ft_strdup("echo  \\z");
 	t_parse_lst *lst;
 	printf("str = %s\n", str);
