@@ -8,6 +8,8 @@
 # include <stdbool.h>
 # include <fcntl.h>
 
+static int	g_exit_status = 0;
+
 typedef enum e_types_of_found
 {
 	pipe_is_next,
@@ -56,11 +58,11 @@ void		ft_shell_lst_add_back(t_parse_lst *lst, t_parse_lst *new_lst);
 void		ft_args_lst_add_back(t_parse_lst *lst, t_args *new);
 int			parser(char **str, t_parse_lst **pars_lst);
 int			not_ending_string(char **str);//looks if string ends with not valid symbol | or ' or " 
-char		*relese_quoutes(char *str, t_parse_lst *pars_lst);
-char		*screen_chars(char *str, int open_uquote, int *i, t_parse_lst *pars_lst);
+char		*relese_quoutes(char *str);
+char		*screen_chars(char *str, int open_uquote, int *i);
 int			find_next_quote(char *str, int i, char quote);
 int			find_open_quote(char *str, int pos, char quote);
-char		*get_var_mean(char *str, t_parse_lst *pars_lst, int *i);
+char		*get_var_mean(char *str, int *i);
 char		*cut_char(char *str, int char_pos);
 char		**split_out_quotes(const char *str, char q);
 int			fill_lst(char *str, t_parse_lst *pars_lst);
@@ -70,5 +72,6 @@ t_deviders	*get_deviders_list(char *str);
 void		print_pars_lst(t_parse_lst **lst);
 int			get_redir_fd(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str);
 void		free_dev_lst(t_deviders **devider);
+int			parse_str(char **str);
 
 #endif 

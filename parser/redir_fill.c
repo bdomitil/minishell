@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:26:54 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/19 02:37:31 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/19 19:55:23 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,33 @@ char *get_file_name(char *str, char **to_ret_str)
 	char	*file_name;
 	int		i;
 	char	*tmp_word;
+	bool	to_join;
 
 	i = 0;
-	tmp_word = str;
+	to_join = false;
 	file_name = NULL;
 	while (!ft_isprint(*str))
 		str++;
 	while(ft_isprint(str[i]))
 		i++;
-	str[i] = '\0';
+	if (str[i] != '\0')
+	{
+		str[i] = '\0';
+		to_join = true;
+	}
 	if (*str == '$')
 		file_name = ft_strdup(getenv(str + 1));
 	else
-		file_name = ft_strdup(str);
-	*tmp_word = '\0';
+		file_name = ft_strdup(relese_quoutes(str));
+	*str = '\0';
 	tmp_word = *to_ret_str;
-	if (ft_isprint (str[i + 1]))
+	if (to_join)
 	{
 		*to_ret_str = ft_strjoin(*to_ret_str, &(str[i + 1]));
 		free(tmp_word);
 	}
+	else
+		(*to_ret_str)[ft_strlen(*to_ret_str)] = '\0';
 	return (file_name);
 }
 
@@ -114,11 +121,13 @@ int	get_fd_out(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 	{
 		close(fd_out);
 		if ((*dev_lst)->type == back_redir_is_next)
+		{
 			fd_out = single_redir_fd(str, (*dev_lst)->pos_in_str, (*dev_lst)->type);
+			if (/*curr_pars->fd_in == -1 || */ fd_out == -1)
+				return(-1);
+		}
 		else
 			double_redir_fd(str, (*dev_lst)->pos_in_str, true, curr_pars);	
-		if (curr_pars->fd_in == -1 || fd_out == -1)
-			return(-1);
 		tmp_dev = *dev_lst;
 		*dev_lst = get_deviders_list(*str);
 		curr_pars->fd_out = fd_out;

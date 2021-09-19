@@ -1,6 +1,6 @@
 #include "../headers/parse.h"
 
-char	*get_var_mean(char *str, t_parse_lst *pars_lst, int *i)
+char	*get_var_mean(char *str,  int *i)
 {
 	char	*temp;
 	char	*var;
@@ -23,12 +23,7 @@ char	*get_var_mean(char *str, t_parse_lst *pars_lst, int *i)
 			else if (var || str[*i + 1] == '?')
 			{
 				if (str[*i + 1] == '?')
-				{
-					if (pars_lst->tail == NULL)
-						var = ft_strdup("0");
-					else
-						var = ft_itoa(pars_lst->tail->exit_status);
-				}
+						var = ft_itoa(g_exit_status);
 				else
 					var = ft_strdup(var);
 				str[*i] = 0;
