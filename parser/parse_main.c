@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 00:48:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/19 19:52:19 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/21 01:49:45 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int parser(char **str, t_parse_lst **pars_lst)
 		return (-1);
 	}
 	pars_tmp = *pars_lst;
-	args_tmp = pars_tmp->args;
 	while (pars_tmp)
 	{
+		args_tmp = pars_tmp->args;		
 		if ((!pars_tmp->command || parse_str(&pars_tmp->command) == -1))  //&& 
 			// !join_path(pars_tmp->command))
 			return (-1);		

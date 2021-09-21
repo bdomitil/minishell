@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/19 01:36:39 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/21 04:45:21 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,23 @@ char	*cut_str_by_devider(char *str, t_deviders *dev_lst, \
 							char ***command_params, t_parse_lst *pars_lst)
 {
 	t_parse_lst	*new_pars;
+	char		*tmp;
+	char		*to_ret;
 
+	tmp = str;
 	str[dev_lst->pos_in_str] = '\0';
 	*command_params = split_out_quotes(str, ' ');
 	new_pars = init_pars_lst();
 	ft_shell_lst_add_back(pars_lst, new_pars);
-	if (dev_lst->type == double_redir_is_next)
-		return (&str[dev_lst->pos_in_str + 2]);
-	else
-		return (&str[dev_lst->pos_in_str + 1]);
+	to_ret = ft_strdup(&str[dev_lst->pos_in_str + 1]);
+	free(tmp);
+	return (to_ret);
 }
 
 int	fill_lst(char *str, t_parse_lst *pars_lst)
 {
 	t_deviders	*dev_lst;
+	t_deviders	*to_free;
 	char		**command_params;
 
 	command_params = NULL;
@@ -62,10 +65,15 @@ int	fill_lst(char *str, t_parse_lst *pars_lst)
 			pars_lst->pipe = true;
 		commands_args_fill(pars_lst, command_params);
 		pars_lst = pars_lst->next;
+		to_free = dev_lst;
 		if (dev_lst)
 			dev_lst = dev_lst->next;
+		free(to_free);
+		free(command_params);
 	}
 	command_params = split_out_quotes(str, ' ');
 	commands_args_fill(pars_lst, command_params);
+	free(command_params);
+	free(str);
 	return (1);
 }

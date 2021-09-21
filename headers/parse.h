@@ -73,5 +73,9 @@ void		print_pars_lst(t_parse_lst **lst);
 int			get_redir_fd(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str);
 void		free_dev_lst(t_deviders **devider);
 int			parse_str(char **str);
+char		*get_file_name(char *str, char **to_ret_str);
+void		*free_string_mass(char **mass, int size, int use_size);
+int			single_redir_fd(char **str, int pos_in_str, t_found type);
+int			double_redir_fd(char **str, int pos_in_str, bool double_back, t_parse_lst *curr_pars);
 
 #endif 

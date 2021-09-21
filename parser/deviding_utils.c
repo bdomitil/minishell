@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:00:58 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/18 16:02:00 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/21 04:10:25 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,27 @@ static int	lstadd_back_devide(t_deviders **lst, t_deviders *new)
 
 int	get_devider(char *q, int qt_opened, int *pos, t_deviders **deviders)
 {
-	if (*q == '|' && qt_opened == -1)
+	if (*q == '|' && qt_opened % 2)
 		lstadd_back_devide(deviders, lstnew_devide(pos, pipe_is_next));
-	else if (*q == '<' && *(q + 1) == '<' && qt_opened == -1)
+	else if (*q == '<' && *(q + 1) == '<' && qt_opened % 2)
 	{
 		lstadd_back_devide(deviders, \
 						lstnew_devide(pos, double_back_redir_is_next));
 		return (1);
 	}
-	else if (*q == '<' && qt_opened == -1)
+	else if (*q == '<' && qt_opened % 2)
 		lstadd_back_devide(deviders, \
 								lstnew_devide(pos, back_redir_is_next));
-	else if (*q == '>' && *(q + 1) == '>' && qt_opened == -1)
+	else if (*q == '>' && *(q + 1) == '>' && qt_opened % 2)
 	{
 		lstadd_back_devide(deviders, lstnew_devide(pos, double_redir_is_next));
 		return (1);
 	}
-	else if (*q == '>' && qt_opened == -1)
+	else if (*q == '>' && qt_opened % 2)
 		lstadd_back_devide(deviders, lstnew_devide(pos, redir_is_next));
 	return (0);
 }
+
 
 t_deviders	*get_deviders_list(char *str)
 {
@@ -79,17 +80,39 @@ t_deviders	*get_deviders_list(char *str)
 
 	i = 0;
 	pos = 0;
-	qt_opened = -1;
+	qt_opened = 1;
 	deviders = NULL;
 	while (str[i] != '\0')
 	{
-		if (qt_opened >= 0 && find_next_quote(str, i, '\"') != qt_opened)
-			qt_opened = -1;
-		else if (str[i] != '\0' && str[i + 1] == '\"' && str[i] != '\\')
-			qt_opened = find_next_quote(str, i, '\"');
+		if ((str[i] == '\"' || str[i] == '\'') && (i == 0 || str[i - 1] != '\\'))
+			qt_opened++;
 		i += get_devider(&(str[i]), qt_opened, &pos, &deviders);
 		pos++;
 		i++;
 	}
 	return (deviders);
 }
+
+// t_deviders	*get_deviders_list(char *str)
+// {
+// 	int			i;
+// 	int			pos;
+// 	t_deviders	*deviders;
+// 	int			qt_opened;
+
+// 	i = 0;
+// 	pos = 0;
+// 	qt_opened = -1;
+// 	deviders = NULL;
+// 	while (str[i] != '\0')
+// 	{
+// 		if (qt_opened >= 0 && find_next_quote(str, i, '\"') != qt_opened)
+// 			qt_opened = -1;
+// 		else if (str[i] != '\0' && str[i + 1] == '\"' && str[i] != '\\')
+// 			qt_opened = find_next_quote(str, i, '\"');
+// 		i += get_devider(&(str[i]), qt_opened, &pos, &deviders);
+// 		pos++;
+// 		i++;
+// 	}
+// 	return (deviders);
+// }
