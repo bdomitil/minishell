@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:35:39 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/21 17:35:49 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/22 01:37:08 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static char	*cut_quotes(char **str, int *open, int *close)
 	ft_memmove(&(*str)[*open], &(*str)[*open + 1], \
 											ft_ft_strlen(&(*str)[*open + 1]));
 	*open = -1;
+	*close -= 1;
 	return (*str);
 }
 
@@ -82,7 +83,7 @@ char	*relese_quoutes(int i, char *str)
 			quotes[0] = i;
 			str = screen_chars(str, quotes[0], &i);
 			quotes[1] = i;
-			str = cut_quotes(&str, &(quotes[0]), &quotes[1]);
+			str = cut_quotes(&str, &(quotes[0]), &i);
 		}
 		else
 			slash_dollar(&str, &i);

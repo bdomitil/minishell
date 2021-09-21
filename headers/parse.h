@@ -7,6 +7,7 @@
 # include "../libft/libft.h"
 # include <stdbool.h>
 # include <fcntl.h>
+# include <sys/stat.h>
 
 static int	g_exit_status = 0;
 
