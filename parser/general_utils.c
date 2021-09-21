@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   general_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 16:15:28 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/09/21 16:15:55 by bdomitil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/parse.h"
 
 t_args	*init_arg_lst(void)
 {
-	t_args *args;
+	t_args	*args;
 
 	args = malloc(sizeof(t_args));
 	if (!args)
@@ -17,7 +29,7 @@ t_args	*init_arg_lst(void)
 
 t_parse_lst	*init_pars_lst(void)
 {
-	t_parse_lst *lst;
+	t_parse_lst	*lst;
 
 	lst = malloc(sizeof(t_parse_lst));
 	if (!lst)
@@ -35,4 +47,3 @@ t_parse_lst	*init_pars_lst(void)
 	lst->command = NULL;
 	return (lst);
 }
-

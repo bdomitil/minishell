@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 22:09:51 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/21 04:53:24 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/21 17:36:14 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static char	*make_file_name(char **to_ret_str, char *str, int i, char tmp_char)
 	if (*str == '$')
 		file_name = ft_strdup(getenv(str + 1));
 	else
-		file_name = ft_strdup(relese_quoutes(str));
+		file_name = ft_strdup(relese_quoutes(0, str));
 	*str = '\0';
 	str[i] = tmp_char;
 	if (to_join)

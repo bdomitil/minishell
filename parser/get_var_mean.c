@@ -1,6 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_var_mean.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 16:17:16 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/09/21 16:35:08 by bdomitil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/parse.h"
 
-char	*get_var_mean(char *str,  int *i)
+static char	*join_var(int *i, char *str, char *var, int end_pos)
+{
+	char	*new_str;
+
+	new_str = NULL;
+	if (str[*i + 1] == '?')
+		var = ft_itoa(g_exit_status);
+	else
+		var = ft_strdup(var);
+	str[*i] = 0;
+	new_str = malloc(ft_strlen(var) + \
+					ft_strlen(&str[end_pos + *i + 1]) + ft_strlen(str));
+	if (!new_str)
+		return (NULL);
+	ft_memmove(new_str, str, ft_strlen(str));
+	ft_memmove(&new_str[*i], var, ft_strlen(var));
+	ft_memmove(&new_str[*i + ft_strlen(var)], &str[*i + end_pos + 1], \
+										ft_strlen(&str[*i + end_pos]));
+	*i += ft_strlen(var);
+	free(str);
+	free(var);
+	return (new_str);
+}
+
+char	*get_var_mean(char *str, int *i)
 {
 	char	*temp;
 	char	*var;
@@ -8,35 +44,17 @@ char	*get_var_mean(char *str,  int *i)
 	int		end_pos;
 
 	new_str = NULL;
-	{
-			end_pos = *i + 1;
-			while (ft_isalpha(str[end_pos]) || str[end_pos] == '_')
-					end_pos++;
-			end_pos = end_pos - *i - 1;
-			temp = ft_substr(str, *i + 1, end_pos);
-			var = getenv(temp);
-			if (!var && str[*i + 1] != '?')
-			{
-				ft_memmove(&str[*i], &str[end_pos + *i + 1], ft_strlen(&str[end_pos + *i]));
-
-			}
-			else if (var || str[*i + 1] == '?')
-			{
-				if (str[*i + 1] == '?')
-						var = ft_itoa(g_exit_status);
-				else
-					var = ft_strdup(var);
-				str[*i] = 0;
-				new_str = malloc(ft_strlen(var) + ft_strlen(&str[end_pos + *i + 1]) + ft_strlen(str));
-				ft_memmove(new_str, str, ft_strlen(str));
-				ft_memmove(&new_str[*i], var, ft_strlen(var));
-				ft_memmove(&new_str[*i + ft_strlen(var)],  &str[*i + end_pos + 1], ft_strlen(&str[*i + end_pos]));
-				free(str);
-				free(var);
-				str = new_str;
-				*i = *i += ft_strlen(var);
-			}
-			free(temp);
-		}
-	return(str);
+	end_pos = *i + 1;
+	while (ft_isalpha(str[end_pos]) || str[end_pos] == '_')
+		end_pos++;
+	end_pos = end_pos - *i - 1;
+	temp = ft_substr(str, *i + 1, end_pos);
+	var = getenv(temp);
+	if (!var && str[*i + 1] != '?')
+		ft_memmove(&str[*i], &str[end_pos + *i + 1], \
+											ft_strlen(&str[end_pos + *i]));
+	else if (var || str[*i + 1] == '?')
+		str = join_var(i, str, var, end_pos);
+	free(temp);
+	return (str);
 }

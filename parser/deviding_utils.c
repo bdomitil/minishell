@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 19:00:58 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/21 04:10:25 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/21 16:05:49 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	get_devider(char *q, int qt_opened, int *pos, t_deviders **deviders)
 	return (0);
 }
 
-
 t_deviders	*get_deviders_list(char *str)
 {
 	int			i;
@@ -84,7 +83,8 @@ t_deviders	*get_deviders_list(char *str)
 	deviders = NULL;
 	while (str[i] != '\0')
 	{
-		if ((str[i] == '\"' || str[i] == '\'') && (i == 0 || str[i - 1] != '\\'))
+		if ((str[i] == '\"' || str[i] == '\'') && \
+										(i == 0 || str[i - 1] != '\\'))
 			qt_opened++;
 		i += get_devider(&(str[i]), qt_opened, &pos, &deviders);
 		pos++;

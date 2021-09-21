@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 00:48:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/21 01:49:45 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/21 17:37:09 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	parse_str(char **str)
 		printf("syntax error: unexpected end of file\n");
 		return (-1);
 	}
-	*str = relese_quoutes(*str);
+	*str = relese_quoutes(0, *str);
 	return (1);
 }
 
