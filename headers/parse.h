@@ -21,6 +21,12 @@ typedef enum e_types_of_found
 	none
 }				t_found;
 
+typedef struct	s_env
+{
+	struct s_env	*next;
+	char			*value;
+	char			*key;
+}				t_env;
 
 typedef struct s_parsed_args
 {
@@ -57,7 +63,7 @@ typedef struct	s_spec_deviders
 //||
 void		ft_shell_lst_add_back(t_parse_lst *lst, t_parse_lst *new_lst);
 void		ft_args_lst_add_back(t_parse_lst *lst, t_args *new_lst);
-int			parser(char **str, t_parse_lst **pars_lst);
+int			parser(char **str, t_parse_lst **pars_lst, char **env);
 int			not_ending_string(char **str);//looks if string ends with not valid symbol | or ' or " 
 char		*relese_quoutes(int i, char *str);
 char		*screen_chars(char *str, int open_uquote, int *i);
@@ -78,5 +84,8 @@ char		*get_file_name(char *str, char **to_ret_str);
 void		*free_string_mass(char **mass, int size, int use_size);
 int			single_redir_fd(char **str, int pos_in_str, t_found type);
 int			double_redir_fd(char **str, int pos_in_str, bool double_back, t_parse_lst *curr_pars);
+t_env		*parse_env(char **env);
+char		*find_env_key(t_env *env_lst, char *key);
+char		*change_sh_lvl(char *shlvl);
 
 #endif 

@@ -13,6 +13,7 @@
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
+            "envFile": "/Users/bdomitil/minishell/.env",
             "externalConsole": false,
             "MIMode": "lldb"
         }

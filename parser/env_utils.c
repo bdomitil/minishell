@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_find.c                                        :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 02:45:17 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/22 02:50:39 by bdomitil         ###   ########.fr       */
+/*   Created: 2021/09/22 02:55:56 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/09/22 04:32:40 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/parse.h"
 
-int main()
+char	*change_sh_lvl(char *shlvl)
 {
-    struct stat st = {0};
-    int res = stat("/bin/ls", &st);
-    while (1);
+	int		lvl;
+
+	lvl = ft_atoi(shlvl);
+	lvl++;
+	free(shlvl);
+	return(ft_itoa(lvl));
 }
