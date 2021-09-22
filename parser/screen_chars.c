@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 18:06:51 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/21 22:40:45 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/22 20:38:40 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	find_open_quote(char *str, int pos, char quote)
 	return (-1);
 }
 
-char	*screen_chars(char *str, int open_quote, int *i)
+char	*screen_chars(char *str, int open_quote, int *i, t_env *env_lst)
 {
 	int	close_quote;
 
@@ -49,7 +49,7 @@ char	*screen_chars(char *str, int open_quote, int *i)
 		if (str[*i] == '$' && (*i == 0 || str[*i - 1] != '\\') && \
 			(ft_isalpha(str[*i + 1]) || str[*i + 1] == '?'))
 		{
-			str = get_var_mean(str, i);
+			str = get_var_mean(str, i, env_lst);
 			close_quote = find_next_quote(str, *i, '\"');
 		}
 		else if (str[*i] == '\\' && (str[*i + 1] == '\\' || \

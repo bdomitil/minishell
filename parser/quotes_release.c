@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:35:39 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/22 01:37:08 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/22 20:39:04 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ static char	*cut_quotes(char **str, int *open, int *close)
 	return (*str);
 }
 
-static void	slash_dollar(char **str, int *i)
+static void	slash_dollar(char **str, int *i, t_env *env_lst)
 {
 	if ((*str)[*i] == '$' && (*i == 0 || (*str)[*i - 1] != '\\') && \
 			(ft_isalpha((*str)[*i + 1]) || (*str)[*i + 1] == '?'))
-		*str = get_var_mean((*str), i);
+		*str = get_var_mean((*str), i, env_lst);
 	else if ((*str)[*i] == '\\' && ((*str)[*i + 1] == '\\' || \
 	(*str)[*i + 1] == '$' || (*str)[*i + 1] == '\'' || (*str)[*i + 1] == '\"'))
 	{
@@ -62,7 +62,7 @@ static void	slash_dollar(char **str, int *i)
 		(*i)++;
 }
 
-char	*relese_quoutes(int i, char *str)
+char	*relese_quoutes(int i, char *str, t_env *env_lst)
 {
 	int	quotes[4];
 
@@ -81,12 +81,12 @@ char	*relese_quoutes(int i, char *str)
 															&& quotes[3] == -1)
 		{
 			quotes[0] = i;
-			str = screen_chars(str, quotes[0], &i);
+			str = screen_chars(str, quotes[0], &i, env_lst);
 			quotes[1] = i;
 			str = cut_quotes(&str, &(quotes[0]), &i);
 		}
 		else
-			slash_dollar(&str, &i);
+			slash_dollar(&str, &i, env_lst);
 	}
 	return (str);
 }

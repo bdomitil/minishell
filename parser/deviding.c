@@ -6,19 +6,21 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/21 16:12:44 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/22 20:47:37 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/parse.h"
 
-void	commands_args_fill(t_parse_lst *current_pars, char **command_params)
+void	commands_args_fill(t_parse_lst *current_pars, char **command_params, \
+																t_env *env_lst)
 {
 	t_args	*new_args;
 
 	if (!command_params)
 		return ;
 	current_pars->command = *command_params;
+	current_pars->env_lst = env_lst;
 	command_params++;
 	while (*command_params)
 	{
@@ -46,7 +48,7 @@ char	*cut_str_by_devider(char *str, t_deviders *dev_lst, \
 	return (to_ret);
 }
 
-int	fill_lst(char *str, t_parse_lst *pars_lst)
+int	fill_lst(char *str, t_parse_lst *pars_lst, t_env *env_lst)
 {
 	t_deviders	*dev_lst;
 	t_deviders	*to_free;
@@ -62,7 +64,7 @@ int	fill_lst(char *str, t_parse_lst *pars_lst)
 		str = cut_str_by_devider(str, dev_lst, &command_params, pars_lst);
 		if (dev_lst->type == pipe_is_next)
 			pars_lst->pipe = true;
-		commands_args_fill(pars_lst, command_params);
+		commands_args_fill(pars_lst, command_params, env_lst);
 		pars_lst = pars_lst->next;
 		to_free = dev_lst;
 		dev_lst = dev_lst->next;
@@ -70,7 +72,7 @@ int	fill_lst(char *str, t_parse_lst *pars_lst)
 		free(command_params);
 	}
 	command_params = split_out_quotes(str, ' ');
-	commands_args_fill(pars_lst, command_params);
+	commands_args_fill(pars_lst, command_params, env_lst);
 	free(command_params), free(str);
 	return (1);
 }

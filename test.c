@@ -2,8 +2,7 @@
 
 int main(int argc, char **argv, char **env)
 {
-	parse_env(env);
-	exit(0);
+	// parse_env(env);
  	char *str= ft_strdup ("echo aza \"hello world\"  > \'file1\' >   \"file2\"   >file3   \">not_file\"  \" | \"  \"  ab \"grep $var << \"stop1\"    <<stop2<file " );
 	// char *str = ft_strdup(" echo \"hello world\\\"\"\"\'$var\'\"");
 	t_parse_lst *lst;

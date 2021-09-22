@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:26:54 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/21 17:42:09 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/22 20:17:47 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ int	get_fd_out(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 		close(fd_out);
 		if ((*dev_lst)->type == back_redir_is_next)
 		{
-			fd_out = single_redir_fd(str, (*dev_lst)->pos_in_str, \
-															(*dev_lst)->type);
+			fd_out = single_redir_fd(str, *dev_lst, (*dev_lst)->type);
 			if (fd_out == -1)
 				return (-1);
 		}
 		else
-			double_redir_fd(str, (*dev_lst)->pos_in_str, true, curr_pars);
+			double_redir_fd(str, *dev_lst, true, curr_pars);
 		tmp_dev = *dev_lst;
 		*dev_lst = get_deviders_list(*str);
 		curr_pars->fd_out = fd_out;
@@ -51,11 +50,9 @@ int	get_fd_in(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 		if (fd_in != -1)
 			close(fd_in);
 		if ((*dev_lst)->type == redir_is_next)
-			fd_in = single_redir_fd(str, (*dev_lst)->pos_in_str, \
-														(*dev_lst)->type);
+			fd_in = single_redir_fd(str, *dev_lst, (*dev_lst)->type);
 		else
-			fd_in = double_redir_fd(str, (*dev_lst)->pos_in_str, false, \
-															curr_pars);
+			fd_in = double_redir_fd(str, *dev_lst, false, curr_pars);
 		if (curr_pars->fd_out == -1 || fd_in == -1)
 			return (-1);
 		tmp_dev = *dev_lst;

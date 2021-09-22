@@ -6,13 +6,13 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 22:09:51 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/21 18:06:18 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/22 20:39:53 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/parse.h"
 
-int	single_redir_fd(char **str, int pos_in_str, t_found type)
+int	single_redir_fd(char **str, t_deviders *dev_lst, t_found type)
 {
 	int		i;
 	char	*file_name;
@@ -21,15 +21,16 @@ int	single_redir_fd(char **str, int pos_in_str, t_found type)
 
 	i = 0;
 	tmp_str = *str;
-	(*str)[pos_in_str] = ' ';
-	if (ft_isempty_str(&((*str)[pos_in_str + 1])))
+	(*str)[dev_lst->pos_in_str] = ' ';
+	if (ft_isempty_str(&((*str)[dev_lst->pos_in_str + 1])))
 		return (-1);
-	while ((*str)[pos_in_str + ++i] != '\0' \
-									&& !ft_isalpha((*str)[pos_in_str + i]))
-		if ((*str)[pos_in_str + i] == '|' || \
-		(*str)[pos_in_str + i] == '>' || (*str)[pos_in_str + i] == '<')
+	while ((*str)[dev_lst->pos_in_str + ++i] != '\0' \
+							&& !ft_isalpha((*str)[dev_lst->pos_in_str + i]))
+		if ((*str)[dev_lst->pos_in_str + i] == '|' || (*str) \
+	[dev_lst->pos_in_str + i] == '>' || (*str)[dev_lst->pos_in_str + i] == '<')
 			return (-1);
-	file_name = get_file_name(&((*str)[pos_in_str + 1]), str);
+	file_name = get_file_name(&((*str)[dev_lst->pos_in_str + 1]), \
+														str, dev_lst->env_lst);
 	if (!file_name)
 		return (-1);
 	if (type == redir_is_next)
@@ -53,7 +54,7 @@ char	*join_stop_words(char *old_stop_word, char *new_stop_word)
 	return (to_ret);
 }
 
-int	double_redir_fd(char **str, int pos_in_str, \
+int	double_redir_fd(char **str, t_deviders *dev_lst, \
 									bool double_back, t_parse_lst *curr_pars)
 {
 	int		i;
@@ -62,16 +63,17 @@ int	double_redir_fd(char **str, int pos_in_str, \
 
 	i = 0;
 	fd = -1;
-	(*str)[pos_in_str] = ' ';
-	*str = cut_char(*str, pos_in_str - 1);
-	if (ft_isempty_str(&((*str)[pos_in_str + 1])))
+	(*str)[dev_lst->pos_in_str] = ' ';
+	*str = cut_char(*str, dev_lst->pos_in_str - 1);
+	if (ft_isempty_str(&((*str)[dev_lst->pos_in_str + 1])))
 		return (-1);
-	while ((*str)[pos_in_str + ++i] != '\0' && \
-									!ft_isalpha((*str)[pos_in_str + i]))
-		if ((*str)[pos_in_str + i] == '|' || \
-		(*str)[pos_in_str + i] == '>' || (*str)[pos_in_str + i] == '<')
+	while ((*str)[dev_lst->pos_in_str + ++i] != '\0' && \
+								!ft_isalpha((*str)[dev_lst->pos_in_str + i]))
+		if ((*str)[dev_lst->pos_in_str + i] == '|' || (*str) \
+	[dev_lst->pos_in_str + i] == '>' || (*str)[dev_lst->pos_in_str + i] == '<')
 			return (-1);
-	file_name = get_file_name(&((*str)[pos_in_str]), str);
+	file_name = get_file_name(&((*str)[dev_lst->pos_in_str]), \
+												str, dev_lst->env_lst);
 	if (!file_name)
 		return (-1);
 	if (!double_back)
@@ -82,20 +84,23 @@ int	double_redir_fd(char **str, int pos_in_str, \
 	return (fd);
 }
 
-static char	*make_file_name(char **to_ret_str, char *str, int i, char tmp_char)
+static char	*make_file_name(char **to_ret_str, char *str, int i, t_env *env_lst)
 {
 	char	*file_name;
 	bool	to_join;
 	char	*tmp;
+	char	tmp_char;
 
+	tmp_char = str[i];
 	to_join = str[i];
+	(void)env_lst;
 	file_name = NULL;
 	if (str[i] != '\0')
 		str[i] = '\0';
 	if (*str == '$')
-		file_name = ft_strdup(getenv(str + 1));
+		file_name = ft_strdup(find_env_key(env_lst, str + 1));
 	else
-		file_name = ft_strdup(relese_quoutes(0, str));
+		file_name = ft_strdup(relese_quoutes(0, str, env_lst));
 	*str = '\0';
 	str[i] = tmp_char;
 	if (to_join)
@@ -108,7 +113,7 @@ static char	*make_file_name(char **to_ret_str, char *str, int i, char tmp_char)
 	return (file_name);
 }
 
-char	*get_file_name(char *str, char **to_ret_str)
+char	*get_file_name(char *str, char **to_ret_str, t_env *env_lst)
 {
 	char	*file_name;
 	int		i;
@@ -125,6 +130,6 @@ char	*get_file_name(char *str, char **to_ret_str)
 			qt++;
 		i++;
 	}
-	file_name = make_file_name(to_ret_str, str, i, str[i]);
+	file_name = make_file_name(to_ret_str, str, i, env_lst);
 	return (file_name);
 }

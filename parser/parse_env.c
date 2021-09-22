@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:55:56 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/22 04:37:55 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/22 20:48:41 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,5 @@ t_env   *parse_env(char **env)
 		env++;
 		add_env_back(&env_lst, key, value);
 	}
-	printf("before________\n\n");
-	print_env_lst(env_lst);
-	del_env_lst_by_key(env_lst, "USER");
-	printf("after________\n\n");
-	print_env_lst(env_lst);
 	return (env_lst);
 }
