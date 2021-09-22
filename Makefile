@@ -6,7 +6,7 @@
 #    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/09/22 04:33:19 by bdomitil         ###   ########.fr        #
+#    Updated: 2021/09/22 22:54:11 by bdomitil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,27 +17,31 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/parse_env.c parser/env_utils.c
 
 CFLAGS = -g #-Wall -Wextra -Werror
+
+HEADERS = headers/parse.h
+
 files.o = $(files.c:.c=.o)
+
 NAME = a.out
 
 
-all :	lib_compil $(NAME) 
+all :	lib_compil $(NAME)
 
-$(NAME) : $(files.o)
+$(NAME) : $(files.o) 
 		@gcc $(CFLAGS) $(MlxFlags) $(files.o) libft/libft.a  -o a.out
 		@echo "\033[7m PROGRAM IS READY TO BE USED!\033[0m"
 
-
-lib_compil:
+lib_compil: 
 		@make -C libft/
 
 
-%.o : %.c 
+%.o : %.c libft/*.c $(HEADERS)
 		@gcc $(CFLAGS)  -c  $<  -o $@
 		@echo "\033[36m$<\033[0m \033[35m is compiled!\033[0m" 
 
 clean :  
 		@rm -f $(files.o)
+		@rm -rf $(NAME).dSYM
 		@make -C libft/ clean
 		@echo "\033[7mclean is done!\033[0m"
 
@@ -49,4 +53,4 @@ fclean : clean
 re	:  fclean all	
 
 
-.PHONY : all clean  fclean 
+.PHONY : all clean  fclean lib_compil
