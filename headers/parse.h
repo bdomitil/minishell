@@ -90,5 +90,6 @@ t_env		*parse_env(char **env);
 char		*find_env_key(t_env *env_lst, char *key);
 char		*change_sh_lvl(char *shlvl);
 void		commands_args_fill(t_parse_lst *current_pars, char **command_params, t_env *env_lst);
+void		join_path(char **str, t_env *env_lst);
 
 #endif 

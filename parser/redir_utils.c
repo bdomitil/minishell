@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 22:09:51 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/22 20:39:53 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/23 01:23:03 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ char	*get_file_name(char *str, char **to_ret_str, t_env *env_lst)
 	while (!ft_isprint(*str))
 		str++;
 	while ((ft_isprint(str[i]) && str[i] != '<' \
-									&& str[i] != '>') || qt % 2 == 0)
+						&& str[i] != '>' && str[i] != '|') || qt % 2 == 0)
 	{
 		if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\'))
 			qt++;

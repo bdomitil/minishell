@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 00:48:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/22 20:44:47 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/23 00:29:02 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int parser(char **str, t_parse_lst **pars_lst, char **env)
 	while (pars_tmp)
 	{
 		args_tmp = pars_tmp->args;		
-		if ((!pars_tmp->command || parse_str(&pars_tmp->command, pars_tmp->env_lst) == -1))  //&& 
-			// !join_path(pars_tmp->command))
-			return (-1);		
+		if (!pars_tmp->command || parse_str(&pars_tmp->command, pars_tmp->env_lst) == -1)
+			return (-1);
+		join_path(&(pars_tmp->command), env_lst);		
 		while (args_tmp != NULL)
 		{
 			if (args_tmp->arg && parse_str(&args_tmp->arg, pars_tmp->env_lst) == -1)

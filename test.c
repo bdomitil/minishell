@@ -2,8 +2,9 @@
 
 int main(int argc, char **argv, char **env)
 {
- 	// char *str= ft_strdup ("echo aza \"hello world\"  > \'file1\' >   \"file2\"   >file3   \">not_file\"  \" | \"  \"  ab \"grep $var << \"stop1\"    <<stop2<file " );
-	char *str = ft_strdup(" echo $USER $SHLVL");
+ 	// char *str= ft_strdup ("echo aza \"hello world\"  > \'file1\' >   \"file2\"   >file3   \">not_file\"  \"		| \"  \"  ab \"grep $var << \"stop1\"  <<stop2<file	\
+		| 	grep greping_str > file_file " );
+	char *str = ft_strdup("echo zaz 		 gg");
 	t_parse_lst *lst = NULL;
 	printf("str = %s\n", str);
 	errno = 0;
@@ -11,7 +12,6 @@ int main(int argc, char **argv, char **env)
 		printf("\n\n______ERROR______\n\n");
 	else
 		print_pars_lst(&lst);  //delete it later
-	// while (1)
 	// {
 	// char *str = NULL;
 	// t_parse_lst *lst = NULL;

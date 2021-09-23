@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:17:16 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/22 20:37:02 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/23 01:45:17 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static char	*join_var(int *i, char *str, char *var, int end_pos)
 	new_str = NULL;
 	if (str[*i + 1] == '?')
 		var = ft_itoa(g_exit_status);
-	else
-		var = ft_strdup(var);
 	str[*i] = 0;
 	new_str = malloc(ft_strlen(var) + \
 					ft_strlen(&str[end_pos + *i + 1]) + ft_strlen(str));
