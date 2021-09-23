@@ -6,7 +6,7 @@
 #    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/09/23 04:24:08 by bdomitil         ###   ########.fr        #
+#    Updated: 2021/09/23 05:02:34 by bdomitil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/deviding_utils.c parser/redir_fill.c test.c parser/clean_utils.c parser/redir_utils.c \
 		 parser/parse_env.c parser/env_utils.c parser/path_find.c
 
-CFLAGS = -g -lreadline#-Wall -Wextra -Werror
+CFLAGS = -g #-Wall -Wextra -Werror
 
 HEADERS = headers/parse.h
 
@@ -28,7 +28,7 @@ NAME = a.out
 all :	lib_compil $(NAME)
 
 $(NAME) : $(files.o) 
-		@gcc $(CFLAGS) $(MlxFlags) $(files.o) libft/libft.a  -o a.out
+		@gcc $(CFLAGS) $(MlxFlags) -lreadline $(files.o) libft/libft.a  -o a.out
 		@echo "\033[7m PROGRAM IS READY TO BE USED!\033[0m"
 
 lib_compil: 

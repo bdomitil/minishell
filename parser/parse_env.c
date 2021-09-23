@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:55:56 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/23 00:50:17 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:43:28 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void	del_env_lst_by_key(t_env *env_lst, char *key)
 char	*find_env_key(t_env *env_lst, char *key)
 {
 	if (!env_lst)
-		return(NULL);
+		return (NULL);
 	while (env_lst)
 	{
 		if (!strcmp(key, env_lst->key))
-			return(ft_strdup(env_lst->value));
+			return (ft_strdup(env_lst->value));
 		env_lst = env_lst->next;
 	}
 	return (NULL);
@@ -78,7 +78,7 @@ void	print_env_lst(t_env *env_lst)
 	}
 }
 
-t_env   *parse_env(char **env)
+t_env	*parse_env(char **env)
 {
 	char	*key;
 	char	*value;

@@ -6,28 +6,27 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:45:17 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/23 00:49:25 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/23 22:47:16 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/parse.h"
 
-static int check_file_exist(char *file)
+static int	check_file_exist(char *file)
 {
-	struct stat stat_st = {0};
-	int         res;
+	struct stat	stat_st;
+	int			res;
 
 	res = stat(file, &stat_st) + 1;
 	free(file);
 	return (res);
 }
 
-static void free_and_exit(char **str, char **splited_pathes, \
+static void	free_and_exit(char **str, char **splited_pathes, \
 													char **file, char **path)
 {
 	if (!(*splited_pathes))
 	{
-		// free(splited_pathes);
 		free(*path);
 		free(*file);
 		return ;
@@ -42,12 +41,11 @@ static void free_and_exit(char **str, char **splited_pathes, \
 			free(*splited_pathes);
 			splited_pathes++;
 		}
-		// free(splited_pathes);
-		free(*file);   
-	}    
+		free(*file);
+	}
 }
 
-void    join_path(char **str, t_env *env_lst)
+void	join_path(char **str, t_env *env_lst)
 {
 	char	*file;
 	char	**splited_pathes;
@@ -61,7 +59,7 @@ void    join_path(char **str, t_env *env_lst)
 	while (*splited_pathes)
 	{
 		if (check_file_exist(ft_strjoin(*splited_pathes, file)))
-			break;
+			break ;
 		free(*splited_pathes);
 		splited_pathes++;
 	}
