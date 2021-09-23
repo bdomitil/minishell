@@ -6,7 +6,7 @@
 #    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/09/23 00:29:27 by bdomitil         ###   ########.fr        #
+#    Updated: 2021/09/23 04:24:08 by bdomitil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/deviding_utils.c parser/redir_fill.c test.c parser/clean_utils.c parser/redir_utils.c \
 		 parser/parse_env.c parser/env_utils.c parser/path_find.c
 
-CFLAGS = -g #-Wall -Wextra -Werror
+CFLAGS = -g -lreadline#-Wall -Wextra -Werror
 
 HEADERS = headers/parse.h
 
@@ -37,7 +37,7 @@ lib_compil:
 
 %.o : %.c libft/*.c $(HEADERS)
 		@gcc $(CFLAGS)  -c  $<  -o $@
-		@echo "\033[36m$<\033[0m \033[35m is compiled!\033[0m" 
+		@echo  "\033[36m$<\033[0m \033[35m is compiled!\033[0m" 
 
 clean :  
 		@rm -f $(files.o)

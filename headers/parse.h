@@ -8,6 +8,9 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include <sys/stat.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+
 
 static int	g_exit_status = 0;
 
