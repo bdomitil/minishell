@@ -37,6 +37,7 @@ typedef struct s_parsed_args
 	struct s_parsed_args	*previous;
 	struct s_parsed_args	*head;
 	struct s_parsed_args	*tail;
+	int						id;
 	char					*arg;
 }				t_args;
 

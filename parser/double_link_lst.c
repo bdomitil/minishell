@@ -58,6 +58,7 @@ void	ft_args_lst_add_back(t_parse_lst *lst, t_args *new)
 		temp->tail = new;
 		temp = temp->next;
 	}
+	new->id = temp->id + 1;
 	new->previous = temp;
 	temp->tail = new;
 	temp->next = new;

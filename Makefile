@@ -28,7 +28,7 @@ NAME = a.out
 all :	lib_compil $(NAME)
 
 $(NAME) : $(files.o) 
-		@gcc $(CFLAGS) $(MlxFlags) -lreadline $(files.o) libft/libft.a  -o a.out
+		@gcc $(CFLAGS) $(MlxFlags) $(files.o) -lreadline libft/libft.a  -o a.out
 		@echo "\033[7m PROGRAM IS READY TO BE USED!\033[0m"
 
 lib_compil: 
