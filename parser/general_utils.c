@@ -22,7 +22,8 @@ t_args	*init_arg_lst(void)
 	args->next = NULL;
 	args->previous = NULL;
 	args->head = NULL;
-	args->tail = NULL;
+	args->tail = args;
+	args->id = 0;
 	args->arg = NULL;
 	return (args);
 }

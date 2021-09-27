@@ -9,7 +9,8 @@ void print_pars_lst(t_parse_lst **lst)
 		pipe = ||%d|| \
 		redir_in = ||%d|| \
 		redir_out = ||%d|| \
-		stop_word = ||%s|| \n");
+		stop_word = ||%s|| \
+		id = || %d ||\n");
 	t_args		*arg_temp;
 	printf("\n|_______________________________________________|\n");
 	printf("|                                               |\n");
@@ -31,7 +32,8 @@ void print_pars_lst(t_parse_lst **lst)
 		pars_tmp->stop_word);
 		while (arg_temp)
 		{
-			printf("|%d arg = ||%s||\n", i, arg_temp->arg);
+			printf("|%d arg = ||%s||  id = || %d ||\n", i, arg_temp->arg, arg_temp->id);
+			printf("length = %d\n", arg_temp->tail->id + 1);
 			arg_temp = arg_temp->next;
 			i++;
 		}
