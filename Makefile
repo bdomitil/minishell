@@ -3,40 +3,46 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
+#    By: nastya <nastya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/08/30 16:39:35 by bdomitil         ###   ########.fr        #
+#    Updated: 2021/09/27 03:31:08 by nastya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-files.c = parser/double_link_lst.c parser/pars_list_utils.c parser/test_utils.c \
+files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/parse_main.c parser/string_end.c parser/quotes_release.c parser/screen_chars.c \
 		 parser/get_var_mean.c parser/general_utils.c parser/split_out_quotes.c parser/deviding.c \
-		 parser/deviding_utils.c parser/redir_fill.c
+		 parser/deviding_utils.c parser/redir_fill.c parser/clean_utils.c parser/redir_utils.c \
+		 parser/parse_env.c parser/env_utils.c parser/path_find.c parser/test.c engine/main.c \
+		 engine/rd.c engine/exec.c
 
 CFLAGS = -g #-Wall -Wextra -Werror
+
+HEADERS = headers/parse.h
+
 files.o = $(files.c:.c=.o)
+
 NAME = a.out
 
 
-all :	lib_compil $(NAME) 
+all :	lib_compil $(NAME)
 
-$(NAME) : $(files.o)
-		@gcc $(CFLAGS) $(MlxFlags) $(files.o) libft/libft.a  -o a.out
+$(NAME) : $(files.o) 
+		@gcc -lreadline $(files.o) libft/libft.a  -o a.out
 		@echo "\033[7m PROGRAM IS READY TO BE USED!\033[0m"
 
-
-lib_compil:
+lib_compil: 
 		@make -C libft/
 
 
-%.o : %.c 
+%.o : %.c libft/*.c $(HEADERS)
 		@gcc $(CFLAGS)  -c  $<  -o $@
-		@echo "\033[36m$<\033[0m \033[35m is compiled!\033[0m"
+		@echo  "\033[36m$<\033[0m \033[35m is compiled!\033[0m" 
 
 clean :  
 		@rm -f $(files.o)
+		@rm -rf $(NAME).dSYM
 		@make -C libft/ clean
 		@echo "\033[7mclean is done!\033[0m"
 
@@ -48,4 +54,4 @@ fclean : clean
 re	:  fclean all	
 
 
-.PHONY : all clean  fclean 
+.PHONY : all clean  fclean lib_compil

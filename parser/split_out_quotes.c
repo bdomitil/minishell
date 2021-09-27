@@ -1,31 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_out_quotes.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/22 01:40:45 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/09/23 22:41:19 by bdomitil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/parse.h"
 
-static	int		count_word(const char *str, char q)
+static	int	count_word(const char *str, char q)
 {
 	int		i;
 	int		num;
 	int		stop;
-	bool	qt_opened;
+	int		qt_opened;
 
 	i = 0;
-	qt_opened = false;
+	qt_opened = 1;
 	stop = ft_strlen(str) - 1;
 	num = 0;
-	while (str[i] == q && str[i] != '\0')
+	while ((str[i] == q || !ft_isprint(str[i])) && str[i] != '\0')
 		i++;
-	if (stop >= 0)
-		while (str[stop] == q && stop >= 0)
-			stop--;
+	while ((str[stop] == q || !ft_isprint(str[stop])) && stop >= 0)
+		stop--;
 	while (i < stop)
 	{
 		if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\'))
-		{
-			if (qt_opened)
-				qt_opened = false;
-			else
-				qt_opened = true;
-		}
-		if (str[i] == q && str[i + 1] != q && qt_opened == false)
+			qt_opened++;
+		if (str[i] == q && (str[i + 1] != q && ft_isprint(str[i + 1])) \
+														&& qt_opened % 2)
 			num++;
 		i++;
 	}
@@ -34,7 +41,7 @@ static	int		count_word(const char *str, char q)
 	return (num + 1);
 }
 
-static	int		get_len(const char *str, char q)
+static	int	get_len(const char *str, char q)
 {
 	int		i;
 	bool	qt_opened;
@@ -51,8 +58,8 @@ static	int		get_len(const char *str, char q)
 				qt_opened = true;
 		}
 		i++;
-		if (str[i] == q && qt_opened == false)
-			break;
+		if ((str[i] == q || !ft_isprint(str[i])) && qt_opened == false)
+			break ;
 	}
 	return (i);
 }
@@ -62,7 +69,7 @@ static	char	*get_next_word(const char *str, char q)
 	int		len;
 	char	*word;
 
-	while (*str != '\0' && *str == q)
+	while (*str != '\0' && (*str == q || !ft_isprint(*str)))
 		str++;
 	len = get_len(str, q);
 	word = ft_substr(str, 0, len);
@@ -71,14 +78,14 @@ static	char	*get_next_word(const char *str, char q)
 	return (word);
 }
 
-static void		ft_free(char **mass, int pos)
+static void	ft_free(char **mass, int pos)
 {
 	while (pos >= 0)
 		free(mass[pos--]);
 	free(mass);
 }
 
-char			**split_out_quotes(const char *str, char q)
+char	**split_out_quotes(const char *str, char q)
 {
 	int		word_num;
 	int		i;
@@ -89,7 +96,7 @@ char			**split_out_quotes(const char *str, char q)
 	if (!str)
 		return (NULL);
 	word_num = count_word(str, q);
-	to_ret = malloc((word_num + 1) * sizeof(char*));
+	to_ret = malloc((word_num + 1) * sizeof(char *));
 	if (!to_ret)
 		return (NULL);
 	while (i < word_num)

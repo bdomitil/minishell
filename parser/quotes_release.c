@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quotes_release.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 16:35:39 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/09/22 20:39:04 by bdomitil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/parse.h"
 
 size_t	ft_ft_strlen(const char *str)
@@ -22,63 +34,59 @@ int	find_next_quote(char *str, int i, char quote)
 	 return (-1);
 }
 
-static char *cut_quotes(char **str, int *open, int *close)
+static char	*cut_quotes(char **str, int *open, int *close)
 {
-	char	*tmp;
-	int		str_len;
-
-
 	(*str)[*open] = 0;
 	(*str)[*close] = 0;
-	ft_memmove(&(*str)[*close], &(*str)[*close + 1], ft_ft_strlen(&(*str)[*close + 1]));
-	ft_memmove(&(*str)[*open],&(*str)[*open + 1], ft_ft_strlen(&(*str)[*open + 1]));
+	ft_memmove(&(*str)[*close], &(*str)[*close + 1], \
+											ft_ft_strlen(&(*str)[*close + 1]));
+	ft_memmove(&(*str)[*open], &(*str)[*open + 1], \
+											ft_ft_strlen(&(*str)[*open + 1]));
 	*open = -1;
+	*close -= 1;
 	return (*str);
 }
 
-char	*relese_quoutes(char *str, t_parse_lst *pars_lst)
+static void	slash_dollar(char **str, int *i, t_env *env_lst)
 {
-	int i;
-	int dq_open;
-	int dq_close;
-	int q_open;
-	int q_close;
+	if ((*str)[*i] == '$' && (*i == 0 || (*str)[*i - 1] != '\\') && \
+			(ft_isalpha((*str)[*i + 1]) || (*str)[*i + 1] == '?'))
+		*str = get_var_mean((*str), i, env_lst);
+	else if ((*str)[*i] == '\\' && ((*str)[*i + 1] == '\\' || \
+	(*str)[*i + 1] == '$' || (*str)[*i + 1] == '\'' || (*str)[*i + 1] == '\"'))
+	{
+		(*str) = cut_char((*str), *i);
+		(*i)++;
+	}
+	else
+		(*i)++;
+}
 
-	if (!str)
-		return(ft_strdup(""));
-	i = 0;
-	dq_close = -1;
-	dq_open = -1;
-	q_close = -1;
-	q_open = -1;
+char	*relese_quoutes(int i, char *str, t_env *env_lst)
+{
+	int	quotes[4];
+
+	ft_memset((void *)&quotes, -1, 4);
 	while (str[i] != '\0')
 	{
-		if (str[i] == '\'' && (i == 0 || str[i - 1] != '\\') && dq_close == -1)
+		if (str[i] == '\'' && (i == 0 || str[i - 1] != '\\') \
+														&& quotes[1] == -1)
 		{
-			q_open = i;
-			q_close = find_next_quote(str, i, '\'');
-			i = q_close;
-			str = cut_quotes(&str, &q_open, &q_close);
+			quotes[2] = i;
+			quotes[3] = find_next_quote(str, i, '\'');
+			i = quotes[3];
+			str = cut_quotes(&str, &(quotes[2]), &quotes[3]);
 		}
-		else if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\') && q_close == -1)
+		else if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\') \
+															&& quotes[3] == -1)
 		{
-			dq_open = i;
-			str = screen_chars(str, dq_open, &i, pars_lst);
-			dq_close = i;
-			// dq_close = find_next_quote(str, i, '\"');
-			str = cut_quotes(&str, &dq_open, &dq_close);
+			quotes[0] = i;
+			str = screen_chars(str, quotes[0], &i, env_lst);
+			quotes[1] = i;
+			str = cut_quotes(&str, &(quotes[0]), &i);
 		}
-		else if (str[i] == '$' && (i == 0 || str[i - 1] != '\\') && 
-			(ft_isalpha(str[i + 1]) || str[i + 1] == '?'))
-			str = get_var_mean(str, pars_lst, &i);
-		else if (str[i] == '\\' && (str[i + 1] == '\\' || \
-		str[i + 1] == '$' || str[i + 1] == '\'' || str[i + 1] == '\"'))
-		{
-			str = cut_char(str, i);
-			i++;
-		}
-		else 
-			i++;
+		else
+			slash_dollar(&str, &i, env_lst);
 	}
 	return (str);
 }

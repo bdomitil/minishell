@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   double_link_lst.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/21 16:14:51 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/09/21 16:14:52 by bdomitil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/parse.h"
 
 void	ft_shell_lst_add_back(t_parse_lst *lst, t_parse_lst *new)
@@ -16,7 +28,7 @@ void	ft_shell_lst_add_back(t_parse_lst *lst, t_parse_lst *new)
 		return ;
 	}
 	new->head = lst;
- 	while (lst->next)
+	while (lst->next)
 	{
 		lst->tail = new;
 		lst = lst->next;
@@ -41,7 +53,7 @@ void	ft_args_lst_add_back(t_parse_lst *lst, t_args *new)
 		return ;
 	}
 	new->head = lst->args;
- 	while (temp->next)
+	while (temp->next)
 	{
 		temp->tail = new;
 		temp = temp->next;
