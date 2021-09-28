@@ -12,7 +12,7 @@
 
 #include "../headers/parse.h"
 
-void	add_env_back(t_env **env_lst, char *key, char *value)
+void	add_env_back(t_env **env_lst, char *key, char *value, char *env_type)
 {
 	t_env	*tmp;
 
@@ -20,6 +20,7 @@ void	add_env_back(t_env **env_lst, char *key, char *value)
 	{
 		*env_lst = malloc(sizeof(t_env));
 		(*env_lst)->key = key;
+		(*env_lst)->env_type = env_type;
 		(*env_lst)->value = value;
 		(*env_lst)->next = NULL;
 		return ;
@@ -30,6 +31,7 @@ void	add_env_back(t_env **env_lst, char *key, char *value)
 		tmp = tmp->next;
 	tmp->next = malloc(sizeof(t_env));
 	tmp->next->value = value;
+	tmp->next->env_type = env_type;
 	tmp->next->key = key;
 	tmp->next->next = NULL;
 }
@@ -47,6 +49,7 @@ void	del_env_lst_by_key(t_env *env_lst, char *key)
 				tmp_lst->next = env_lst->next;
 			free(env_lst->key);
 			free(env_lst->value);
+			free(env_lst->env_type);
 			free(env_lst);
 			env_lst = NULL;
 			return ;
@@ -98,7 +101,7 @@ t_env	*parse_env(char **env)
 			value = change_sh_lvl(value);
 		free(tmp);
 		env++;
-		add_env_back(&env_lst, key, value);
+		add_env_back(&env_lst, key, value, ft_stdup(*env));
 	}
 	return (env_lst);
 }
