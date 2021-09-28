@@ -1,21 +1,33 @@
 #include "../headers/minishell.h"
 
-void	exexc(t_parse_lst **lst, char **env)
+char **env(t_parse_lst **lst)
+{
+	
+}
+
+void	exex(t_parse_lst **lst)
 {
 	int		pid;
 	char	**cmd;
-	t_args	*tmp_args = (*lst)->args;
+	// t_args	*tmp_args = (*lst)->args;
 	int c = 0;
 	
-	while ((*lst)->args) // посчитать арги 
+	while ((*lst)->args->next)
+		(*lst)->args = (*lst)->args->next;
+	
+	cmd = (char **)malloc(sizeof(char *) * ((*lst)->args->id + 1)); // извлечь аргументы в cmd
+	int i = (*lst)->args->id;
+	
+	while (i >= 0)
 	{
-		(*lst)->args = 
+		cmd[i] = (*lst)->args->arg;
+		(*lst)->args = (*lst)->args->previous;
+		i--;
 	}
-	cmd = (char **)malloc(sizeof(char *) * c); // извлечь аргументы в cmd
+
 	pid = fork();
 	if (pid == 0)
 	{
-		
 		rd(*lst);
 		execve((*lst)->command, cmd, env);
 	}

@@ -9,7 +9,8 @@ int main(int argc, char **argv, char **env)
 		printf("\n\n______ERROR______\n\n");
     else
 		print_pars_lst(&lst);
-    char *bf  = "cdpwdechounsetexportexit";
+    // char *bf  = "cdpwdechounsetexportexit";
+	io_pipes(&lst);
 	
 	return 0;
 }

@@ -16,6 +16,7 @@ typedef struct	s_env
 {
 	struct s_env	*next;
 	char			*value;
+	char			*env_type;
 	char			*key;
 }				t_env;
 
@@ -25,7 +26,7 @@ typedef struct s_parsed_args
 	struct s_parsed_args	*previous;
 	struct s_parsed_args	*head;
 	struct s_parsed_args	*tail;
-	int						id;
+	int						id; // выпилить id
 	char					*arg;
 }				t_args;
 

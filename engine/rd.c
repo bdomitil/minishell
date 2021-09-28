@@ -1,10 +1,9 @@
 #include "../headers/minishell.h"
 
-void hu(t_parse_lst **lst)
+void io_pipes(t_parse_lst **lst)
 {
 	// t_parse_lst	*pars_tmp = *lst;
 	int	pfd[2];
-
 	if ((*lst)->next && !(*lst)->fd_in)
 	{
 		pipe (pfd);
@@ -25,8 +24,8 @@ void hu(t_parse_lst **lst)
 	}
 }
 
-void	rd(t_parse_lst **lst)
+void	redir(t_parse_lst **lst)
 {
-		dup2((*lst)->fd_in, 1);
-		dup2((*lst)->fd_out, 0);
+	dup2((*lst)->fd_in, 1); // вопрос если меняем  1 на 1
+	dup2((*lst)->fd_out, 0);
 }
