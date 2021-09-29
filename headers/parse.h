@@ -11,13 +11,6 @@
 
 // # include "engine.h" // переделать
 
-typedef struct	s_env
-{
-	struct s_env	*next;
-	char			*value;
-	char			*key;
-}				t_env;
-
 static int	g_exit_status = 0;
 
 //||

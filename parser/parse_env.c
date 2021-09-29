@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nastya <nastya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:55:56 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/23 22:43:28 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/09/28 23:17:50 by nastya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_env	*parse_env(char **env)
 			value = change_sh_lvl(value);
 		free(tmp);
 		env++;
-		add_env_back(&env_lst, key, value, ft_stdup(*env));
+		add_env_back(&env_lst, key, value, ft_strdup(*env));
 	}
 	return (env_lst);
 }

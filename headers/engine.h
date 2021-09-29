@@ -3,8 +3,10 @@
 # include "types.h"
 # include <readline/readline.h>
 # include <readline/history.h>
+#include <sys/wait.h>
 
-void	rd(t_parse_lst **lst);
+
+void	redir(t_parse_lst **lst);
 void	io_pipes(t_parse_lst **lst);
 void	exex(t_parse_lst **lst);
 
