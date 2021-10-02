@@ -52,7 +52,7 @@ void	exex(t_parse_lst **lst)
 	{
 		redir(lst);
 		close_pipes(*lst);
-		execve((*lst)->command, cmd, NULL);
+		execve((*lst)->command, cmd, env);
 	}
 	// else
 		// wait(NULL);
