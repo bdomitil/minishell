@@ -29,8 +29,6 @@ void	exex(t_parse_lst **lst)
 {
 	pid_t		pid;
 	char	**cmd = NULL;
-	// t_args	*tmp_args = (*lst)->args;
-	// int c = 0;
 
 	char	**env = envp((*lst)->env_lst);
 	if ((*lst)->args)	
@@ -52,11 +50,10 @@ void	exex(t_parse_lst **lst)
 	pid = fork();
 	if (pid == 0)
 	{
-		// redir(lst);
+		redir(lst);
+		close_pipes(*lst);
 		execve((*lst)->command, cmd, NULL);
 	}
 	// else
 		// wait(NULL);
-	write(2, "here\n", 5);
-	
 }

@@ -6,7 +6,7 @@
 #    By: nastya <nastya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/09/27 21:20:58 by nastya           ###   ########.fr        #
+#   Updated: 2021/10/01 11:29:57 by                  ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/get_var_mean.c parser/general_utils.c parser/split_out_quotes.c parser/deviding.c \
 		 parser/deviding_utils.c parser/redir_fill.c parser/clean_utils.c parser/redir_utils.c \
 		 parser/parse_env.c parser/env_utils.c parser/path_find.c parser/test.c engine/main.c \
-		 engine/rd.c engine/exec.c
+		 engine/rd.c engine/exec.c engine/pipe.c
 
 CFLAGS = -g #-Wall -Wextra -Werror
 

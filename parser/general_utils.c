@@ -42,7 +42,7 @@ t_parse_lst	*init_pars_lst(void)
 	lst->args = NULL;
 	lst->pipe = false;
 	lst->stop_word = NULL;
-	lst->fd_in = 0;
+	lst->fd_in = 1;
 	lst->fd_out = 0;
 	lst->exit_status = 0;
 	lst->command = NULL;
