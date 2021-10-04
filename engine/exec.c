@@ -27,7 +27,7 @@ static char **envp(t_env *env)
 
 void	exex(t_parse_lst **lst)
 {
-	pid_t		pid;
+	pid_t	pid;
 	char	**cmd = NULL;
 
 	char	**env = envp((*lst)->env_lst);
@@ -55,6 +55,8 @@ void	exex(t_parse_lst **lst)
 	if (pid == 0)
 	{
 		redir(lst);
+		if ((*lst)->fd_in == 1)
+			write (1, "\n", 1);
 		close_pipes(*lst);
 		execve((*lst)->command, cmd, env);
 	}

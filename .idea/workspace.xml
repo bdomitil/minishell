@@ -18,13 +18,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c50b0a-aba7-43f5-86c3-2b14c9aec918" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/engine/clean_main_list.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/exec.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/exec.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/pipe.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/pipe.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/rd.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/rd.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/file2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/test.c" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,9 +83,9 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -112,21 +115,12 @@
       <workItem from="1633265989367" duration="4000" />
       <workItem from="1633270138023" duration="137000" />
       <workItem from="1633328633815" duration="501000" />
-      <workItem from="1633342561394" duration="5804000" />
+      <workItem from="1633342561394" duration="9790000" />
+      <workItem from="1633360303955" duration="1332000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/engine/test/test.c</url>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

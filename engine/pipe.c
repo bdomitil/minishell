@@ -5,7 +5,6 @@ void close_pipes(t_parse_lst *lst)
 	t_parse_lst *tmp_lst;
 
 	tmp_lst = lst;
-//	printf("cowcow\n");
 	while (lst)
 	{
 	    if (lst->fd_in != 1)
