@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 22:09:51 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/23 01:23:03 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/04 17:04:46 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	double_redir_fd(char **str, t_deviders *dev_lst, \
 	if (!double_back)
 		fd = open(file_name, O_CREAT | O_APPEND | O_WRONLY, 0777);
 	else
-		curr_pars->stop_word = join_stop_words(curr_pars->stop_word, file_name);
+		ft_lstadd_back(&(curr_pars->stop_list), ft_lstnew((void *)ft_strdup(file_name)));
 	free(file_name);
 	return (fd);
 }

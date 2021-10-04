@@ -5,7 +5,6 @@
 # include <stdio.h>
 # include <string.h>
 # include <errno.h>
-# include "../libft/libft.h"
 # include <fcntl.h>
 # include <sys/stat.h>
 
@@ -27,7 +26,7 @@ char		*get_var_mean(char *str, int *i, t_env *env_lst);
 char		*cut_char(char *str, int char_pos);
 char		**split_out_quotes(const char *str, char q);
 int			fill_lst(char *str, t_parse_lst *pars_lst, t_env *env_lst);
-t_args		*init_arg_lst(void);
+t_args		*init_arg_lst(char *str);
 t_parse_lst	*init_pars_lst(void);
 t_deviders	*get_deviders_list(char *str);
 void		print_pars_lst(t_parse_lst **lst);

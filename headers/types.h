@@ -1,6 +1,7 @@
 #ifndef TYPES_H
 # define TYPES_H
 # include <stdbool.h>
+# include "libft.h"
 
 typedef enum e_types_of_found
 {
@@ -30,6 +31,7 @@ typedef struct s_parsed_args
 	char					*arg;
 }				t_args;
 
+
 typedef struct s_main_parse_list
 {
 	struct s_main_parse_list	*head;
@@ -38,8 +40,8 @@ typedef struct s_main_parse_list
 	struct s_main_parse_list	*previous;
 	t_env						*env_lst;
 	t_args						*args;
+	t_list						*stop_list;
 	bool						pipe;
-	char						*stop_word;
 	int							fd_in;
 	int							fd_out;
 	int							exit_status;

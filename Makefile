@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nastya <nastya@student.42.fr>              +#+  +:+       +#+         #
+#    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#   Updated: 2021/10/02 15:06:17 by                  ###   ########.fr       # #
+#    Updated: 2021/10/04 16:04:27 by bdomitil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/parse_env.c parser/env_utils.c parser/path_find.c engine/main.c \
 		 engine/rd.c engine/exec.c engine/pipe.c engine/clean_main_list.c\
 
-CFLAGS = -g #-Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 HEADERS = headers/parse.h
 

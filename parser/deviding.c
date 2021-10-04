@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/22 20:47:37 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:32:33 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	commands_args_fill(t_parse_lst *current_pars, char **command_params, \
 {
 	t_args	*new_args;
 
-	if (!command_params)
+	if (!command_params || !(*command_params))
 		return ;
+	
 	current_pars->command = *command_params;
 	current_pars->env_lst = env_lst;
 	command_params++;
 	while (*command_params)
 	{
-		new_args = init_arg_lst();
-		new_args->arg = *command_params;
+		new_args = init_arg_lst(*command_params);
 		ft_args_lst_add_back(current_pars, new_args);
 		command_params++;
 	}

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nastya <nastya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:15:28 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/27 21:22:23 by nastya           ###   ########.fr       */
+/*   Updated: 2021/10/04 16:03:25 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-t_args	*init_arg_lst(void)
+t_args	*init_arg_lst(char *str)
 {
 	t_args	*args;
 
@@ -24,7 +24,7 @@ t_args	*init_arg_lst(void)
 	args->head = NULL;
 	args->tail = args;
 	args->id = 0;
-	args->arg = NULL;
+	args->arg = str;
 	return (args);
 }
 
@@ -41,7 +41,7 @@ t_parse_lst	*init_pars_lst(void)
 	lst->previous = NULL;
 	lst->args = NULL;
 	lst->pipe = false;
-	lst->stop_word = NULL;
+	lst->stop_list = NULL;
 	lst->fd_in = 1;
 	lst->fd_out = 0;
 	lst->exit_status = 0;
