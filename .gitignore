@@ -54,3 +54,5 @@ Mkfile.old
 dkms.conf
 
 test*
+file*
+check_leaks.sh
