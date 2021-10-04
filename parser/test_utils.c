@@ -5,12 +5,6 @@ void print_pars_lst(t_parse_lst **lst)
 {
 	int i = 1;
 	t_parse_lst *pars_tmp = *lst;
-	int size = ft_strlen("|command = ||%s||  \
-		pipe = ||%d|| \
-		redir_in = ||%d|| \
-		redir_out = ||%d|| \
-		stop_word = ||%s|| \
-		id = || %d ||\n");
 	t_args		*arg_temp;
 	printf("\n|_______________________________________________|\n");
 	printf("|                                               |\n");
@@ -24,12 +18,12 @@ void print_pars_lst(t_parse_lst **lst)
 		pipe = ||%d|| \
 		redir_in = ||%d|| \
 		redir_out = ||%d|| \
-		stop_word = ||%s|| \n",
+		stop_word = ||%p|| \n",
 		 pars_tmp->command, \
 		 pars_tmp->pipe, \
 		pars_tmp->fd_in, \
 		pars_tmp->fd_out, \
-		pars_tmp->stop_word);
+		pars_tmp->stop_list);
 		while (arg_temp)
 		{
 			printf("|%d arg = ||%s||  id = || %d ||\n", i, arg_temp->arg, arg_temp->id);

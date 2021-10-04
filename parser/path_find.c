@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:45:17 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/23 22:47:16 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/04 17:12:09 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	join_path(char **str, t_env *env_lst)
 
 	file = ft_strjoin("/", *str);
 	path = find_env_key(env_lst, "PATH");
+	if (!path)
+		return ;
 	splited_pathes = split_out_quotes(path, ':');
 	split_start = splited_pathes;
 	while (*splited_pathes)

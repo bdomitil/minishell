@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:14:51 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/21 16:14:52 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:18:56 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_shell_lst_add_back(t_parse_lst *lst, t_parse_lst *new)
 	if (!lst->next)
 	{
 		lst->next = new;
-		lst->head = lst;
 		lst->tail = new;
+		new->head = lst->head;
 		new->previous = lst;
 		return ;
 	}

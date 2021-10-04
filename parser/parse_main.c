@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nastya <nastya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 00:48:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/29 00:52:14 by nastya           ###   ########.fr       */
+/*   Updated: 2021/10/04 16:52:45 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_lst_parsed(t_parse_lst *pars_lst)
 	while (pars_lst)
 	{
 		args_tmp = pars_lst->args;
-		if (!pars_lst->command || \
+		if ((!pars_lst->command && !pars_lst->stop_list) ||\
 						parse_str(&pars_lst->command, pars_lst->env_lst) == -1)
 			return (-1);
 		while (args_tmp != NULL)
@@ -41,6 +41,8 @@ int	parse_str(char **str, t_env *env_lst)
 		printf("syntax error: unexpected end of file\n");
 		return (-1);
 	}
+	else if (!(*str))
+		return (0);
 	*str = relese_quoutes(0, *str, env_lst);
 	return (1);
 }
@@ -48,7 +50,6 @@ int	parse_str(char **str, t_env *env_lst)
 int	parser(char **str, t_parse_lst **pars_lst, char **env)
 {
 	t_parse_lst	*pars_tmp;
-	t_args		*args_tmp;
 	t_env		*env_lst;
 
 	env_lst = parse_env(env);
