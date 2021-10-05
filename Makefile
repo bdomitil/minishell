@@ -17,7 +17,7 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/parse_env.c parser/env_utils.c parser/path_find.c engine/main.c \
 		 engine/rd.c engine/exec.c engine/pipe.c engine/clean_main_list.c\
 
-CFLAGS = -g -Wall -Wextra -Werror
+#CFLAGS = -g -Wall -Wextra -Werror
 
 HEADERS = headers/parse.h
 

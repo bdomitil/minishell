@@ -18,5 +18,6 @@ void	redir(t_parse_lst **lst);
 void	io_pipes(t_parse_lst *lst);
 void	exex(t_parse_lst **lst);
 void	close_pipes(t_parse_lst *lst);
+void	clean_main_list(t_parse_lst *lst);
 
 #endif

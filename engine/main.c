@@ -6,6 +6,7 @@ int main(int argc, char **argv, char **env)
 	t_parse_lst *lst = NULL;
     t_parse_lst *head = NULL;
 
+	(void)argc, (void)argv;
 	while ((str = readline("$mini$hee$h$")))
 	{
 		add_history(str);
@@ -16,9 +17,10 @@ int main(int argc, char **argv, char **env)
 			continue;
 		}
 //		else
-			print_pars_lst(&lst);  //delete it later
+		print_pars_lst(&lst);  //delete it later
+		head = lst->head;
 		io_pipes(lst);
-		head = lst;
+
 		while (lst)
 		{
 			exex(&lst);
@@ -26,7 +28,9 @@ int main(int argc, char **argv, char **env)
 		}
 		lst = head;
 		close_pipes(lst);
-		// clear lst
+		lst = NULL;
+//		clean_main_list(lst);
+//		free(lst);
 	}
 	return 0;
 }
