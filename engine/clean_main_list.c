@@ -15,6 +15,7 @@ static void t_lst_clear(t_list *lst)
 	}
 }
 
+
 static void	clear_args(t_args *args)
 {
 	t_args	*tmp;

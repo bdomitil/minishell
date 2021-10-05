@@ -9,6 +9,7 @@ int main(int argc, char **argv, char **env)
 	(void)argc, (void)argv;
 	while ((str = readline("$mini$hee$h$")))
 	{
+
 		add_history(str);
 		errno = 0;
 		if (parser(&str, &lst, env) == -1)
@@ -28,8 +29,8 @@ int main(int argc, char **argv, char **env)
 		}
 		lst = head;
 		close_pipes(lst);
+		clean_main_list(lst);
 		lst = NULL;
-//		clean_main_list(lst);
 //		free(lst);
 	}
 	return 0;

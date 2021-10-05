@@ -3,7 +3,7 @@
 # include "types.h"
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <sys/wait.h>
+# include <sys/wait.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h> // strerror
