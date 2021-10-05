@@ -62,7 +62,7 @@ int	double_redir_fd(char **str, t_deviders *dev_lst, \
 	int		fd;
 
 	i = 0;
-	fd = -1;
+	fd = -2;
 	(*str)[dev_lst->pos_in_str] = ' ';
 	*str = cut_char(*str, dev_lst->pos_in_str - 1);
 	if (ft_isempty_str(&((*str)[dev_lst->pos_in_str + 1])))

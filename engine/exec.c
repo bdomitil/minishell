@@ -54,12 +54,10 @@ void	exex(t_parse_lst **lst)
 	pid = fork();
 	if (pid == 0)
 	{
+		if ((*lst)->fd_out == -2)
+			get_fd_of_hd(*lst);
 		redir(lst);
-		if ((*lst)->fd_in == 1)
-			write (1, "\n", 1);
 		close_pipes(*lst);
 		execve((*lst)->command, cmd, env);
 	}
-//	 else
-//		 wait(NULL);
 }

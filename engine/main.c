@@ -4,10 +4,12 @@ int main(int argc, char **argv, char **env)
 {
 	char *str;
 	t_parse_lst *lst = NULL;
-    t_parse_lst *head = NULL;
+	t_parse_lst *head = NULL;
 
+	(void)argc, (void)argv;
 	while ((str = readline("$mini$hee$h$")))
 	{
+
 		add_history(str);
 		errno = 0;
 		if (parser(&str, &lst, env) == -1)
@@ -16,17 +18,23 @@ int main(int argc, char **argv, char **env)
 			continue;
 		}
 //		else
-			print_pars_lst(&lst);  //delete it later
-		io_pipes(lst);
-		head = lst;
-		while (lst)
+//		print_pars_lst(&lst);  //delete it later
+		head = lst->head;
+		if (lst->command)
 		{
-			exex(&lst);
-			lst = lst->next;
+			io_pipes(lst);
+			while (lst)
+			{
+				exex(&lst);
+				lst = lst->next;
+			}
+			wait(NULL);
+			lst = head;
+			close_pipes(lst);
+			clean_main_list(lst);
 		}
-		lst = head;
-		close_pipes(lst);
-		// clear lst
+//			free(lst);
+//			lst = NULL;
 	}
 	return 0;
 }

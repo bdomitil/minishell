@@ -46,6 +46,7 @@ typedef struct s_main_parse_list
 	int							fd_out;
 	int							exit_status;
 	char						*command;
+	char						**here_doc;
 
 }		t_parse_lst;
 

@@ -29,11 +29,11 @@ int	get_fd_out(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 				return (-1);
 		}
 		else
-			double_redir_fd(str, *dev_lst, true, curr_pars);
+			fd_out = double_redir_fd(str, *dev_lst, true, curr_pars);
 		tmp_dev = *dev_lst;
 		*dev_lst = get_deviders_list(*str);
-		curr_pars->fd_out = fd_out;
 		free_dev_lst(&tmp_dev);
+		curr_pars->fd_out = fd_out;
 	}
 	return (1);
 }

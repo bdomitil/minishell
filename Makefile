@@ -15,7 +15,8 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/get_var_mean.c parser/general_utils.c parser/split_out_quotes.c parser/deviding.c \
 		 parser/deviding_utils.c parser/redir_fill.c parser/clean_utils.c parser/redir_utils.c \
 		 parser/parse_env.c parser/env_utils.c parser/path_find.c engine/main.c \
-		 engine/rd.c engine/exec.c engine/pipe.c engine/clean_main_list.c\
+		 engine/rd.c engine/exec.c engine/pipe.c engine/clean_main_list.c \
+		 engine/arr_join.c engine/here_doc.c\
 
 CFLAGS = -g -Wall -Wextra -Werror
 
