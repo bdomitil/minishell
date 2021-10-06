@@ -18,19 +18,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87c50b0a-aba7-43f5-86c3-2b14c9aec918" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/engine/arr_join.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/clean_main_list.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/clean_main_list.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/exec.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/exec.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/here_doc.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/here_doc.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/pipe.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/pipe.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/rd.c" beforeDir="false" afterPath="$PROJECT_DIR$/engine/rd.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/headers/engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/headers/engine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/headers/types.h" beforeDir="false" afterPath="$PROJECT_DIR$/headers/types.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/general_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/parser/general_utils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/redir_fill.c" beforeDir="false" afterPath="$PROJECT_DIR$/parser/redir_fill.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/redir_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/parser/redir_utils.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +127,8 @@
       <workItem from="1633449413638" duration="585000" />
       <workItem from="1633451051923" duration="334000" />
       <workItem from="1633454592754" duration="53000" />
-      <workItem from="1633454663034" duration="4653000" />
+      <workItem from="1633454663034" duration="4907000" />
+      <workItem from="1633497055336" duration="5824000" />
     </task>
     <servers />
   </component>

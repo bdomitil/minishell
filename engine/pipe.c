@@ -1,35 +1,13 @@
 #include "../headers/minishell.h"
 
-void	hd(t_parse_lst *lst)
-{
-	char 	*string;
-	int 	res;
-
-	while (lst->stop_list)
-	{
-		res = get_next_line(0, &string);
-		lst->here_doc = NULL;
-		while (res >= 0)
-		{
-			if (ft_strncmp(string, lst->stop_list->content, \
-			ft_strlen(lst->stop_list->content)))
-				  break;
-			if (!lst->stop_list->next)
-			{
-				lst->here_doc = arrjoin(lst->here_doc, string);
-				res = get_next_line(0, &string);
-			}
-		}
-		lst->stop_list = lst->stop_list->next;
-	}
-}
-
 void	io_pipes(t_parse_lst *lst)
 {
 	int	pfd[2];
 
 	if (lst->fd_out == -2)
+	{
 		hd(lst);
+	}
 	if (!lst->next)
 		return;
 	while (lst)
