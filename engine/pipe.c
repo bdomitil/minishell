@@ -10,6 +10,8 @@ void	io_pipes(t_parse_lst *lst)
 	}
 	if (!lst->next)
 		return;
+	else
+		lst = lst->next;
 	while (lst)
 	{
 		if (lst->fd_out == -2)

@@ -27,30 +27,29 @@ void	get_fd_of_hd(t_parse_lst *lst)
 	}
 }
 
-void	hdd(t_parse_lst *lst)
-{
-	char 	*string;
-	int 	res;
-
-	while (lst->stop_list)
-	{
-		res = get_next_line(0, &string);
-		lst->here_doc = NULL;
-
-		while (res >= 0)
-		{
-			if (ft_strncmp(string, (char *)lst->stop_list->content, \
-			ft_strlen((char *)lst->stop_list->content)))
-				break;
-			if (!lst->stop_list->next)
-			{
-				lst->here_doc = arrjoin(lst->here_doc, string);
-				res = get_next_line(0, &string);
-			}
-		}
-		lst->stop_list = lst->stop_list->next;
-	}
-}
+//void	hdd(t_parse_lst *lst)
+//{
+//	char 	*string;
+//	int 	res;
+//
+//	while (lst->stop_list)
+//	{
+//		res = get_next_line(0, &string);
+//		lst->here_doc = NULL;
+//		while (res >= 0)
+//		{
+//			if (ft_strncmp(string, (char *)lst->stop_list->content, \
+//			ft_strlen(string)))
+//				break;
+//			if (!lst->stop_list->next)
+//			{
+//				lst->here_doc = arrjoin(lst->here_doc, string);
+//				res = get_next_line(0, &string);
+//			}
+//		}
+//		lst->stop_list = lst->stop_list->next;
+//	}
+//}
 
 //-------check_here_doc-------
 void	hd(t_parse_lst *lst)
@@ -74,7 +73,7 @@ void	hd(t_parse_lst *lst)
 
 		while (res >= 0)
 		{
-			if (!ft_strncmp(string, *args, ft_strlen(*args)))
+			if (!ft_strncmp(string, *args, ft_strlen(string)))
 				break;
 			if (!lst->stop_list->next)
 			{
