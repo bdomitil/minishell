@@ -19,8 +19,8 @@ void print_pars_lst(t_parse_lst **lst)
 		redir_in = ||%d|| \
 		redir_out = ||%d|| \
 		stop_word = ||%p|| \n",
-		 pars_tmp->command, \
-		 pars_tmp->pipe, \
+		pars_tmp->command, \
+		pars_tmp->pipe, \
 		pars_tmp->fd_in, \
 		pars_tmp->fd_out, \
 		pars_tmp->stop_list);

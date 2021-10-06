@@ -18,7 +18,7 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 engine/rd.c engine/exec.c engine/pipe.c engine/clean_main_list.c \
 		 engine/arr_join.c engine/here_doc.c\
 
-CFLAGS = -g -Wall -Wextra -Werror
+#CFLAGS = -g -Wall -Wextra -Werror
 
 HEADERS = headers/parse.h
 

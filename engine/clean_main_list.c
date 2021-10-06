@@ -14,7 +14,7 @@ static void t_lst_clear(t_list *lst)
 		tmp = NULL;
 	}
 }
-// close fd
+
 
 static void	clear_args(t_args *args)
 {
@@ -41,7 +41,7 @@ void	clean_main_list(t_parse_lst *lst)
 		free(tmp->command);
 		tmp->command = NULL;
 		t_lst_clear(tmp->stop_list);
-		clear_args(tmp->args);
+//		clear_args(tmp->args);
 // free env list
 	}
 }

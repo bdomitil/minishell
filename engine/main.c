@@ -4,7 +4,7 @@ int main(int argc, char **argv, char **env)
 {
 	char *str;
 	t_parse_lst *lst = NULL;
-	t_parse_lst *head = NULL;
+    t_parse_lst *head = NULL;
 
 	(void)argc, (void)argv;
 	while ((str = readline("$mini$hee$h$")))
@@ -18,23 +18,20 @@ int main(int argc, char **argv, char **env)
 			continue;
 		}
 //		else
-//		print_pars_lst(&lst);  //delete it later
+		print_pars_lst(&lst);  //delete it later
 		head = lst->head;
-		if (lst->command)
+		io_pipes(lst);
+
+		while (lst)
 		{
-			io_pipes(lst);
-			while (lst)
-			{
-				exex(&lst);
-				lst = lst->next;
-			}
-			wait(NULL);
-			lst = head;
-			close_pipes(lst);
-			clean_main_list(lst);
+			exex(&lst);
+			lst = lst->next;
 		}
-//			free(lst);
-//			lst = NULL;
+		lst = head;
+		close_pipes(lst);
+		clean_main_list(lst);
+		lst = NULL;
+//		free(lst);
 	}
 	return 0;
 }
