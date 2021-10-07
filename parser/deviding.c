@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/07 09:54:12 by                  ###   ########.fr       */
+/*   Updated: 2021/10/07 20:29:39 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 static int	parse_built_in(char *command)
 {
 	if (!ft_strncmp("echo", command, ft_strlen(command)))
-		return (ft_echo);
+		return (e_echo);
 	else if (!ft_strncmp("cd", command, ft_strlen(command)))
-			return (ft_cd);
-//	else if (!ft_strncmp("pwd", command, ft_strlen(command)))
-//		return (ft_pwd);
+			return (e_cd);
+	else if (!ft_strncmp("pwd", command, ft_strlen(command)))
+		return (e_pwd);
 	else if (!ft_strncmp("export", command, ft_strlen(command)))
-		return (ft_export);
+		return (e_export);
 	else if (!ft_strncmp("unset", command, ft_strlen(command)))
-		return (ft_unset);
+		return (e_unset);
 	else if (!ft_strncmp("env", command, ft_strlen(command)))
-		return (ft_env);
+		return (e_env);
 	else if (!ft_strncmp("exit", command, ft_strlen(command)))
-		return (ft_exit);
+		return (e_exit);
 	else
 		return (0);
 

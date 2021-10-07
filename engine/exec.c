@@ -1,6 +1,6 @@
 #include "../headers/minishell.h"
 
-static char **envp(t_env *env)
+char	**envprint(t_env *env)
 {
 	char	**envarray;
 	int		size = 1;
@@ -30,7 +30,7 @@ void	exex(t_parse_lst **lst)
 	pid_t	pid;
 	char	**cmd = NULL;
 
-	char	**env = envp((*lst)->env_lst);
+	char	**env = envprint((*lst)->env_lst);
 	if ((*lst)->args)
     {
         cmd = (char **)malloc(sizeof(char *) * ((*lst)->args->tail->id + 3));
@@ -54,8 +54,8 @@ void	exex(t_parse_lst **lst)
 	pid = fork();
 	if (pid == 0)
 	{
-		if ((*lst)->fd_out == -2)
-			get_fd_of_hd(*lst);
+//		if ((*lst)->fd_in == -2)
+//			get_fd_of_hd(*lst);
 		redir(*lst);
 		close_pipes(*lst);
 		execve((*lst)->command, cmd, env);

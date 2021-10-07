@@ -6,7 +6,7 @@ void	get_fd_of_hd(t_parse_lst *lst)
 	int	pid;
 
 	pipe(pfd);
-	lst->fd_out = pfd[0];
+	lst->fd_in = pfd[0];
 	pid = fork();
 	if (!pid)
 	{
@@ -23,7 +23,7 @@ void	get_fd_of_hd(t_parse_lst *lst)
 	}
 	else
 	{
-		dup2(lst->fd_out, 0); //  вопрос
+		dup2(lst->fd_in, 0); //  вопрос
 		close (pfd[0]), close(pfd[1]);
 	}
 }

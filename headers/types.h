@@ -15,13 +15,13 @@ typedef enum e_types_of_found
 
 typedef enum e_built_in
 {
-	ft_echo = 1,
-	ft_cd,
-	ft_pwd,
-	ft_export,
-	ft_unset,
-	ft_env,
-	ft_exit
+	e_echo = 1,
+	e_cd,
+	e_pwd,
+	e_export,
+	e_unset,
+	e_env,
+	e_exit
 }				t_built_in;
 
 typedef struct	s_env
@@ -53,8 +53,8 @@ typedef struct s_main_parse_list
 	t_list						*stop_list;
 	bool						pipe;
 	int 						built_in;
-	int							fd_in;
 	int							fd_out;
+	int							fd_in;
 	int 						pid;
 	int							exit_status;
 	char						*command;

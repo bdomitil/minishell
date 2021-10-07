@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:15:28 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/04 16:03:25 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:39:22 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_parse_lst	*init_pars_lst(void)
 	lst->pipe = false;
 	lst->stop_list = NULL;
 	lst->built_in = 0;
-	lst->fd_in = 1;
-	lst->fd_out = 0;
+	lst->fd_out = 1;
+	lst->fd_in = 0;
 	lst->exit_status = 0;
 	lst->command = NULL;
 	lst->here_doc = NULL;

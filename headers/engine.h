@@ -23,5 +23,6 @@ void	exe_built_in(t_parse_lst *lst);
 void	hd(t_parse_lst *lst);
 char	**arrjoin(char **arr, char *str);
 void	get_fd_of_hd(t_parse_lst *lst);
+char	**envprint(t_env *env);
 
 #endif
