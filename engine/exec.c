@@ -56,8 +56,10 @@ void	exex(t_parse_lst **lst)
 	{
 		if ((*lst)->fd_out == -2)
 			get_fd_of_hd(*lst);
-		redir(lst);
+		redir(*lst);
 		close_pipes(*lst);
 		execve((*lst)->command, cmd, env);
 	}
+	else
+		(*lst)->pid = pid;
 }

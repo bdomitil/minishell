@@ -1,5 +1,14 @@
 #include "../headers/minishell.h"
 
+static void wait_function(t_parse_lst *lst)
+{
+	while (lst)
+	{
+		waitpid(lst->pid, 0, 0);
+		lst = lst->next;
+	}
+}
+
 int main(int argc, char **argv, char **env)
 {
 	char *str;
@@ -18,17 +27,21 @@ int main(int argc, char **argv, char **env)
 			continue;
 		}
 //		else
-		print_pars_lst(&lst);  //delete it later
+//		print_pars_lst(&lst);  //delete it later
 		head = lst->head;
 		io_pipes(lst);
 
 		while (lst)
 		{
-			exex(&lst);
+			if (lst->built_in)
+				exe_built_in(lst);
+			else
+				exex(&lst);
 			lst = lst->next;
 		}
 		lst = head;
 		close_pipes(lst);
+		wait_function(lst);
 		clean_main_list(lst);
 		lst = NULL;
 //		free(lst);

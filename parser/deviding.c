@@ -6,11 +6,32 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/04 16:32:33 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/07 09:54:12 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/parse.h"
+
+static int	parse_built_in(char *command)
+{
+	if (!ft_strncmp("echo", command, ft_strlen(command)))
+		return (ft_echo);
+	else if (!ft_strncmp("cd", command, ft_strlen(command)))
+			return (ft_cd);
+//	else if (!ft_strncmp("pwd", command, ft_strlen(command)))
+//		return (ft_pwd);
+	else if (!ft_strncmp("export", command, ft_strlen(command)))
+		return (ft_export);
+	else if (!ft_strncmp("unset", command, ft_strlen(command)))
+		return (ft_unset);
+	else if (!ft_strncmp("env", command, ft_strlen(command)))
+		return (ft_env);
+	else if (!ft_strncmp("exit", command, ft_strlen(command)))
+		return (ft_exit);
+	else
+		return (0);
+
+}
 
 void	commands_args_fill(t_parse_lst *current_pars, char **command_params, \
 																t_env *env_lst)
@@ -21,6 +42,7 @@ void	commands_args_fill(t_parse_lst *current_pars, char **command_params, \
 		return ;
 	
 	current_pars->command = *command_params;
+	current_pars->built_in = parse_built_in(current_pars->command);
 	current_pars->env_lst = env_lst;
 	command_params++;
 	while (*command_params)

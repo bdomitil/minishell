@@ -18,6 +18,7 @@ void	get_fd_of_hd(t_parse_lst *lst)
 			write(pfd[1], "\n", 1);
 			lst->here_doc++;
 		}
+		write(pfd[1], (void *)EOF, 4); // может ломать
 		exit (0);
 	}
 	else

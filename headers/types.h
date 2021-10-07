@@ -42,7 +42,6 @@ typedef struct s_parsed_args
 	char					*arg;
 }				t_args;
 
-
 typedef struct s_main_parse_list
 {
 	struct s_main_parse_list	*head;
@@ -56,11 +55,15 @@ typedef struct s_main_parse_list
 	int 						built_in;
 	int							fd_in;
 	int							fd_out;
+	int 						pid;
 	int							exit_status;
 	char						*command;
 	char						**here_doc;
 
 }		t_parse_lst;
+
+//typedef void	(*func)(t_parse_lst *lst);
+//typedef	func t_func;
 
 typedef struct	s_spec_deviders
 {
