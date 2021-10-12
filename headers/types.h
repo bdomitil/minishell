@@ -3,6 +3,7 @@
 # include <stdbool.h>
 # include "libft.h"
 
+//#define
 typedef enum e_types_of_found
 {
 	pipe_is_next,

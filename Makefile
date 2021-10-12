@@ -6,7 +6,7 @@
 #    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/10/04 16:04:27 by bdomitil         ###   ########.fr        #
+#   Updated: 2021/10/10 19:10:02 by                  ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/deviding_utils.c parser/redir_fill.c parser/clean_utils.c parser/redir_utils.c \
 		 parser/parse_env.c parser/env_utils.c parser/path_find.c engine/main.c \
 		 engine/rd.c engine/exec.c engine/pipe.c engine/clean_main_list.c \
-		 engine/arr_join.c engine/here_doc.c engine/built_in.c\
-
+		 engine/arr_join.c engine/here_doc.c engine/bi_calling.c engine/bi_utils.c \
+		 engine/cd.c engine/echo.c engine/export.c engine/unset.c engine/pwd.c\
 
 #CFLAGS = -g -Wall -Wextra -Werror
 
@@ -31,7 +31,7 @@ NAME = a.out
 all :	lib_compil $(NAME)
 
 $(NAME) : $(files.o) 
-		@gcc -lreadline $(files.o) libft/libft.a  -o a.out
+		@gcc -L/Users/$(USER)/.brew/Cellar/readline/8.1.1/lib/ -I/Users/$(USER)/.brew/Cellar/readline/8.1.1/include -lreadline $(files.o) libft/libft.a  -o a.out # ?
 		@echo "\033[7m PROGRAM IS READY TO BE USED!\033[0m"
 
 lib_compil: 
