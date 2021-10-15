@@ -21,7 +21,6 @@ void	exex(t_parse_lst **lst);
 void	close_pipes(t_parse_lst *lst);
 void	clean_main_list(t_parse_lst *lst);
 void	exe_built_in(t_parse_lst *lst);
-void	hd(t_parse_lst *lst);
 char	**arrjoin(char **arr, char *str);
 void	get_fd_of_hd(t_parse_lst *lst);
 char	**envprint(t_env *env);
@@ -36,5 +35,8 @@ char	*get_PWD(t_parse_lst *lst);
 char	*get_HOME(t_parse_lst *lst);
 //-----------
 void	ft_unset(t_parse_lst *lst);
+int 	hd(t_parse_lst *lst, char *a);
+void	rm_here_docs(char **envp, t_parse_lst *lst);
+char	**envprint(t_env *env);
 
 #endif

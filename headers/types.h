@@ -43,7 +43,7 @@ typedef struct s_parsed_args
 	char					*arg;
 }				t_args;
 
-typedef struct s_main_parse_list
+typedef struct 	s_main_parse_list
 {
 	struct s_main_parse_list	*head;
 	struct s_main_parse_list	*tail;
@@ -59,9 +59,7 @@ typedef struct s_main_parse_list
 	int 						pid;
 	int							exit_status;
 	char						*command;
-	char						**here_doc;
-
-}		t_parse_lst;
+}				t_parse_lst;
 
 //typedef void	(*func)(t_parse_lst *lst);
 //typedef	func t_func;

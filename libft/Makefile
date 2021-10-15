@@ -20,7 +20,7 @@ files.c = ft_isalnum.c ft_isprint.c ft_memcmp.c  ft_putchar_fd.c ft_split.c \
                     ft_char_index_bonus.c ft_isupper_bonus.c ft_space_bonus.c ft_strcmp_bonus.c  \
 					get_next_line.c get_next_line_utils.c ft_isempty_str.c ft_atoi_long.c ft_all_numeric.c  \
 					ft_strcpy.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c	ft_lstadd_back.c \
-					ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+					ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c terminate.c
 
 bonus.o = $(BONUS:.c=.o)
 

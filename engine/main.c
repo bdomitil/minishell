@@ -47,6 +47,7 @@ int main(int argc, char **argv, char **env)
     t_env		*env_lst;
 
 
+
 	(void)argc, (void)argv;
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, SIG_IGN);
@@ -55,19 +56,19 @@ int main(int argc, char **argv, char **env)
 	{
 		if (!str)
 			exit(0);
-		add_history(str);
+		if (ft_strcmp(str, "\0"))
+			add_history(str);
 		errno = 0;
 		if (parser(&str, &lst, env_lst) == -1)
 		{
 			printf("\n\n______ERROR______\n\n");
 			continue;
 		}
-		print_pars_lst(&lst);  //delete it later
+//		print_pars_lst(&lst);  //delete it later
 		if (lst)
 		{
 			head = lst->head;
 			io_pipes(lst);
-
 			while (lst)
 			{
 				if (lst->built_in)
@@ -79,13 +80,10 @@ int main(int argc, char **argv, char **env)
 			lst = head;
 			close_pipes(lst);
 			wait_function(lst);
-			printf ("env_old_pwd %s\n", find_env_key(lst->env_lst, "OLDPWD")); // leak
+			rm_here_docs(env, lst);
 			clean_main_list(lst);
 			lst = NULL;
 		}
-//		rl_replace_line()
-		//		free(lst);
 	}
-//	rl_clear_history();
 	return 0;
 }

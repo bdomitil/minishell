@@ -12,7 +12,8 @@ void	ft_echo(t_parse_lst *lst)
 	while (lst->args)
 	{
 		write(1, lst->args->arg, ft_strlen(lst->args->arg));
-		write(1, " ", 1);
+		if (lst->args->next)
+			write(1, " ", 1);
 		lst->args = lst->args->next;
 	}
 	if (!i)

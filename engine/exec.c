@@ -9,7 +9,7 @@ char	**envprint(t_env *env)
 	tmp_env = env;
 	while (env)
 	{
-		size++;		
+		size++;
 		env = env->next;
 	}
 	envarray = (char **)malloc (sizeof(char *) * size);
@@ -33,15 +33,17 @@ void	exex(t_parse_lst **lst)
 	char	**env = envprint((*lst)->env_lst);
 	if ((*lst)->args)
     {
-        cmd = (char **)malloc(sizeof(char *) * ((*lst)->args->tail->id + 3));
-    }
+		cmd = (char **)malloc(sizeof(char *) * ((*lst)->args->tail->id + 3));
+	}
 	else
     {
-        cmd = (char **)malloc(sizeof(char *) * 2);
-    }
+		cmd = (char **)malloc(sizeof(char *) * 2);
+	}
+
 	int i = 1;
 	cmd[0] = (char *)malloc(sizeof (char) * ft_strlen ((*lst)->command));
 	cmd[0] = ft_strcpy(cmd[0], (*lst)->command);
+
 	while ((*lst)->args && i < (*lst)->args->tail->id + 2)
 	{
 		cmd[i] = (*lst)->args->arg;
@@ -54,8 +56,6 @@ void	exex(t_parse_lst **lst)
 	pid = fork();
 	if (pid == 0)
 	{
-//		if ((*lst)->fd_in == -2)
-//			get_fd_of_hd(*lst);
 		redir(*lst);
 		close_pipes(*lst);
 		execve((*lst)->command, cmd, env);

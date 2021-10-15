@@ -6,7 +6,7 @@
 /*   By: nastya <nastya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:55:56 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/10 15:34:01 by                  ###   ########.fr       */
+/*   Updated: 2021/10/15 21:28:12 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,11 @@ t_env	*parse_env(char **env)
 	env_lst = NULL;
 	while (*env)
 	{
+		if (!ft_strncmp(*env, "OLDPWD", 6))
+		{
+			env++;
+			continue ;
+		}
 		tmp = ft_strdup(*env);
 		pos = ft_strchr(tmp, '=');
 		value = ft_strdup(pos + 1);
@@ -103,11 +108,7 @@ t_env	*parse_env(char **env)
 		key = ft_strdup(tmp);
 		if (!strcmp(key, "SHLVL"))
 			value = change_sh_lvl(value);
-		if (!strcmp(key, "OLDPWD"))
-		{
-			free (value);
-			value = NULL;
-		}
+
 		free(tmp);
 		env++;
 		add_env_back(&env_lst, key, value, ft_strdup(*env)); // might leak? // ne zafrishitsa

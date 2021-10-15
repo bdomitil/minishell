@@ -1,90 +1,72 @@
 #include "../headers/minishell.h"
 
-void	get_fd_of_hd(t_parse_lst *lst)
+void 	exec_rmfile(char **env, char *file)
 {
-	int	pfd[2];
-	int	pid;
+	int		pid;
+	char	**args;
 
-	pipe(pfd);
-	lst->fd_in = pfd[0];
+	args = malloc(sizeof(char *) * 3);
+	if (!args)
+		terminate(strerror(errno));
+	args[0] = ft_strdup("rm\0");
+	args[1] = ft_strdup(file);
+	args[2] = NULL;
 	pid = fork();
-	if (!pid)
+	if (pid == 0)
 	{
-		close_pipes(lst);
-		close(pfd[0]);
-		while (*lst->here_doc)
-		{
-			write(pfd[1], *lst->here_doc, ft_strlen(*lst->here_doc));
-			write(pfd[1], "\n", 1);
-			lst->here_doc++;
-		}
-		write(pfd[1], (void *)EOF, 4); // может ломать
-		exit (0);
-	}
-	else
+		if (execve("/bin/rm\0", args, env) == -1)
+			terminate(strerror(errno));
+	} else
+		waitpid(pid, 0, 0);
+	free(args[0]);
+	free(args[1]);
+	free(args);
+}
+
+void	rm_here_docs(char **envp, t_parse_lst *lst)
+{
+	while (lst)
 	{
-		dup2(lst->fd_in, 0); //  вопрос
-		close (pfd[0]), close(pfd[1]);
+		if (lst->stop_list && lst->stop_list->content)
+			exec_rmfile(envp, lst->stop_list->content);
+		lst = lst->next;
 	}
 }
 
-//void	hdd(t_parse_lst *lst)
-//{
-//	char 	*string;
-//	int 	res;
-//
-//	while (lst->stop_list)
-//	{
-//		res = get_next_line(0, &string);
-//		lst->here_doc = NULL;
-//		while (res >= 0)
-//		{
-//			if (ft_strncmp(string, (char *)lst->stop_list->content, \
-//			ft_strlen(string)))
-//				break;
-//			if (!lst->stop_list->next)
-//			{
-//				lst->here_doc = arrjoin(lst->here_doc, string);
-//				res = get_next_line(0, &string);
-//			}
-//		}
-//		lst->stop_list = lst->stop_list->next;
-//	}
-//}
-
-//-------check_here_doc-------
-void	hd(t_parse_lst *lst)
+int	hd(t_parse_lst *lst, char *a)
 {
-	if (!lst)
-		return;
-	char *string;
-	int res;
-//-----------------------
-	char **args;
-	args = malloc(sizeof(char *) * 3);
-	args[0] = malloc(sizeof(char) * 4);
-	args[0] = "s\0";
-	args[1] = "t\0";
-	args[2] = NULL;
-//-----------------------
-	while (*args)
-	{
-		res = get_next_line(0, &string);
-		lst->here_doc = NULL;
+	int			fd;
+	char		*line;
+	t_list 		*tmp;
+	char 		*filename;
 
-		while (res >= 0)
+	tmp = lst->stop_list;
+	filename = NULL;
+	filename = ft_strjoin(ft_strjoin(filename, "./.heredoc"), a);
+	fd = open (filename, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	while (tmp)
+	{
+		while (1)
 		{
-			if (!ft_strncmp(string, *args, ft_strlen(string)))
-				break;
-			if (!lst->stop_list->next)
+			get_next_line(0, &line);
+			if (!ft_strcmp(line, (char *)tmp->content))//, \ //ft_strlen((char *)tmp->content) + 1))
 			{
-				lst->here_doc = arrjoin(lst->here_doc, string);
-				res = get_next_line(0, &string);
+				free(line);
+				break;
+			}
+			if (!tmp->next)
+			{
+				write(fd, line, ft_strlen(line));
+				free(line);
+				write(fd, "\n", 1);
 			}
 		}
-//		write (1, *args, 20);
-		(args)++;
-//		write (1, *args, 20);
+		tmp = tmp->next;
 	}
+	lst->stop_list->content = ft_strdup(filename);
+	write(fd, (void *)EOF, 4);
+	close (fd);
+	fd = open (filename, O_RDONLY);
+	free (filename);
+	return (fd);
 }
-//--------------------------

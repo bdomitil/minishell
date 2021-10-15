@@ -47,6 +47,5 @@ t_parse_lst	*init_pars_lst(void)
 	lst->fd_in = 0;
 	lst->exit_status = 0;
 	lst->command = NULL;
-	lst->here_doc = NULL;
 	return (lst);
 }

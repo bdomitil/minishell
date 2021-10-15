@@ -21,7 +21,7 @@ void	change_PWD(t_parse_lst *lst)
 	{
 		if (!ft_strncmp("OLDPWD\0", lst->env_lst->key, 7))
 		{
-			free (lst->env_lst->value);
+//			free (lst->env_lst->value);
 			lst->env_lst->value = pwd;
 			printf ("old pwd\t%s\n", lst->env_lst->value);
 			break;
@@ -33,7 +33,7 @@ void	change_PWD(t_parse_lst *lst)
 	{
 		if (!ft_strncmp("PWD\0", lst->env_lst->key, 4))
 		{
-			free (lst->env_lst->value);
+//			free (lst->env_lst->value);
 			lst->env_lst->value = cwd;
 			printf ("pwd\t%s\n", lst->env_lst->value);
 			break;

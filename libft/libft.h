@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 00:38:52 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/04 16:49:46 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/15 20:52:03 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ int				ft_isempty_str(char *str);
 long long int	ft_atoi_long(const char *str);
 int				ft_all_numeric(char *str);
 char			*ft_strcpy(char *dst, char *src);
+void			terminate(char *message);
 
 #endif
