@@ -3,6 +3,8 @@
 
 void	redir(t_parse_lst *lst)
 {
-	dup2((lst)->fd_in, 0);
-	dup2((lst)->fd_out, 1);
+	if (dup2((lst)->fd_in, 0) == -1)
+		terminate(strerror(errno));
+	if (dup2((lst)->fd_out, 1) == -1)
+		terminate(strerror(errno));
 }

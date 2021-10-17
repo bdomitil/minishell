@@ -1,6 +1,6 @@
 #include "../headers/minishell.h"
 
-void	change_PWD(t_parse_lst *lst)
+void	change_pwd(t_parse_lst *lst)
 {
 	t_env	*tmp;
 	char	*pwd;
@@ -47,6 +47,7 @@ void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 	char	*dir;
 
 	dir = NULL;
+
 	if (lst->args->next)
 		return; // вывести ошибку cd: string not in pwd: ..
 		if (!ft_strncmp("~", lst->args->arg, 1))
@@ -71,7 +72,7 @@ void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 			chdir (dir); // errhandle ENOENT
 			//	free (dir);
 			//	if (ft_strncmp(getcwd (NULL, 0), get_PWD(lst), ft_strlen(getcwd (NULL, 0))))
-			change_PWD(lst);
+			change_pwd(lst);
 			//	{
 			//		free (get_OLDPWD(lst));
 			//		get_OLDPWD(lst) = NULL; // shity

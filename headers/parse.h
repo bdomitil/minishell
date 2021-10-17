@@ -38,11 +38,11 @@ void		*free_string_mass(char **mass, int size, int use_size);
 int			single_redir_fd(char **str, t_deviders *dev_lst, t_found type);
 int			double_redir_fd(char **str, t_deviders *dev_lst, bool double_back, t_parse_lst *curr_pars);
 t_env		*parse_env(char **env);
-void		add_env_back(t_env **env_lst, char *key, char *value, char *env_type);
 char		*find_env_key(t_env *env_lst, char *key);
 char		*change_sh_lvl(char *shlvl);
 void		commands_args_fill(t_parse_lst *current_pars, char **command_params, t_env *env_lst);
 void		join_path(char **str, t_env *env_lst);
 void		del_env_lst_by_key(t_env *env_lst, char *key);
+void		print_env_lst(t_env *env_lst);
 
 #endif 

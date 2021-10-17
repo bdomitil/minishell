@@ -62,7 +62,6 @@ void close_pipes(t_parse_lst *lst) // close fds
 	tmp_lst = lst->head;
 	while (tmp_lst)
 	{
-//		write(2, "here\n", 5);
 	    if (tmp_lst->fd_out != 1)
 	        close (tmp_lst->fd_out);
 	    if (tmp_lst->fd_in != 0)

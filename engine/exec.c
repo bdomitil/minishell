@@ -41,8 +41,7 @@ void	exex(t_parse_lst **lst)
 	}
 
 	int i = 1;
-	cmd[0] = (char *)malloc(sizeof (char) * ft_strlen ((*lst)->command));
-	cmd[0] = ft_strcpy(cmd[0], (*lst)->command);
+	cmd[0] = ft_strdup((*lst)->command);
 
 	while ((*lst)->args && i < (*lst)->args->tail->id + 2)
 	{
@@ -51,14 +50,15 @@ void	exex(t_parse_lst **lst)
 		i++;
 	}
 	cmd[i] = NULL;
-	join_path(&((*lst)->command), (*lst)->env_lst);
+	join_path(&((*lst)->command), (*lst)->env_lst); // HERE
 	i = 0;
 	pid = fork();
 	if (pid == 0)
 	{
 		redir(*lst);
 		close_pipes(*lst);
-		execve((*lst)->command, cmd, env);
+		if (execve((*lst)->command, cmd, env) == -1)
+			exit(errno);
 	}
 	else
 		(*lst)->pid = pid;

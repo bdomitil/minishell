@@ -3,9 +3,16 @@
 
 static void wait_function(t_parse_lst *lst)
 {
+	int status;
+
 	while (lst)
 	{
-		waitpid(lst->pid, 0, 0);
+		waitpid(lst->pid, &status, 0);
+		if (WEXITSTATUS(status) != 0)
+		{
+			printf("here\n");
+			exit(errno);
+		}
 		lst = lst->next;
 	}
 }
@@ -43,8 +50,8 @@ int main(int argc, char **argv, char **env)
 {
 	char *str;
 	t_parse_lst *lst = NULL;
-    t_parse_lst *head = NULL;
-    t_env		*env_lst;
+	t_parse_lst *head = NULL;
+	t_env		*env_lst;
 
 
 
@@ -64,7 +71,7 @@ int main(int argc, char **argv, char **env)
 			printf("\n\n______ERROR______\n\n");
 			continue;
 		}
-//		print_pars_lst(&lst);  //delete it later
+//				print_pars_lst(&lst);  //delete it later
 		if (lst)
 		{
 			head = lst->head;
@@ -72,7 +79,12 @@ int main(int argc, char **argv, char **env)
 			while (lst)
 			{
 				if (lst->built_in)
-					exe_built_in(lst);
+				{
+					if (lst->next || lst->previous)
+						built_in_fork_call(lst);
+					else
+						uni_built_in_call(lst);
+				}
 				else
 					exex(&lst);
 				lst = lst->next;
@@ -83,7 +95,7 @@ int main(int argc, char **argv, char **env)
 			rm_here_docs(env, lst);
 			clean_main_list(lst);
 			lst = NULL;
+			}
 		}
-	}
-	return 0;
+		return 0;
 }

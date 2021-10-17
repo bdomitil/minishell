@@ -31,6 +31,7 @@ typedef struct	s_env
 	char			*value;
 	char			*env_type;
 	char			*key;
+	bool			visible;
 }				t_env;
 
 typedef struct s_parsed_args

@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/07 20:29:39 by                  ###   ########.fr       */
+/*   Updated: 2021/10/16 19:06:08 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static int	parse_built_in(char *command)
 {
-	if (!ft_strncmp("echo", command, ft_strlen(command)))
+	if (!ft_strcmp("echo", command))
 		return (e_echo);
-	else if (!ft_strncmp("cd", command, ft_strlen(command)))
+	else if (!ft_strcmp("cd", command))
 			return (e_cd);
-	else if (!ft_strncmp("pwd", command, ft_strlen(command)))
+	else if (!ft_strcmp("pwd", command))
 		return (e_pwd);
-	else if (!ft_strncmp("export", command, ft_strlen(command)))
+	else if (!ft_strcmp("export", command))
 		return (e_export);
-	else if (!ft_strncmp("unset", command, ft_strlen(command)))
+	else if (!ft_strcmp("unset", command))
 		return (e_unset);
-	else if (!ft_strncmp("env", command, ft_strlen(command)))
+	else if (!ft_strcmp("env", command))
 		return (e_env);
-	else if (!ft_strncmp("exit", command, ft_strlen(command)))
+	else if (!ft_strcmp("exit", command))
 		return (e_exit);
 	else
 		return (0);
