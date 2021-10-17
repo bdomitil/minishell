@@ -35,6 +35,7 @@ char	**envprint(t_env *env);
 void	add_env_back(t_env **env_lst, char *key, char *value, char *env_type);
 void	uni_built_in_call(t_parse_lst *lst);
 void	built_in_fork_call(t_parse_lst *lst);
+bool	change_value(t_env *env_lst, char *value, char *key);
 
 
 #endif

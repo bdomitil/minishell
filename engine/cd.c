@@ -45,61 +45,50 @@ void	change_pwd(t_parse_lst *lst)
 void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 {
 	char	*dir;
+	char	*env_var;
+	char 	*pwd;
 
+	env_var = NULL;
 	dir = NULL;
-
 	if (lst->args->next)
 		return; // вывести ошибку cd: string not in pwd: ..
 		if (!ft_strncmp("~", lst->args->arg, 1))
-			dir = ft_strjoin(ft_strjoin(dir, find_env_key(lst->env_lst, "HOME")), ++(lst->args->arg)); // проверить изменяется ли потом
+		{
+			env_var = find_env_key(lst->env_lst, "HOME");
+			if (env_var)
+				dir = ft_strjoin(ft_strjoin(dir, env_var), \
+				++(lst->args->arg));
+		}
 			else if (!ft_strncmp("-", lst->args->arg, 1))
-				dir = ft_strjoin(dir, find_env_key(lst->env_lst, "OLDPWD"));
-			else if (!ft_strcmp(".\0", lst->args->arg))
 			{
-				//		printf("sd\n");
-				dir = (char *)malloc(sizeof (char *) * 3);
-				dir = "./\0";
-			}
-			else if (!ft_strcmp("..\0", lst->args->arg))
-			{
-				//		printf("AAAAH\n");
-				dir = (char *)malloc(sizeof (char *) * 4);
-				//		dir = ft_strcpy(dir, "../\0");
-				dir = "../\0";
+				printf("mi v minuse pacany\n");
+				env_var = find_env_key(lst->env_lst, "OLDPWD");
+				if (env_var)
+					dir = ft_strjoin(dir, env_var);
+
 			}
 			else
-				dir = lst->args->arg;
-			chdir (dir); // errhandle ENOENT
-			//	free (dir);
-			//	if (ft_strncmp(getcwd (NULL, 0), get_PWD(lst), ft_strlen(getcwd (NULL, 0))))
-			change_pwd(lst);
-			//	{
-			//		free (get_OLDPWD(lst));
-			//		get_OLDPWD(lst) = NULL; // shity
-			//		get_OLDPWD(lst) = get_PWD(lst);
-			//		free (get_PWD(lst));
-			//		dir = getcwd (NULL, 0);
-			//		get_PWD(lst) = dir;
-			//	}
-
-			//	printf("pwd %s\n", getcwd (NULL, 0));
-			//		return;
+				dir = ft_strdup(lst->args->arg);
+			if (dir)
+			{
+				if (chdir(dir) == -1)
+					printf("error\n"); // errhandle ENOENT
+				free(dir);
+				free(env_var);
+			}
+			char *old_pwd;
+			old_pwd = NULL;
+			pwd = NULL;
+			env_var = find_env_key (lst->env_lst, "PWD");
+			pwd = ft_strdup(getcwd (NULL, 0));
+			if (env_var && pwd)
+				if (ft_strcmp(pwd, env_var))
+					change_value(lst->env_lst, pwd, "PWD");
+			old_pwd = find_env_key(lst->env_lst, "OLDPWD");
+			if (!old_pwd)
+				add_env_back(&(lst->env_lst), ft_strdup("OLDPWD"), env_var, \
+							ft_strjoin(ft_strjoin("OLDPWD", "="), env_var));
+			else
+				change_value(lst->env_lst, env_var, "OLDPWD");
+	printf("here\n");
 }
-
-//void	ft_cd(t_parse_lst *lst) //  err-handle ENOENT
-//{
-//	char	*dir;
-//
-//	dir = NULL;
-//	if (lst->args->next)
-//		return; // выв ести ошибку cd: string not in pwd: ../
-//		if (!ft_strncmp("~", lst->args->arg, 1))
-//			dir = ft_strjoin(ft_strjoin(dir, get_HOME(lst)), ++(lst->args->arg));
-//		else if (!ft_strncmp("-", lst->args->arg, 1))
-//			dir = get_OLDPWD(lst);
-//		else
-//			dir = lst->args->arg;
-//		chdir (dir); // errhandle ENOENT
-//		change_PWD(lst);
-//		return;
-//}
