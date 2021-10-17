@@ -90,5 +90,4 @@ void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 							ft_strjoin(ft_strjoin("OLDPWD", "="), env_var));
 			else
 				change_value(lst->env_lst, env_var, "OLDPWD");
-	printf("here\n");
 }

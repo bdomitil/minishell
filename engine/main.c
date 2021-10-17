@@ -9,10 +9,7 @@ static void wait_function(t_parse_lst *lst)
 	{
 		waitpid(lst->pid, &status, 0);
 		if (WEXITSTATUS(status) != 0)
-		{
-			printf("here\n");
-			exit(errno);
-		}
+			g_exit_status = errno;
 		lst = lst->next;
 	}
 }
@@ -26,10 +23,9 @@ static void	ctrl_c(int signal)
 	{
 		while (k--)
 			printf("\e[C");
-		//			printf("\n");
 		printf("\e[K\n");
 		rl_on_new_line();
-//		rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
@@ -53,8 +49,6 @@ int main(int argc, char **argv, char **env)
 	t_parse_lst *head = NULL;
 	t_env		*env_lst;
 
-
-
 	(void)argc, (void)argv;
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, SIG_IGN);
@@ -71,7 +65,7 @@ int main(int argc, char **argv, char **env)
 			printf("\n\n______ERROR______\n\n");
 			continue;
 		}
-//				print_pars_lst(&lst);  //delete it later
+				print_pars_lst(&lst);  //delete it later
 		if (lst)
 		{
 			head = lst->head;
