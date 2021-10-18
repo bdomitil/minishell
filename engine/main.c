@@ -35,8 +35,6 @@ int main(int argc, char **argv, char **env)
 	t_parse_lst *head = NULL;
 	t_env		*env_lst;
 
-
-
 	(void)argc, (void)argv;
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, SIG_IGN);
@@ -63,12 +61,20 @@ int main(int argc, char **argv, char **env)
 				if (lst->built_in)
 				{
 					if (lst->next || lst->previous)
+					{
+						signal(SIGINT, ctrl_c_forked);
 						builtin_fork_call(lst);
+						signal(SIGINT, ctrl_c);
+					}
 					else
 						builtin_unar_call(lst);
 				}
 				else
+				{
+					signal(SIGINT, ctrl_c_forked);
 					exex(&lst);
+					signal(SIGINT, ctrl_c);
+				}
 				lst = lst->next;
 			}
 			lst = head;
