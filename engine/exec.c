@@ -62,5 +62,7 @@ void	exex(t_parse_lst **lst)
 			exit(errno);
 	}
 	else
+	{
 		(*lst)->pid = pid;
+	}
 }

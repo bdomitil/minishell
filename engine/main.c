@@ -64,7 +64,6 @@ int main(int argc, char **argv, char **env)
 					{
 						signal(SIGINT, ctrl_c_forked);
 						builtin_fork_call(lst);
-						signal(SIGINT, ctrl_c);
 					}
 					else
 						builtin_unar_call(lst);
@@ -73,13 +72,13 @@ int main(int argc, char **argv, char **env)
 				{
 					signal(SIGINT, ctrl_c_forked);
 					exex(&lst);
-					signal(SIGINT, ctrl_c);
 				}
 				lst = lst->next;
 			}
 			lst = head;
 			close_pipes(lst);
 			wait_function(lst);
+			signal(SIGINT, ctrl_c);
 			rm_here_docs(env, lst);
 			clean_main_list(lst);
 			lst = NULL;
