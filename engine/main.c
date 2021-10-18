@@ -45,6 +45,8 @@ void	my_exit(char *welc)
 int main(int argc, char **argv, char **env)
 {
 	char *str;
+	// char *str= ft_strdup ("echo aza \"hello world\"  > \'file1\' >   \"file2\"   >file3   \">not_file\"\"|\"\"  ab \"grep $var << \"stop1\"  <<stop2<file	\
+	// 	| 	grep greping_str > file_file " );
 	t_parse_lst *lst = NULL;
 	t_parse_lst *head = NULL;
 	t_env		*env_lst;
