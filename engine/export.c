@@ -1,6 +1,6 @@
 #include "../headers/minishell.h"
 
-static void	print_export(t_env *env_lst)
+static int	print_export(t_env *env_lst)
 {
 	char	cow[1];
 
@@ -20,6 +20,7 @@ static void	print_export(t_env *env_lst)
 		env_lst = env_lst->next;
 	}
 	write(1, (void *)EOF, 4); // может ломать
+	return (1);
 }
 
 //	t_env	*
@@ -58,7 +59,7 @@ void	ft_export(t_parse_lst *lst)
 	if (!lst->args)
 	{
 		print_export(lst->env_lst);
-		return;
+		print_export(lst->env_lst);
 	}
 	while (lst->args)
 	{

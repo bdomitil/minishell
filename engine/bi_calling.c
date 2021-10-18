@@ -9,15 +9,15 @@ static void choose_func(t_parse_lst *lst)
 	else if (lst->built_in == e_cd)
 		ft_cd(lst);
 	else if (lst->built_in == e_export)
-		ft_export(lst); // send only env list
+		ft_export(lst);
 	else if (lst->built_in == e_unset)
-		ft_unset(lst); // send only env list
+		ft_unset(lst);
 	else if (lst->built_in == e_env)
 		print_env_lst (lst->env_lst);
-	//	else if (lst->built_in == e_exit)
-	//		f;
+	else if (lst->built_in == e_exit)
+		ft_exit(lst);
 }
-void uni_built_in_call(t_parse_lst *lst)
+void	builtin_unar_call(t_parse_lst *lst)
 {
 	int fd_in;
 	int fd_out;
@@ -34,7 +34,7 @@ void uni_built_in_call(t_parse_lst *lst)
 	close (fd_in), close (fd_out);
 }
 
-void built_in_fork_call(t_parse_lst *lst)
+void	builtin_fork_call(t_parse_lst *lst)
 {
 	int	pid;
 

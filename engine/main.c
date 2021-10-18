@@ -1,5 +1,4 @@
 #include "../headers/minishell.h"
-#include <signal.h>
 
 static void wait_function(t_parse_lst *lst)
 {
@@ -10,27 +9,10 @@ static void wait_function(t_parse_lst *lst)
 		waitpid(lst->pid, &status, 0);
 		if (WEXITSTATUS(status) != 0)
 		{
-			printf("here\n");
-			exit(errno);
+//			printf("here\n");
+//			exit(errno);
 		}
 		lst = lst->next;
-	}
-}
-
-static void	ctrl_c(int signal)
-{
-	int			k;
-
-	k = rl_end + 18;
-	if (signal == SIGINT)
-	{
-		while (k--)
-			printf("\e[C");
-		//			printf("\n");
-		printf("\e[K\n");
-		rl_on_new_line();
-//		rl_replace_line("", 0);
-		rl_redisplay();
 	}
 }
 
@@ -43,7 +25,7 @@ void	my_exit(char *welc)
 	while (i--)
 		printf("\e[C");
 	printf("exit\n");
-	exit(0); // mkl;
+	exit(0);
 }
 
 int main(int argc, char **argv, char **env)
@@ -81,9 +63,9 @@ int main(int argc, char **argv, char **env)
 				if (lst->built_in)
 				{
 					if (lst->next || lst->previous)
-						built_in_fork_call(lst);
+						builtin_fork_call(lst);
 					else
-						uni_built_in_call(lst);
+						builtin_unar_call(lst);
 				}
 				else
 					exex(&lst);
