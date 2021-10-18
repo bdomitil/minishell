@@ -4,18 +4,24 @@ void ft_exit(t_parse_lst *lst) // return value?
 {
 	int	arg;
 
+	printf ("exit\n");
 	if (lst->args)
 	{
 		if (!ft_all_numeric(lst->args->arg))
-			exit(0);
-		if (lst->args->next)
+			error_sh_cmd_msg(255, "exit", lst->args->arg, "numeric argument required");
+		else
 		{
-			printf("exit: too many arguments\n");
-			return ;
+			if (lst->args->next)
+			{
+				error_sh_cmd_msg(1, "exit", NULL, "too many arguments");
+				return;
+			}
+			arg = ft_atoi(lst->args->arg);
+			if (arg < 256)
+				g_exit_status = arg % 256;
+			else
+				g_exit_status = arg;
 		}
-		arg = ft_atoi(lst->args->arg);
-		arg %= 255;
-		exit (arg);
 	}
 	exit (g_exit_status);
 }

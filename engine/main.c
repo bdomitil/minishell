@@ -7,11 +7,14 @@ static void wait_function(t_parse_lst *lst)
 	while (lst)
 	{
 		waitpid(lst->pid, &status, 0);
-		if (WEXITSTATUS(status) != 0)
+		if (WIFSIGNALED(status) != 0)
 		{
-//			printf("here\n");
-//			exit(errno);
+			if (WTERMSIG(status) == SIGINT)
+				g_exit_status = 128 + status;
+			else if (WTERMSIG(status) == SIGQUIT)
+				g_exit_status = 128 + status;
 		}
+//		exit(errno);
 		lst = lst->next;
 	}
 }

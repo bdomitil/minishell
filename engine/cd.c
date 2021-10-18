@@ -18,7 +18,7 @@ void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 			++(lst->args->arg));
 		else
 		{
-			error_sh_cmd_msg(1, "cd", "HOME not set");
+			error_sh_cmd_msg(1, "cd", NULL, "HOME not set");
 			return;
 		}
 	}
@@ -29,7 +29,7 @@ void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 			dir = ft_strjoin(dir, env_var);
 		else
 		{
-			error_sh_cmd_msg(1, "cd", "OLDPWD not set");
+			error_sh_cmd_msg(1, "cd", NULL,"OLDPWD not set");
 			return;
 		}
 	}
@@ -37,7 +37,7 @@ void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 		dir = ft_strdup(lst->args->arg);
 	if (chdir(dir) == -1)
 	{
-		error_sh_cmd_msg(1, "cd", strerror(errno));
+		error_sh_cmd_msg(1, "cd", NULL, strerror(errno));
 		free (dir);
 		return;
 	}
@@ -51,7 +51,7 @@ void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 	pwd = ft_strdup(getcwd (NULL, 0));
 	if (!pwd)
 	{
-		error_sh_cmd_msg(1, "cd", strerror(errno));
+		error_sh_cmd_msg(1, "cd", NULL, strerror(errno));
 		free (env_var);
 		return;
 	}

@@ -43,7 +43,7 @@ extern void rl_replace_line(const char *, int);
 /*
  * error handle
  */
-int 		error_sh_cmd_msg(int exit_status, char *cmd, char *message);
+int			error_sh_cmd_msg(int exit_status, char *cmd, char *arg, char *message);
 void		ft_exit(t_parse_lst *lst);
 /*
  * signal
