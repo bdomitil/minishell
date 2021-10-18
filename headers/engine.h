@@ -14,7 +14,6 @@
 # include <sys/wait.h>
 # include <signal.h>
 
-
 void		redir(t_parse_lst *lst);
 void		io_pipes(t_parse_lst *lst);
 void		exex(t_parse_lst **lst);
@@ -49,6 +48,7 @@ void		ft_exit(t_parse_lst *lst);
  * signal
  */
 void	ctrl_c(int signal);
+void	ctrl_slsh(int signal);
 void	ctrl_c_forked(int signal);
 
 #endif

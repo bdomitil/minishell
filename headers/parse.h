@@ -10,7 +10,7 @@
 
 // # include "engine.h" // переделать
 
-static int	g_exit_status = 0;
+int	g_exit_status;
 
 //||
 //||

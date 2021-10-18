@@ -17,6 +17,7 @@ static void choose_func(t_parse_lst *lst)
 	else if (lst->built_in == e_exit)
 		ft_exit(lst);
 }
+
 void	builtin_unar_call(t_parse_lst *lst)
 {
 	int fd_in;

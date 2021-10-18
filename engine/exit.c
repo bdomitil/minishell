@@ -7,7 +7,7 @@ void ft_exit(t_parse_lst *lst) // return value?
 	printf ("exit\n");
 	if (lst->args)
 	{
-		if (!ft_all_numeric(lst->args->arg))
+		if (!ft_all_numeric(lst->args->arg) || ft_strlen(lst->args->arg) > 11)
 			error_sh_cmd_msg(255, "exit", lst->args->arg, "numeric argument required");
 		else
 		{
@@ -17,7 +17,7 @@ void ft_exit(t_parse_lst *lst) // return value?
 				return;
 			}
 			arg = ft_atoi(lst->args->arg);
-			if (arg < 256)
+			if (arg > 255 || arg < 0)
 				g_exit_status = arg % 256;
 			else
 				g_exit_status = arg;
