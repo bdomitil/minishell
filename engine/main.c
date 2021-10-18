@@ -65,7 +65,8 @@ int main(int argc, char **argv, char **env)
 			printf("\n\n______ERROR______\n\n");
 			continue;
 		}
-				print_pars_lst(&lst);  //delete it later
+
+		print_pars_lst(&lst); //delete it later
 		if (lst)
 		{
 			head = lst->head;

@@ -14,6 +14,7 @@ static void choose_func(t_parse_lst *lst)
 		ft_unset(lst); // send only env list
 	else if (lst->built_in == e_env)
 		print_env_lst (lst->env_lst);
+
 	//	else if (lst->built_in == e_exit)
 	//		f;
 }

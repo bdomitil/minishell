@@ -27,5 +27,12 @@
 
 void	ft_unset(t_parse_lst *lst)
 {
-	del_env_lst_by_key(lst->env_lst, lst->args->arg);
+	t_args	*tmp_arg;
+
+	tmp_arg = lst->args;
+	while (tmp_arg)
+	{
+		del_env_lst_by_key(lst->env_lst, tmp_arg->arg);
+		tmp_arg = tmp_arg->next;
+	}
 }

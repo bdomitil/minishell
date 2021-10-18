@@ -2,19 +2,17 @@
 
 static void	print_export(t_env *env_lst)
 {
-	char	cow[1];
-
-	cow[0] = 34;
+	print_env_lst(env_lst);
 	while (env_lst)
 	{
 		write(1, "declare -x ", 11);
 		write(1, env_lst->key, ft_strlen(env_lst->key));
 		if (env_lst->visible)
 		{
-			write(1, "=", 2);
-			write(1, cow, 1);
+			write(1, "=", 1);
+			write(1, "\"", 1);
 			write(1, env_lst->value, ft_strlen(env_lst->value));
-			write(1, cow, 1);
+			write(1, "\"", 1);
 		}
 		write(1, "\n", 1);
 		env_lst = env_lst->next;
@@ -54,16 +52,18 @@ void	ft_export(t_parse_lst *lst)
 	char 	*key;
 	char 	*value;
 	char 	*pos;
+	t_args	*tmp_arg;
 
 	if (!lst->args)
 	{
 		print_export(lst->env_lst);
 		return;
 	}
-	while (lst->args)
+	tmp_arg = lst->args;
+	while (tmp_arg && tmp_arg->arg)
 	{
 		value = NULL;
-		tmp = ft_strdup(lst->args->arg); // free
+		tmp = ft_strdup(tmp_arg->arg); // free
 		pos = ft_strchr(tmp, '=');
 		if (pos)
 		{
@@ -71,15 +71,14 @@ void	ft_export(t_parse_lst *lst)
 			*pos = '\0';
 		}
 		key = ft_strdup(tmp); // free
-		if (change_value(lst->env_lst, value, key))
+		if (! change_value(lst->env_lst, value, key))
 		{
-			free (key);
 			free (tmp);
-			continue;
+			tmp = ft_strdup(tmp_arg->arg);
+			add_env_back(&(lst->env_lst), key, value, tmp);
 		}
-		free(tmp);
-		tmp = ft_strdup(lst->args->arg);
-		add_env_back(&(lst->env_lst), key, value, tmp);
-		lst->args = lst->args->next;
+		else
+			free(key);
+		tmp_arg = tmp_arg->next;
 	}
 }

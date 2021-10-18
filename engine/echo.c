@@ -19,21 +19,23 @@ static int check_flag(char *str)
 
 void	ft_echo(t_parse_lst *lst)
 {
-	bool n_flag; 
+	bool	n_flag;
+	t_args	*tmp_arg;
 
 	n_flag = false;
-	while (lst->args && check_flag(lst->args->arg))
+	tmp_arg = lst->args;
+	while (tmp_arg && check_flag(tmp_arg->arg))
 	{
-		lst->args = lst->args->next;
+		tmp_arg = tmp_arg->next;
 		n_flag = true;
 	}
 
-	while (lst->args)
+	while (tmp_arg)
 	{
-		write(1, lst->args->arg, ft_strlen(lst->args->arg));
-		if (lst->args->next)
+		write(1, tmp_arg->arg, ft_strlen(tmp_arg->arg));
+		if (tmp_arg->next)
 			write(1, " ", 1);
-		lst->args = lst->args->next;
+		tmp_arg = tmp_arg->next;
 	}
 	if (!n_flag)
 		write(1, "\n", 1);

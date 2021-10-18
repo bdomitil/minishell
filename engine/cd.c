@@ -50,44 +50,47 @@ void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 
 	env_var = NULL;
 	dir = NULL;
-	if (lst->args->next)
+	if (!lst->args || !lst->args->arg)
 		return; // вывести ошибку cd: string not in pwd: ..
-		if (!ft_strncmp("~", lst->args->arg, 1))
-		{
-			env_var = find_env_key(lst->env_lst, "HOME");
-			if (env_var)
-				dir = ft_strjoin(ft_strjoin(dir, env_var), \
-				++(lst->args->arg));
-		}
-			else if (!ft_strncmp("-", lst->args->arg, 1))
-			{
-				printf("mi v minuse pacany\n");
-				env_var = find_env_key(lst->env_lst, "OLDPWD");
-				if (env_var)
-					dir = ft_strjoin(dir, env_var);
-
-			}
-			else
-				dir = ft_strdup(lst->args->arg);
-			if (dir)
-			{
-				if (chdir(dir) == -1)
-					printf("error\n"); // errhandle ENOENT
-				free(dir);
-				free(env_var);
-			}
-			char *old_pwd;
-			old_pwd = NULL;
-			pwd = NULL;
-			env_var = find_env_key (lst->env_lst, "PWD");
-			pwd = ft_strdup(getcwd (NULL, 0));
-			if (env_var && pwd)
-				if (ft_strcmp(pwd, env_var))
-					change_value(lst->env_lst, pwd, "PWD");
-			old_pwd = find_env_key(lst->env_lst, "OLDPWD");
-			if (!old_pwd)
-				add_env_back(&(lst->env_lst), ft_strdup("OLDPWD"), env_var, \
-							ft_strjoin(ft_strjoin("OLDPWD", "="), env_var));
-			else
-				change_value(lst->env_lst, env_var, "OLDPWD");
+	if (!ft_strncmp("~", lst->args->arg, 1))
+	{
+		env_var = find_env_key(lst->env_lst, "HOME");
+		if (env_var)
+			dir = ft_strjoin(ft_strjoin(dir, env_var), \
+			++(lst->args->arg));
+	}
+	else if (!ft_strncmp("-", lst->args->arg, 1))
+	{
+		env_var = find_env_key(lst->env_lst, "OLDPWD");
+		if (env_var)
+			dir = ft_strjoin(dir, env_var);
+	}
+	else
+		dir = ft_strdup(lst->args->arg);
+	if (dir)
+	{
+		if (chdir(dir) == -1)
+			g_exit_status = WEXITSTATUS(errno);// errhandle ENOENT
+		free(dir);
+		free(env_var);
+	}
+	char *old_pwd;
+	char *tmp;
+	old_pwd = NULL;
+	pwd = NULL;
+	env_var = find_env_key (lst->env_lst, "PWD");
+	pwd = getcwd (NULL, 0);
+	if (env_var && pwd)
+		if (ft_strcmp(pwd, env_var))
+			change_value(lst->env_lst, pwd, "PWD");
+	old_pwd = find_env_key(lst->env_lst, "OLDPWD");
+	if (!old_pwd)
+	{
+		tmp = ft_strjoin("OLDPWD", "=");
+		add_env_back(&(lst->env_lst), ft_strdup("OLDPWD"), env_var, \
+					ft_strjoin(tmp, env_var));
+		free(tmp);
+	}
+	else
+		change_value(lst->env_lst, env_var, "OLDPWD");
 }

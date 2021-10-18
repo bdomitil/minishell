@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nastya <nastya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:55:56 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/16 19:29:38 by                  ###   ########.fr       */
+/*   Updated: 2021/10/18 23:51:00 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	print_env_lst(t_env *env_lst)
 	while (env_lst)
 	{
 		if (env_lst->visible)
-			printf("%s=%s\n", env_lst->key, env_lst->value);
+			printf("%s\n", env_lst->env_type);
 		env_lst = env_lst->next;
 	}
 }
@@ -103,15 +103,13 @@ t_env	*parse_env(char **env)
 		}
 		tmp = ft_strdup(*env);
 		pos = ft_strchr(tmp, '=');
-		pos++;
 		if (pos)
 			value = ft_strdup(pos + 1);
 		else
 			value = NULL;
-		pos--;
 		*pos = '\0';
 		key = ft_strdup(tmp);
-		if (!strcmp(key, "SHLVL"))
+		if (!ft_strcmp(key, "SHLVL"))
 			value = change_sh_lvl(value);
 		free(tmp);
 		env++;
