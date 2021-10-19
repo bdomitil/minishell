@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/16 19:06:08 by                  ###   ########.fr       */
+/*   Updated: 2021/10/20 00:55:48 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	parse_built_in(char *command)
 	if (!ft_strcmp("echo", command))
 		return (e_echo);
 	else if (!ft_strcmp("cd", command))
-			return (e_cd);
+		return (e_cd);
 	else if (!ft_strcmp("pwd", command))
 		return (e_pwd);
 	else if (!ft_strcmp("export", command))
@@ -30,7 +30,6 @@ static int	parse_built_in(char *command)
 		return (e_exit);
 	else
 		return (0);
-
 }
 
 void	commands_args_fill(t_parse_lst *current_pars, char **command_params, \
@@ -40,7 +39,6 @@ void	commands_args_fill(t_parse_lst *current_pars, char **command_params, \
 
 	if (!command_params || !(*command_params))
 		return ;
-	
 	current_pars->command = *command_params;
 	current_pars->built_in = parse_built_in(current_pars->command);
 	current_pars->env_lst = env_lst;
@@ -80,18 +78,18 @@ int	fill_lst(char *str, t_parse_lst *pars_lst, t_env *env_lst)
 	while (dev_lst)
 	{
 		if (get_redir_fd(pars_lst, &dev_lst, &str) == -1)
+		{
+			g_exit_status = errno;
 			return (0);
+		}
 		else if (!dev_lst)
 			break ;
 		str = cut_str_by_devider(str, dev_lst, &command_params, pars_lst);
-		if (dev_lst->type == pipe_is_next)
-			pars_lst->pipe = true;
+		pars_lst->pipe = dev_lst->type == pipe_is_next;
 		commands_args_fill(pars_lst, command_params, env_lst);
 		pars_lst = pars_lst->next;
-		to_free = dev_lst;
-		dev_lst = dev_lst->next;
-		free(to_free);
-		free(command_params);
+		to_free = dev_lst, free(to_free);
+		dev_lst = dev_lst->next, free(command_params);
 	}
 	command_params = split_out_quotes(str, ' ');
 	commands_args_fill(pars_lst, command_params, env_lst);

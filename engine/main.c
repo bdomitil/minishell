@@ -61,14 +61,13 @@ int main(int argc, char **argv, char **env)
 			exit(0);
 		if (ft_strcmp(str, "\0"))
 			add_history(str);
-		errno = 0;
 		if (parser(&str, &lst, env_lst) == -1)
 		{
+			print_pars_lst(&lst); //delete it later
 			printf("\n\n______ERROR______\n\n");
 			continue;
 		}
-
-		print_pars_lst(&lst); //delete it later
+			print_pars_lst(&lst); //delete it later
 		if (lst)
 		{
 			head = lst->head;

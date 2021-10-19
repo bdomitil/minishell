@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 01:40:45 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/23 22:41:19 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/20 00:55:09 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,49 @@ static	int	count_word(const char *str, char q)
 {
 	int		i;
 	int		num;
-	int		stop;
-	int		qt_opened;
+	int		d_qt;
+	int		s_qt;
 
 	i = 0;
-	qt_opened = 1;
-	stop = ft_strlen(str) - 1;
+	d_qt = 2;
+	s_qt = 2;
 	num = 0;
-	while ((str[i] == q || !ft_isprint(str[i])) && str[i] != '\0')
-		i++;
-	while ((str[stop] == q || !ft_isprint(str[stop])) && stop >= 0)
-		stop--;
-	while (i < stop)
+	while (str[i])
 	{
 		if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\'))
-			qt_opened++;
+			d_qt++;
+		else if (str[i] == '\'' && (i == 0 || str[i - 1] != '\\'))
+			s_qt++;
 		if (str[i] == q && (str[i + 1] != q && ft_isprint(str[i + 1])) \
-														&& qt_opened % 2)
-			num++;
+												&& !(d_qt % 2) && !(s_qt % 2))
+				num++;
 		i++;
 	}
-	if (stop == -1 && num < 1)
-		return (0);
 	return (num + 1);
 }
+
 
 static	int	get_len(const char *str, char q)
 {
 	int		i;
-	bool	qt_opened;
+	int		d_qt;
+	int		s_qt;
 
 	i = 0;
-	qt_opened = false;
+	d_qt = 2;
+	s_qt = 2;
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\'))
+			d_qt++;
+		else if(str[i] == '\'' && (i == 0 || str[i - 1] != '\\'))
+			s_qt++;
+		if ((str[i] == q || !ft_isprint(str[i])) && !(d_qt % 2)  && !(s_qt % 2))
 		{
-			if (qt_opened)
-				qt_opened = false;
-			else
-				qt_opened = true;
+			i += (str[i] == '\"' || str[i] == '\'');
+			break ;
 		}
 		i++;
-		if ((str[i] == q || !ft_isprint(str[i])) && qt_opened == false)
-			break ;
 	}
 	return (i);
 }

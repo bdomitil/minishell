@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:08:33 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/19 00:36:59 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/20 02:10:18 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ int	not_ending_string(char **str)
 		if ((*str)[i] == '\\')
 			slash++;
 		if (not_ending_help(*str, &i, &next_quote, slash) == false)
+		{
+			g_exit_status = ERROR_PARSING;
 			return (false);
+		}
 	}
 	return (true);
 }

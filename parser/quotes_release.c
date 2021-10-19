@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:35:39 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/17 21:46:21 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/20 00:20:41 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	find_next_quote(char *str, int i, char quote)
 	i++;
 	while (str[i] != '\0')
 	{
-		if (str[i] == quote && str[i - 1] != '\\')
+		if (str[i] == quote && (i == 0 ||  str[i - 1] != '\\'))
 			return (i);
 		i++;
 	}

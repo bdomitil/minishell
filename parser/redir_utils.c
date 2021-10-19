@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 22:09:51 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/04 17:04:46 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/20 02:08:45 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	single_redir_fd(char **str, t_deviders *dev_lst, t_found type)
 	if (ft_isempty_str(&((*str)[dev_lst->pos_in_str + 1])))
 		return (-1);
 	while ((*str)[dev_lst->pos_in_str + ++i] != '\0' \
-							&& !ft_isalpha((*str)[dev_lst->pos_in_str + i]))
+							&& !ft_isprint((*str)[dev_lst->pos_in_str + i]))
 		if ((*str)[dev_lst->pos_in_str + i] == '|' || (*str) \
 	[dev_lst->pos_in_str + i] == '>' || (*str)[dev_lst->pos_in_str + i] == '<')
 			return (-1);
 	file_name = get_file_name(&((*str)[dev_lst->pos_in_str + 1]), \
-														str, dev_lst->env_lst);
+														str, dev_lst->env_lst);		
 	if (!file_name)
 		return (-1);
 	if (type == redir_is_next)
@@ -68,7 +68,7 @@ int	double_redir_fd(char **str, t_deviders *dev_lst, \
 	if (ft_isempty_str(&((*str)[dev_lst->pos_in_str + 1])))
 		return (-1);
 	while ((*str)[dev_lst->pos_in_str + ++i] != '\0' && \
-								!ft_isalpha((*str)[dev_lst->pos_in_str + i]))
+								!ft_isprint((*str)[dev_lst->pos_in_str + i]))
 		if ((*str)[dev_lst->pos_in_str + i] == '|' || (*str) \
 	[dev_lst->pos_in_str + i] == '>' || (*str)[dev_lst->pos_in_str + i] == '<')
 			return (-1);
