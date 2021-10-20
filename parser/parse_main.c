@@ -6,7 +6,10 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 00:48:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/19 01:33:39 by                  ###   ########.fr       */
+/*   Updated: 2021/10/20 20:33:43 by                  ###   ########.fr       */#.fr       */
+=======
+/*   Updated: 2021/10/20 01:11:04 by bdomitil         ###   ########.fr       */
+>>>>>>> c5670cc7891076f0e3f026a42d2da229bde04f70
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +28,7 @@ int	get_lst_parsed(t_parse_lst *pars_lst)
 		while (args_tmp != NULL)
 		{
 			if (args_tmp->arg && \
-							parse_str(&args_tmp->arg, pars_lst->env_lst) == -1)
+						parse_str(&args_tmp->arg, pars_lst->env_lst) == -1)
 				return (-1);
 			args_tmp = args_tmp->next;
 		}
@@ -36,11 +39,8 @@ int	get_lst_parsed(t_parse_lst *pars_lst)
 
 int	parse_str(char **str, t_env *env_lst)
 {
-	if (*str && not_ending_string(str) == false)
-	{
-		printf("syntax error: unexpected end of file\n");
+	if (*str && !not_ending_string(str))
 		return (-1);
-	}
 	else if (!(*str))
 		return (0);
 	*str = relese_quoutes(0, *str, env_lst);
@@ -49,18 +49,14 @@ int	parse_str(char **str, t_env *env_lst)
 
 int	parser(char **str, t_parse_lst **pars_lst, t_env *env_lst)
 {
-	t_parse_lst	*pars_tmp;
-
 	if (!(*str) || (**str) == '\0' || ft_isempty_str(*str))
+	{
 		return (0);
+	}
 	*pars_lst = init_pars_lst();
 	if (!(*pars_lst) || \
 		!not_ending_string(str) || \
 		!fill_lst(*str, *pars_lst, env_lst))
-	{
-		printf("%s\n", strerror(errno));
 		return (-1);
-	}
-	pars_tmp = *pars_lst;
 	return (get_lst_parsed(*pars_lst));
 }

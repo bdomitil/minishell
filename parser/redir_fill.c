@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redir_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/12 00:26:54 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/07 13:39:22 by frodney          ###   ########.fr       */
+/*   Updated: 2021/10/20 20:29:37 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/parse.h"
 
-int	get_fd_in(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
+int	get_fd_out(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 {
 	int			fd_in;
 	t_deviders	*tmp_dev;
@@ -38,7 +38,7 @@ int	get_fd_in(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 	return (1);
 }
 
-int	get_fd_out(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
+int	get_fd_in(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 {
 	int			fd_out;
 	t_deviders	*tmp_dev;
@@ -73,10 +73,10 @@ int	get_redir_fd(t_parse_lst *curr_pars, t_deviders **dev_lst, char **str)
 	{
 		if ((*dev_lst)->type == redir_is_next || \
 									(*dev_lst)->type == double_redir_is_next)
-			res = get_fd_out(curr_pars, dev_lst, str);
+			res = get_fd_in(curr_pars, dev_lst, str);
 		else if ((*dev_lst)->type == back_redir_is_next || \
 								(*dev_lst)->type == double_back_redir_is_next)
-			res = get_fd_in(curr_pars, dev_lst, str);
+			res = get_fd_out(curr_pars, dev_lst, str);
 	}
 	return (res);
 }
