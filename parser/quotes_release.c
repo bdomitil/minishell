@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:35:39 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/09/22 20:39:04 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/19 01:33:39 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*relese_quoutes(int i, char *str, t_env *env_lst)
 		{
 			quotes[2] = i;
 			quotes[3] = find_next_quote(str, i, '\'');
-			i = quotes[3];
+			i = quotes[3] - 2;
 			str = cut_quotes(&str, &(quotes[2]), &quotes[3]);
 		}
 		else if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\') \

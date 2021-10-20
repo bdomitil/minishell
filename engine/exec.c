@@ -54,6 +54,7 @@ void	exex(t_parse_lst **lst)
 	pid = fork();
 	if (pid == 0)
 	{
+//		if (lst->)
 		redir(*lst);
 		close_pipes(*lst);
 		if (execve((*lst)->command, cmd, env) == -1)

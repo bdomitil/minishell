@@ -8,6 +8,9 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 
+# define NOT_FOUND 383
+# define ERROR_PARSING -2
+
 // # include "engine.h" // переделать
 
 int	g_exit_status;

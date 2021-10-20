@@ -1,22 +1,44 @@
 #include "../headers/minishell.h"
 
-void	ft_echo(t_parse_lst *lst)
+static int check_flag(char *str)
 {
-	int i; // исправить позже
+	int	i;
 
 	i = 0;
-	if (!ft_strncmp("-n\0", lst->args->head->arg, 3))
-		i = 1;
-	if (i && lst->args->next)
-		lst->args = lst->args->next;
-	while (lst->args)
+		
+	if (str && !ft_strncmp("-n", str, 2))
+		{
+			i += 1;
+			while (str[i++] == 'n')
+				if (str[i] == '\0')
+					return (1);
+		}
+
+	return (0);
+}
+
+void	ft_echo(t_parse_lst *lst)
+{
+	bool	n_flag;
+	t_args	*tmp_arg;
+
+	n_flag = false;
+	tmp_arg = lst->args;
+	while (tmp_arg && check_flag(tmp_arg->arg))
 	{
-		write(1, lst->args->arg, ft_strlen(lst->args->arg));
-		if (lst->args->next)
-			write(1, " ", 1);
-		lst->args = lst->args->next;
+		tmp_arg = tmp_arg->next;
+		n_flag = true;
 	}
-	if (!i)
+
+	while (tmp_arg)
+	{
+		write(1, tmp_arg->arg, ft_strlen(tmp_arg->arg));
+		if (tmp_arg->next)
+			write(1, " ", 1);
+		tmp_arg = tmp_arg->next;
+	}
+	if (!n_flag)
 		write(1, "\n", 1);
-	write(1, (void *)EOF, 4); // может ломать
+	write(1, (void *)EOF, 4);
+	g_exit_status = 0;
 }

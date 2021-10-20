@@ -8,8 +8,8 @@ static void choose_func(t_parse_lst *lst)
 		ft_pwd(lst);
 	else if (lst->built_in == e_cd)
 		ft_cd(lst);
-	else if (lst->built_in == e_export)
-		ft_export(lst);
+//	else if (lst->built_in == e_export)
+//		ft_export(lst);
 	else if (lst->built_in == e_unset)
 		ft_unset(lst);
 	else if (lst->built_in == e_env)

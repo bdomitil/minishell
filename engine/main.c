@@ -9,10 +9,8 @@ static void wait_function(t_parse_lst *lst)
 		waitpid(lst->pid, &status, 0);
 		g_exit_status = 0;
 		if (WIFEXITED(status))
-		{
 			if (status)
 				g_exit_status = 1;
-		}
 		if (WIFSIGNALED(status) != 0)
 			g_exit_status = 128 + status;
 		lst = lst->next;
@@ -38,9 +36,9 @@ int main(int argc, char **argv, char **env)
 			add_history(str);
 		else
 			g_exit_status = 0;
-		errno = 0;
-		if (parser(&str, &lst, env_lst) == -1)
-
+//		errno = 0;
+		parser(&str, &lst, env_lst);
+		print_pars_lst(&lst); //delete it later
 		if (lst)
 		{
 			head = lst->head;
@@ -55,7 +53,11 @@ int main(int argc, char **argv, char **env)
 						builtin_fork_call(lst);
 					}
 					else
- 						builtin_unar_call(lst);
+					{
+						builtin_unar_call(lst);
+						printf("g_exit_st %d\n", g_exit_status);
+//						error_sh_cmd_msg(1, "export", NULL, "not a valid identifier");
+					}
 				}
 				else
 				{
@@ -76,4 +78,21 @@ int main(int argc, char **argv, char **env)
 		}
 	}
 	return 0;
+}
+
+void error_sh_cmd_msg(int exit_status, char *cmd, char *arg, char *message)
+{
+	printf("ex-st %d\n", exit_status);
+	ft_putstr_fd("mini$heeee$h: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": ", 2);
+	if (arg)
+	{
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	ft_putstr_fd(message, 2);
+	ft_putstr_fd("\n", 2);
+	g_exit_status = exit_status;
+	printf("2ex-st %d\n", exit_status);
 }

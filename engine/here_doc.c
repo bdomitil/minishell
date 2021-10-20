@@ -70,3 +70,9 @@ int	hd(t_parse_lst *lst, char *a)
 	free (filename);
 	return (fd);
 }
+
+//
+//void 	her (t_parse_lst *lst)
+//{
+//
+//}

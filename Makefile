@@ -18,7 +18,7 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 engine/rd.c engine/exec.c engine/pipe.c engine/clean_main_list.c \
 		 engine/arr_join.c engine/here_doc.c engine/bi_calling.c engine/bi_utils.c \
 		 engine/cd.c engine/echo.c engine/export.c engine/unset.c engine/pwd.c \
-		 engine/signal.c engine/exit.c engine/error.c\
+		 engine/signal.c engine/exit.c engine/error.c engine/cd_extra.c\
 
 #CFLAGS = -g -Wall -Wextra -Werror
 

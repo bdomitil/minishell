@@ -31,18 +31,19 @@ void 		ft_echo(t_parse_lst *lst);
 void		ft_pwd(t_parse_lst *lst);
 void		ft_export(t_parse_lst *lst);
 void 		ft_cd(t_parse_lst *lst);
+void		cd_change_env(t_parse_lst *lst, char *pwd);
 void		ft_unset(t_parse_lst *lst);
 //
 int 		hd(t_parse_lst *lst, char *a);
 void		rm_here_docs(char **envp, t_parse_lst *lst);
 char		**envprint(t_env *env);
 void		add_env_back(t_env **env_lst, char *key, char *value, char *env_type);
-bool		change_value(t_env *env_lst, char *value, char *key);
+bool		change_value(t_env *env_lst, char *value, char *key, bool plus);
 extern void rl_replace_line(const char *, int);
 /*
  * error handle
  */
-int			error_sh_cmd_msg(int exit_status, char *cmd, char *arg, char *message);
+void		error_sh_cmd_msg(int exit_status, char *cmd, char *arg, char *message);
 void		ft_exit(t_parse_lst *lst);
 /*
  * signal
