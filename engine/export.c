@@ -2,7 +2,6 @@
 
 static void	print_export(t_env *env_lst)
 {
-	print_env_lst(env_lst);
 	while (env_lst)
 	{
 		write(1, "declare -x ", 11);
@@ -26,9 +25,8 @@ bool	change_value(t_env *env_lst, char *value, char *key, bool plus)
 
 	while (env_lst)
 	{
-		if (!ft_strcmp(key, env_lst->key))
+		if (!ft_strcmp(key, env_lst->key) && value)
 		{
-
 			env_lst->visible = true;
 			if (plus)
 			{
@@ -53,10 +51,17 @@ bool	change_value(t_env *env_lst, char *value, char *key, bool plus)
 static void	push_to_env(char *tmp, char *key, char *value, t_parse_lst *lst)
 {
 	bool plus;
+	char *pos;
 
 	plus = false;
-	if (ft_strchr(tmp, '+'))
+	printf("tmp = %s\n", tmp);
+	pos = ft_strchr(tmp, '=');
+	if (pos && *(--pos) == '+')
+	{
+		pos = ft_strchr(key, '+');
+		*pos = '\0';
 		plus = true;
+	}
 	if (!change_value(lst->env_lst, value, key, plus))
 	{
 		free (tmp);
@@ -67,7 +72,7 @@ static void	push_to_env(char *tmp, char *key, char *value, t_parse_lst *lst)
 		free(key);
 }
 
-static void get_value(char **value, char *tmp)
+static void get_value_and_key(char **value, char *tmp, char **key)
 {
 	char 	*pos;
 
@@ -78,6 +83,9 @@ static void get_value(char **value, char *tmp)
 		*value = ft_strdup(pos + 1);
 		*pos = '\0';
 	}
+	*key = ft_strdup(tmp);
+	if (pos)
+		*pos = '=';
 }
 
 void	ft_export(t_parse_lst *lst)
@@ -94,10 +102,9 @@ void	ft_export(t_parse_lst *lst)
 	{
 		value = NULL;
 		tmp = ft_strdup(tmp_arg->arg);
-//		if (!valid_export_arg(tmp))
-//			return ;
-		get_value(&value, tmp);
-		key = ft_strdup(tmp);
+		if (!valid_export_arg(tmp))
+			return ;
+		get_value_and_key(&value, tmp, &key);
 		push_to_env(tmp, key, value, lst);
 		tmp_arg = tmp_arg->next;
 	}

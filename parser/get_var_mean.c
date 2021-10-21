@@ -34,7 +34,7 @@ static char	*join_var(int *i, char *str, char *var, int end_pos)
 	return (new_str);
 }
 
-char	*get_var_mean(char *str, int *i, t_env *env_lst)
+char	*get_var_mean(char *str, int *i, t_env *env_lst) // что эт
 {
 	char	*temp;
 	char	*var;

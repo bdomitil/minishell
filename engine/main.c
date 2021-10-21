@@ -2,17 +2,9 @@
 
 static void wait_function(t_parse_lst *lst)
 {
-	int status;
-
 	while (lst)
 	{
-		waitpid(lst->pid, &status, 0);
-		g_exit_status = 0;
-		if (WIFEXITED(status))
-			if (status)
-				g_exit_status = 1;
-		if (WIFSIGNALED(status) != 0)
-			g_exit_status = 128 + status;
+		wait_hd(lst->pid); // мб сломается все
 		lst = lst->next;
 	}
 }
@@ -27,7 +19,8 @@ int main(int argc, char **argv, char **env)
 	(void)argc, (void)argv;
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, SIG_IGN);
-	env_lst = parse_env(env);
+	if (env)
+		env_lst = parse_env(env);
 	while ((str = readline("mini$heeee$h-1.0$ ")))
 	{
 		if (!str)
@@ -36,8 +29,7 @@ int main(int argc, char **argv, char **env)
 			add_history(str);
 		else
 			g_exit_status = 0;
-//		errno = 0;
-		parser(&str, &lst, env_lst);
+		printf("res  = %d\n",parser(&str, &lst, env_lst));
 		print_pars_lst(&lst); //delete it later
 		if (lst)
 		{
@@ -49,7 +41,7 @@ int main(int argc, char **argv, char **env)
 				{
 					if (lst->next || lst->previous)
 					{
-						signal(SIGINT, ctrl_c_forked);
+						signal(SIGINT, ctrl_c_forked); // ват
 						builtin_fork_call(lst);
 					}
 					else
@@ -68,31 +60,14 @@ int main(int argc, char **argv, char **env)
 				lst = lst->next;
 			}
 			lst = head;
-			close_pipes(lst);
+			close_fds(lst); // при ошибке закрытия будет ждать процессов и будет жить дальше. вопрос: стоит ли ему дальше жить
 			wait_function(lst);
 			signal(SIGINT, ctrl_c);
 			signal(SIGQUIT, SIG_IGN);
-			rm_here_docs(env, lst);
+//			rm_here_docs(env, lst);
 			clean_main_list(lst);
 			lst = NULL;
 		}
 	}
 	return 0;
-}
-
-void error_sh_cmd_msg(int exit_status, char *cmd, char *arg, char *message)
-{
-	printf("ex-st %d\n", exit_status);
-	ft_putstr_fd("mini$heeee$h: ", 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(": ", 2);
-	if (arg)
-	{
-		ft_putstr_fd(arg, 2);
-		ft_putstr_fd(": ", 2);
-	}
-	ft_putstr_fd(message, 2);
-	ft_putstr_fd("\n", 2);
-	g_exit_status = exit_status;
-	printf("2ex-st %d\n", exit_status);
 }

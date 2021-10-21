@@ -11,7 +11,7 @@ void cd_change_env(t_parse_lst *lst, char *pwd)
 	if (env_pwd_value)
 	{
 		if (ft_strcmp(pwd, env_pwd_value))
-			change_value(lst->env_lst, pwd, "PWD");
+			change_value(lst->env_lst, pwd, "PWD", true); // kjlkjkljlj
 	}
 	if (!env_oldpwd_value)
 	{
@@ -21,5 +21,5 @@ void cd_change_env(t_parse_lst *lst, char *pwd)
 		free (tmp);
 	}
 	else
-		change_value(lst->env_lst, env_pwd_value, "OLDPWD");
+		change_value(lst->env_lst, env_pwd_value, "OLDPWD", true);
 }
