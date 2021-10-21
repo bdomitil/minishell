@@ -46,16 +46,15 @@ void	exex(t_parse_lst **lst)
 	}
 	cmd[i] = NULL;
 	join_path(&((*lst)->command), (*lst)->env_lst);
+	if ((*lst)->fd_in == -2)
+	{
+		int pfd[2];
+		if (!here_doc((*lst), pfd))
+			return ;
+	}
 	pid = fork();
 	if (pid == 0) // child
 	{
-		if ((*lst)->fd_in == -2)
-		{
-			int pfd[2];
-			if (!here_doc(*lst), pfd)
-				return ;
-
-		}
 		if (!redir(*lst))
 			exit(-1);
 		if (!close_fds(*lst))

@@ -117,7 +117,7 @@ void wait_hd(int pid)
 		g_exit_status = 128 + status;
 }
 
-int	*here_doc(t_parse_lst *lst, int *pfd)
+bool	here_doc(t_parse_lst *lst, int *pfd)
 {
 	pid_t pid;
 
@@ -135,6 +135,8 @@ int	*here_doc(t_parse_lst *lst, int *pfd)
 	// сюда сигнал
 	if (!pid)
 	{
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, ctrl_c_heredoc);
 		child_hd(pfd, lst);
 		write(pfd[1], (void *)EOF, 4);
 		close (pfd[1]);
@@ -142,6 +144,7 @@ int	*here_doc(t_parse_lst *lst, int *pfd)
 	}
 	// сюда сигнал
 	wait_hd(pid);// выставить сигналы как в родительском проц
+	signal(SIGQUIT, ctrl_slsh);
 	close(pfd[1]);
 	lst->fd_in = pfd[0];
 	return (true);

@@ -48,3 +48,9 @@ void ctrl_slsh(int signal)
 	if (signal == SIGQUIT)
 		printf("Quit: 3\n");
 }
+
+void	ctrl_c_heredoc(int signal)
+{
+	if (signal == SIGQUIT)
+		exit(0);
+}
