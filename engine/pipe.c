@@ -10,11 +10,11 @@ void	io_pipes(t_parse_lst *lst) // rename
 	tmp = lst;
 
 	a[0] = 1;
-	if (tmp->fd_in == -2)
-	{
-		tmp->fd_in = hd(tmp, a);
-		a[0]++;
-	}
+//	if (tmp->fd_in == -2)
+//	{
+//		tmp->fd_in = hd(tmp, a);
+//		a[0]++;
+//	}
 	if (!tmp->next)
 		return;
 	else
@@ -34,11 +34,11 @@ void	io_pipes(t_parse_lst *lst) // rename
 	tmp = tmp->next;
 	while (tmp)
 	{
-		if (tmp->fd_in == -2)
-		{
-			tmp->fd_in = hd(tmp, a);
-			a[0]++;
-		}
+//		if (tmp->fd_in == -2)
+//		{
+//			tmp->fd_in = hd(tmp, a);
+//			a[0]++;
+//		}
 		pipe (pfd);
 		if (tmp->fd_out != 1)
 			close (pfd[1]);
@@ -55,7 +55,7 @@ void	io_pipes(t_parse_lst *lst) // rename
 	}
 }
 
-void close_pipes(t_parse_lst *lst) // close fds
+bool close_fds(t_parse_lst *lst) // close fds
 {
 	t_parse_lst *tmp_lst;
 
@@ -63,9 +63,18 @@ void close_pipes(t_parse_lst *lst) // close fds
 	while (tmp_lst)
 	{
 	    if (tmp_lst->fd_out != 1)
-	        close (tmp_lst->fd_out);
+	        if (close (tmp_lst->fd_out) == -1)
+	        {
+				error_sh_cmd_msg(1, "close", NULL, strerror(errno));
+				return (false);
+			}
 	    if (tmp_lst->fd_in != 0)
-	        close (tmp_lst->fd_in);
+	    	if (close (tmp_lst->fd_in) == -1)
+	    	{
+				error_sh_cmd_msg(1, "close", NULL, strerror(errno));
+				return (false);
+			}
 		tmp_lst = tmp_lst->next;
 	}
+	return (true);
 }

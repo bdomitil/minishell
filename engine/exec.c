@@ -32,14 +32,9 @@ void	exex(t_parse_lst **lst)
 
 	char	**env = envprint((*lst)->env_lst);
 	if ((*lst)->args)
-    {
 		cmd = (char **)malloc(sizeof(char *) * ((*lst)->args->tail->id + 3));
-	}
 	else
-    {
 		cmd = (char **)malloc(sizeof(char *) * 2);
-	}
-
 	int i = 1;
 	cmd[0] = ft_strdup((*lst)->command);
 
@@ -52,15 +47,21 @@ void	exex(t_parse_lst **lst)
 	cmd[i] = NULL;
 	join_path(&((*lst)->command), (*lst)->env_lst);
 	pid = fork();
-	if (pid == 0)
+	if (pid == 0) // child
 	{
-//		if (lst->)
-		redir(*lst);
-		close_pipes(*lst);
-		if (execve((*lst)->command, cmd, env) == -1)
+		if ((*lst)->fd_in == -2)
 		{
-			exit (-1);
+			int pfd[2];
+			if (!here_doc(*lst), pfd)
+				return ;
+
 		}
+		if (!redir(*lst))
+			exit(-1);
+		if (!close_fds(*lst))
+			exit (-1);
+		if (execve((*lst)->command, cmd, env) == -1)
+			exit (-1);
 	}
 	else
 	{

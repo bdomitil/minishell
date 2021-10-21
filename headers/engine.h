@@ -14,10 +14,10 @@
 # include <sys/wait.h>
 # include <signal.h>
 
-void		redir(t_parse_lst *lst);
+bool		redir(t_parse_lst *lst);
 void		io_pipes(t_parse_lst *lst);
 void		exex(t_parse_lst **lst);
-void		close_pipes(t_parse_lst *lst);
+bool		close_fds(t_parse_lst *lst);
 void		clean_main_list(t_parse_lst *lst);
 char		**arrjoin(char **arr, char *str);
 void		get_fd_of_hd(t_parse_lst *lst);
@@ -30,11 +30,13 @@ void		builtin_fork_call(t_parse_lst *lst);
 void 		ft_echo(t_parse_lst *lst);
 void		ft_pwd(t_parse_lst *lst);
 void		ft_export(t_parse_lst *lst);
+void		ft_env(t_env *env_lst);
+bool		valid_export_arg(char *tmp);
 void 		ft_cd(t_parse_lst *lst);
 void		cd_change_env(t_parse_lst *lst, char *pwd);
 void		ft_unset(t_parse_lst *lst);
 //
-int 		hd(t_parse_lst *lst, char *a);
+int			*here_doc(t_parse_lst *lst, int *pfd);
 void		rm_here_docs(char **envp, t_parse_lst *lst);
 char		**envprint(t_env *env);
 void		add_env_back(t_env **env_lst, char *key, char *value, char *env_type);
@@ -51,5 +53,6 @@ void		ft_exit(t_parse_lst *lst);
 void	ctrl_c(int signal);
 void	ctrl_slsh(int signal);
 void	ctrl_c_forked(int signal);
+void	wait_hd(int pid);
 
 #endif

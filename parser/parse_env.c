@@ -75,15 +75,15 @@ char	*find_env_key(t_env *env_lst, char *key)
 	return (NULL);
 }
 
-void	print_env_lst(t_env *env_lst)
-{
-	while (env_lst)
-	{
-		if (env_lst->visible)
-			printf("%s\n", env_lst->env_type);
-		env_lst = env_lst->next;
-	}
-}
+//void	print_env_lst(t_env *env_lst) // переписала в ft_env(t_env);
+//{
+//	while (env_lst)
+//	{
+//		if (env_lst->visible)
+//			printf("%s\n", env_lst->env_type);
+//		env_lst = env_lst->next;
+//	}
+//}
 
 t_env	*parse_env(char **env)
 {
