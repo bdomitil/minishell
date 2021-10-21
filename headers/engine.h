@@ -36,7 +36,7 @@ void 		ft_cd(t_parse_lst *lst);
 void		cd_change_env(t_parse_lst *lst, char *pwd);
 void		ft_unset(t_parse_lst *lst);
 //
-int			*here_doc(t_parse_lst *lst, int *pfd);
+bool		here_doc(t_parse_lst *lst, int *pfd);
 void		rm_here_docs(char **envp, t_parse_lst *lst);
 char		**envprint(t_env *env);
 void		add_env_back(t_env **env_lst, char *key, char *value, char *env_type);
@@ -53,6 +53,7 @@ void		ft_exit(t_parse_lst *lst);
 void	ctrl_c(int signal);
 void	ctrl_slsh(int signal);
 void	ctrl_c_forked(int signal);
+void	ctrl_c_heredoc(int signal);
 void	wait_hd(int pid);
 
 #endif
