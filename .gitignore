@@ -57,3 +57,5 @@ dkms.conf
 test*
 file*
 check_leaks.sh
+.herad*
+script.c

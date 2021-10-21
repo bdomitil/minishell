@@ -11,6 +11,7 @@ static void wait_function(t_parse_lst *lst)
 
 int main(int argc, char **argv, char **env)
 {
+	// char *str = ft_strdup(">");
 	char *str;
 	t_parse_lst *lst = NULL;
 	t_parse_lst *head = NULL;
@@ -29,8 +30,9 @@ int main(int argc, char **argv, char **env)
 			add_history(str);
 		else
 			g_exit_status = 0;
-		printf("res  = %d\n",parser(&str, &lst, env_lst));
+		int res = parser(&str, &lst, env_lst);
 		print_pars_lst(&lst); //delete it later
+		printf("pars res = %d\n", res);
 		if (lst)
 		{
 			head = lst->head;
@@ -64,7 +66,7 @@ int main(int argc, char **argv, char **env)
 			wait_function(lst);
 			signal(SIGINT, ctrl_c);
 			signal(SIGQUIT, SIG_IGN);
-//			rm_here_docs(env, lst);
+			// rm_here_docs(env, lst);
 			clean_main_list(lst);
 			lst = NULL;
 		}

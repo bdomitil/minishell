@@ -6,7 +6,7 @@
 #    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#   Updated: 2021/10/18 19:55:01 by                  ###   ########.fr       # #
+#    Updated: 2021/10/21 18:16:38 by bdomitil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,18 +22,18 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 engine/env.c \
 
 #CFLAGS = -g -Wall -Wextra -Werror
-
+CFLAGS = -g
 HEADERS = headers/parse.h
 
 files.o = $(files.c:.c=.o)
 
-NAME = a.out
+NAME = minishell
 
 
 all :	lib_compil $(NAME)
 
 $(NAME) : $(files.o) 
-		@gcc -L/Users/$(USER)/.brew/Cellar/readline/8.1.1/lib/ -I/Users/$(USER)/.brew/Cellar/readline/8.1.1/include -lreadline $(files.o) libft/libft.a  -o a.out # ?
+		@gcc $(CFLAGS) -L/Users/$(USER)/.brew/Cellar/readline/8.1.1/lib/ -I/Users/$(USER)/.brew/Cellar/readline/8.1.1/include -lreadline $(files.o) libft/libft.a  -o $(NAME) # ?
 		@echo "\033[7m PROGRAM IS READY TO BE USED!\033[0m"
 
 lib_compil: 

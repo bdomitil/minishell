@@ -18,7 +18,7 @@ char	**envprint(t_env *env)
 	size = 0;
 	while (tmp_env)
 	{
-		envarray[size++] = tmp_env->env_type;
+		envarray[size++] = ft_strdup(tmp_env->env_type);
 		tmp_env = tmp_env->next;
 	}
 	envarray[size] = NULL;
@@ -29,19 +29,22 @@ void	exex(t_parse_lst **lst)
 {
 	pid_t	pid;
 	char	**cmd = NULL;
+	t_args	*tmp_args;
 
+	if (*lst)
+		tmp_args = (*lst)->args;
 	char	**env = envprint((*lst)->env_lst);
-	if ((*lst)->args)
-		cmd = (char **)malloc(sizeof(char *) * ((*lst)->args->tail->id + 3));
+	if (tmp_args)
+		cmd = (char **)malloc(sizeof(char *) * (tmp_args->tail->id + 3));
 	else
 		cmd = (char **)malloc(sizeof(char *) * 2);
 	int i = 1;
 	cmd[0] = ft_strdup((*lst)->command);
 
-	while ((*lst)->args && i < (*lst)->args->tail->id + 2)
+	while (tmp_args && i < tmp_args->tail->id + 2)
 	{
-		cmd[i] = (*lst)->args->arg;
-		(*lst)->args = (*lst)->args->next;
+		cmd[i] = ft_strdup((*lst)->args->arg);
+		tmp_args = tmp_args->next;
 		i++;
 	}
 	cmd[i] = NULL;
@@ -66,4 +69,8 @@ void	exex(t_parse_lst **lst)
 	{
 		(*lst)->pid = pid;
 	}
-}
+	free_string_mass(cmd, 0, 0);
+	free_string_mass(env, 0, 0);
+	free(cmd);
+	free(env);
+	}

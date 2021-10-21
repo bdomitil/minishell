@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 02:42:38 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/01 11:29:57 by                  ###   ########.fr       */
+/*   Updated: 2021/10/21 18:39:02 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char			*ft_strtrim(char const *str, char const *set)
 	pos = 0;
 	size = ft_strlen(str) - 1;
 	if (size == 0)
-		return ("");
+		return (ft_strdup(""));
 	while (check(set, str[start]))
 		start++;
 	while (check(set, str[size]) && size > start)
