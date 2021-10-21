@@ -13,7 +13,7 @@
 
 // # include "engine.h" // переделать
 
-static int	g_exit_status = 0;
+int	g_exit_status;
 
 //||
 //||
@@ -46,6 +46,6 @@ char		*change_sh_lvl(char *shlvl);
 void		commands_args_fill(t_parse_lst *current_pars, char **command_params, t_env *env_lst);
 void		join_path(char **str, t_env *env_lst);
 void		del_env_lst_by_key(t_env *env_lst, char *key);
-void		print_env_lst(t_env *env_lst);
+void 		print_env_lst(t_env *env_lst);
 
 #endif 

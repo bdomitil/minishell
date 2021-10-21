@@ -1,96 +1,93 @@
 #include "../headers/minishell.h"
 
-void	change_pwd(t_parse_lst *lst)
+char	*no_args(t_parse_lst *lst)
 {
-	t_env	*tmp;
-	char	*pwd;
-	char 	*cwd;
+	char *env_home_value;
 
-	tmp = lst->env_lst;
-	pwd = getcwd(NULL, 0);
-	cwd = ft_strjoin(cwd, pwd);
-	write (2, "AAAH\n", 5);
-	printf("cwd %s\n", cwd);//(char *)malloc(sizeof (char) * ft_strlen(pwd));
-	pwd = find_env_key(lst->env_lst, "PWD");
-	if (!ft_strncmp(cwd, pwd, ft_strlen(cwd)) || lst->previous || lst->next)
+	env_home_value = find_env_key(lst->env_lst, "HOME");
+	if (!env_home_value)
 	{
-		printf("1\n");
-		return ;
+		error_sh_cmd_msg(1, "cd", NULL, "HOME not set");
+		return (NULL);
 	}
-	while (lst->env_lst)
+	return (env_home_value);
+}
+
+char	*tilda(t_parse_lst *lst)
+{
+	char *env_home_value;
+	char *ret;
+
+	env_home_value = find_env_key(lst->env_lst, "HOME");
+	if (!env_home_value)
 	{
-		if (!ft_strncmp("OLDPWD\0", lst->env_lst->key, 7))
-		{
-//			free (lst->env_lst->value);
-			lst->env_lst->value = pwd;
-			printf ("old pwd\t%s\n", lst->env_lst->value);
-			break;
-		}
-		lst->env_lst = lst->env_lst->next;
+		error_sh_cmd_msg(1, "cd", NULL, "HOME not set");
+		return (NULL);
 	}
-	lst->env_lst = tmp;
-	while (lst->env_lst)
+	if (lst->args)
 	{
-		if (!ft_strncmp("PWD\0", lst->env_lst->key, 4))
-		{
-//			free (lst->env_lst->value);
-			lst->env_lst->value = cwd;
-			printf ("pwd\t%s\n", lst->env_lst->value);
-			break;
-		}
-		lst->env_lst = lst->env_lst->next;
+		ret = ft_strjoin(env_home_value, ++(lst->args->arg));
+		free (env_home_value);
+		printf("ret = %s\n", ret);
+		return (ret);
 	}
+	else
+		return (env_home_value);
+}
+
+static char	*minus(t_parse_lst *lst)
+{
+	char *env_oldpwd_value;
+
+	env_oldpwd_value = find_env_key(lst->env_lst, "OLDPWD");
+	if (env_oldpwd_value)
+		return (env_oldpwd_value);
+	else
+	{
+		error_sh_cmd_msg(1, "cd", NULL,"OLDPWD not set");
+		return (NULL);
+	}
+}
+
+static bool define_dir(char **dir, char *pwd, t_parse_lst *lst)
+{
+	if (!lst->args)
+		*dir = no_args(lst);
+	else if (!ft_strncmp("~", lst->args->arg, 1))
+		*dir = tilda(lst);
+	else if (!ft_strncmp("-", lst->args->arg, 1))
+		*dir = minus(lst);
+	else if (!ft_strncmp("..", lst->args->arg, 2))
+	{
+		if (ft_strcmp("/", pwd))
+			*dir = ft_strdup(lst->args->arg);
+		else
+			return (false);
+	}
+	else
+		*dir = ft_strdup(lst->args->arg);
+	return (true);
 }
 
 void ft_cd(t_parse_lst *lst) //  errhandle ENOENT
 {
 	char	*dir;
-	char	*env_var;
 	char 	*pwd;
 
-	env_var = NULL;
 	dir = NULL;
-	if (!lst->args || !lst->args->arg)
-		return; // вывести ошибку cd: string not in pwd: ..
-	if (!ft_strncmp("~", lst->args->arg, 1))
-	{
-		env_var = find_env_key(lst->env_lst, "HOME");
-		if (env_var)
-			dir = ft_strjoin(ft_strjoin(dir, env_var), \
-			++(lst->args->arg));
-	}
-	else if (!ft_strncmp("-", lst->args->arg, 1))
-	{
-		env_var = find_env_key(lst->env_lst, "OLDPWD");
-		if (env_var)
-			dir = ft_strjoin(dir, env_var);
-	}
-	else
-		dir = ft_strdup(lst->args->arg);
+	pwd = getcwd(NULL, 0);
+	if (!define_dir(&dir, pwd, lst))
+		return ;
 	if (dir)
 	{
 		if (chdir(dir) == -1)
-			g_exit_status = WEXITSTATUS(errno);// errhandle ENOENT
-		free(dir);
-		free(env_var);
+		{
+			error_sh_cmd_msg(1, "cd", NULL, strerror(errno));
+			free(dir);
+			return;
+		}
+		else
+			free(dir);
 	}
-	char *old_pwd;
-	char *tmp;
-	old_pwd = NULL;
-	pwd = NULL;
-	env_var = find_env_key (lst->env_lst, "PWD");
-	pwd = getcwd (NULL, 0);
-	if (env_var && pwd)
-		if (ft_strcmp(pwd, env_var))
-			change_value(lst->env_lst, pwd, "PWD");
-	old_pwd = find_env_key(lst->env_lst, "OLDPWD");
-	if (!old_pwd)
-	{
-		tmp = ft_strjoin("OLDPWD", "=");
-		add_env_back(&(lst->env_lst), ft_strdup("OLDPWD"), env_var, \
-					ft_strjoin(tmp, env_var));
-		free(tmp);
-	}
-	else
-		change_value(lst->env_lst, env_var, "OLDPWD");
+	cd_change_env(lst, pwd);
 }

@@ -1,5 +1,4 @@
 #include "../headers/minishell.h"
-#include <signal.h>
 
 static void wait_function(t_parse_lst *lst)
 {
@@ -8,45 +7,19 @@ static void wait_function(t_parse_lst *lst)
 	while (lst)
 	{
 		waitpid(lst->pid, &status, 0);
-		if (WEXITSTATUS(status) != 0)
-			g_exit_status = errno;
+		g_exit_status = 0;
+		if (WIFEXITED(status))
+			if (status)
+				g_exit_status = 1;
+		if (WIFSIGNALED(status) != 0)
+			g_exit_status = 128 + status;
 		lst = lst->next;
 	}
-}
-
-static void	ctrl_c(int signal)
-{
-	int			k;
-
-	k = rl_end + 18;
-	if (signal == SIGINT)
-	{
-		while (k--)
-			printf("\e[C");
-		printf("\e[K\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
-
-void	my_exit(char *welc)
-{
-	int			i;
-
-	i = 18 + rl_end;
-	printf("\e[A");
-	while (i--)
-		printf("\e[C");
-	printf("exit\n");
-	exit(0); // mkl;
 }
 
 int main(int argc, char **argv, char **env)
 {
 	char *str;
-	// char *str= ft_strdup ("echo aza \"hello world\"  > \'file1\' >   \"file2\"   >file3   \">not_file\"\"|\"\"  ab \"grep $var << \"stop1\"  <<stop2<file	\
-	// 	| 	grep greping_str > file_file " );
 	t_parse_lst *lst = NULL;
 	t_parse_lst *head = NULL;
 	t_env		*env_lst;
@@ -61,13 +34,11 @@ int main(int argc, char **argv, char **env)
 			exit(0);
 		if (ft_strcmp(str, "\0"))
 			add_history(str);
-		if (parser(&str, &lst, env_lst) == -1)
-		{
-			print_pars_lst(&lst); //delete it later
-			printf("\n\n______ERROR______\n\n");
-			continue;
-		}
-			print_pars_lst(&lst); //delete it later
+		else
+			g_exit_status = 0;
+//		errno = 0;
+		parser(&str, &lst, env_lst);
+		print_pars_lst(&lst); //delete it later
 		if (lst)
 		{
 			head = lst->head;
@@ -77,21 +48,51 @@ int main(int argc, char **argv, char **env)
 				if (lst->built_in)
 				{
 					if (lst->next || lst->previous)
-						built_in_fork_call(lst);
+					{
+						signal(SIGINT, ctrl_c_forked);
+						builtin_fork_call(lst);
+					}
 					else
-						uni_built_in_call(lst);
+					{
+						builtin_unar_call(lst);
+						printf("g_exit_st %d\n", g_exit_status);
+//						error_sh_cmd_msg(1, "export", NULL, "not a valid identifier");
+					}
 				}
 				else
+				{
+					signal(SIGQUIT, ctrl_slsh);
+					signal(SIGINT, ctrl_c_forked);
 					exex(&lst);
+				}
 				lst = lst->next;
 			}
 			lst = head;
 			close_pipes(lst);
 			wait_function(lst);
+			signal(SIGINT, ctrl_c);
+			signal(SIGQUIT, SIG_IGN);
 			rm_here_docs(env, lst);
 			clean_main_list(lst);
 			lst = NULL;
-			}
 		}
-		return 0;
+	}
+	return 0;
+}
+
+void error_sh_cmd_msg(int exit_status, char *cmd, char *arg, char *message)
+{
+	printf("ex-st %d\n", exit_status);
+	ft_putstr_fd("mini$heeee$h: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": ", 2);
+	if (arg)
+	{
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	ft_putstr_fd(message, 2);
+	ft_putstr_fd("\n", 2);
+	g_exit_status = exit_status;
+	printf("2ex-st %d\n", exit_status);
 }

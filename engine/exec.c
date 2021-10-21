@@ -50,16 +50,20 @@ void	exex(t_parse_lst **lst)
 		i++;
 	}
 	cmd[i] = NULL;
-	join_path(&((*lst)->command), (*lst)->env_lst); // HERE
-	i = 0;
+	join_path(&((*lst)->command), (*lst)->env_lst);
 	pid = fork();
 	if (pid == 0)
 	{
+//		if (lst->)
 		redir(*lst);
 		close_pipes(*lst);
 		if (execve((*lst)->command, cmd, env) == -1)
-			exit(errno);
+		{
+			exit (-1);
+		}
 	}
 	else
+	{
 		(*lst)->pid = pid;
+	}
 }

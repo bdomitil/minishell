@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:17:16 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/17 22:36:41 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/19 01:40:12 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_var_mean(char *str, int *i, t_env *env_lst)
 
 	new_str = NULL;
 	end_pos = *i + 1;
-	while (ft_isalpha(str[end_pos]) || ft_isalnum(str[end_pos]) || str[end_pos] == '_')
+	while (ft_isalpha(str[end_pos]) || str[end_pos] == '_')
 		end_pos++;
 	end_pos = end_pos - *i - 1;
 	temp = ft_substr(str, *i + 1, end_pos);

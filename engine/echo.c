@@ -40,4 +40,5 @@ void	ft_echo(t_parse_lst *lst)
 	if (!n_flag)
 		write(1, "\n", 1);
 	write(1, (void *)EOF, 4);
+	g_exit_status = 0;
 }

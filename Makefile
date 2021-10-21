@@ -6,7 +6,7 @@
 #    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/10/17 21:16:56 by bdomitil         ###   ########.fr        #
+#   Updated: 2021/10/18 19:55:01 by                  ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,21 +17,22 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/parse_env.c parser/env_utils.c parser/path_find.c engine/main.c \
 		 engine/rd.c engine/exec.c engine/pipe.c engine/clean_main_list.c \
 		 engine/arr_join.c engine/here_doc.c engine/bi_calling.c engine/bi_utils.c \
-		 engine/cd.c engine/echo.c engine/export.c engine/unset.c engine/pwd.c\
+		 engine/cd.c engine/echo.c engine/export.c engine/unset.c engine/pwd.c \
+		 engine/signal.c engine/exit.c engine/error.c engine/cd_extra.c\
 
-CFLAGS = -g # -Wall -Wextra -Werror
+#CFLAGS = -g -Wall -Wextra -Werror
 
 HEADERS = headers/parse.h
 
 files.o = $(files.c:.c=.o)
 
-NAME = minishell
+NAME = a.out
 
 
 all :	lib_compil $(NAME)
 
 $(NAME) : $(files.o) 
-		@gcc -L/Users/$(USER)/.brew/Cellar/readline/8.1.1/lib/  -I/Users/$(USER)/.brew/Cellar/readline/8.1.1/include -lreadline $(files.o) libft/libft.a  -o $(NAME) 
+		@gcc -L/Users/$(USER)/.brew/Cellar/readline/8.1.1/lib/ -I/Users/$(USER)/.brew/Cellar/readline/8.1.1/include -lreadline $(files.o) libft/libft.a  -o a.out # ?
 		@echo "\033[7m PROGRAM IS READY TO BE USED!\033[0m"
 
 lib_compil: 
