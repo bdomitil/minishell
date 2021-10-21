@@ -23,6 +23,7 @@ static	int	count_word(const char *str, char q)
 	d_qt = 2;
 	s_qt = 2;
 	num = 0;
+	str = ft_strtrim(str, &q);
 	while (str[i])
 	{
 		if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\'))
@@ -34,6 +35,7 @@ static	int	count_word(const char *str, char q)
 				num++;
 		i++;
 	}
+	free((void *) str);
 	return (num + 1);
 }
 

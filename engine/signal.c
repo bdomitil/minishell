@@ -51,6 +51,6 @@ void ctrl_slsh(int signal)
 
 void	ctrl_c_heredoc(int signal)
 {
-	if (signal == SIGQUIT)
-		exit(0);
+	if (signal == SIGINT)
+		exit(-1);
 }
