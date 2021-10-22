@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 01:40:45 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/21 18:38:29 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/22 20:22:14 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static	int	count_word(const char *str, char q)
 	s_qt = 2;
 	str = ft_strtrim(str, &q);
 	num = 0;
-	while (str[++i])
+	str = ft_strtrim(str, &q);
+	while (str[i])
 	{
 		if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\'))
 			d_qt++;
@@ -34,8 +35,7 @@ static	int	count_word(const char *str, char q)
 												&& !(d_qt % 2) && !(s_qt % 2))
 				num++;
 	}
-	if (str)
-		free((void *)str);
+	free((void *) str);
 	return (num + 1);
 }
 

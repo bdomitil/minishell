@@ -61,9 +61,9 @@ void	exex(t_parse_lst **lst)
 		if (!redir(*lst))
 			exit(-1);
 		if (!close_fds(*lst))
-			exit (-1);
+			exit(-1);
 		if (execve((*lst)->command, cmd, env) == -1)
-			exit (-1);
+			exit(-1);
 	}
 	else
 	{

@@ -54,6 +54,14 @@ void	ctrl_c(int signal);
 void	ctrl_slsh(int signal);
 void	ctrl_c_forked(int signal);
 void	ctrl_c_heredoc(int signal);
-void	wait_hd(int pid);
+
+void	parent_sign_redif();
+void	exex_sign_redif();
+
+/*
+ * wait
+ */
+bool	wait_process(int pid);
+void	while_wait(t_parse_lst *lst);
 
 #endif
