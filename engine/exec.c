@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/22 21:54:59 by bdomitil          #+#    #+#             */
+/*   Updated: 2021/10/23 00:52:25 by bdomitil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
 
 char	**envprint(t_env *env)
@@ -25,7 +37,7 @@ char	**envprint(t_env *env)
 	return (envarray);
 }
 
-void	exex(t_parse_lst **lst)
+int		exex(t_parse_lst **lst)
 {
 	pid_t	pid;
 	char	**cmd = NULL;
@@ -53,24 +65,33 @@ void	exex(t_parse_lst **lst)
 	{
 		int pfd[2];
 		if (!here_doc((*lst), pfd))
-			return ;
+		{
+			free_string_mass(cmd, 0, 0);
+			free_string_mass(env, 0, 0);
+			free(cmd);
+			free(env);
+			g_exit_status = 1;
+			return (0);
+		}
 	}
 	pid = fork();
 	if (pid == 0) // child
 	{
-		if (!redir(*lst))
-			exit(-1);
-		if (!close_fds(*lst))
-			exit(-1);
-		if (execve((*lst)->command, cmd, env) == -1)
-			exit(-1);
+		// if (!redir(*lst))
+		// 	exit(-1);
+		// if (!close_fds(*lst))
+		// 	exit(-1);
+		// if (execve((*lst)->command, cmd, env) == -1)
+		// 	exit(-1);
+		if (!redir(*lst) || !close_fds(*lst) || \
+						execve((*lst)->command, cmd, env) == -1)
+				exit (errno);
 	}
 	else
-	{
 		(*lst)->pid = pid;
-	}
 	free_string_mass(cmd, 0, 0);
 	free_string_mass(env, 0, 0);
 	free(cmd);
 	free(env);
+	return (1);
 	}

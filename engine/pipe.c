@@ -64,16 +64,10 @@ bool close_fds(t_parse_lst *lst) // close fds
 	{
 	    if (tmp_lst->fd_out != 1)
 	        if (close (tmp_lst->fd_out) == -1)
-	        {
-				error_sh_cmd_msg(1, "close", NULL, strerror(errno));
 				return (false);
-			}
 	    if (tmp_lst->fd_in != 0 && tmp_lst->fd_in != -2)
 	    	if (close (tmp_lst->fd_in) == -1)
-	    	{
-				error_sh_cmd_msg(1, "close", NULL, strerror(errno));
 				return (false);
-			}
 		tmp_lst = tmp_lst->next;
 	}
 	return (true);

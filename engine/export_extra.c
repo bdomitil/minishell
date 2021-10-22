@@ -76,7 +76,6 @@ bool	valid_export_arg(char *tmp)
 		*pos = '=';
 	if (pos_plus)
 		*(--pos_plus) = '+';
-	printf("tmp = %s\n", tmp);
 	if (!valid)
 		error_sh_cmd_msg(1, "export", tmp,\
 	"not a valid identifier");

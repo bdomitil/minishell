@@ -30,12 +30,7 @@ void	builtin_unar_call(t_parse_lst *lst)
 	if (! close_fds(lst))
 		return ;
 	choose_func(lst);
-	if (dup2(fd_in, 0) == -1)
-	{
-		error_sh_cmd_msg(1, "close", NULL, strerror(errno));
-		return ;
-	}
-	if (dup2(fd_out, 1) == -1)
+	if (dup2(fd_in, 0) == -1 || dup2(fd_out, 1) == -1)
 	{
 		error_sh_cmd_msg(1, "close", NULL, strerror(errno));
 		return ;

@@ -35,7 +35,6 @@ void	ctrl_d(int signal)
 {
 	int			i;
 
-	//	i = 18 + rl_end;
 	printf("\e[A");
 	while (i--)
 		printf("\e[C");

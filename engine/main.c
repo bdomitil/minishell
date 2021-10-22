@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv, char **env)
 {
-	// char *str = ft_strdup(">");
+	// char *str = ft_strdup("> 3");
 	char *str;
 	t_parse_lst *lst = NULL;
 	t_parse_lst *head = NULL;
@@ -12,20 +12,14 @@ int main(int argc, char **argv, char **env)
 	if (env)
 		env_lst = parse_env(env);
 	parent_sign_redif();
+	g_exit_status = 0;
 	while ((str = readline("mini$heeee$h-1.0$ ")))
 	{
-
-		if (!str)
-		{
-			exit(1);
-		}
 		if (ft_strcmp(str, "\0"))
 			add_history(str);
-		else
-			g_exit_status = 0;
-		parser(&str, &lst, env_lst);
-		print_pars_lst(&lst); //delete it later
-		if (lst)
+		if (parser(&str, &lst, env_lst) == -1)
+				exit_print(&lst, true);
+		else if (lst)
 		{
 			head = lst->head;
 			io_pipes(lst);
@@ -49,11 +43,7 @@ int main(int argc, char **argv, char **env)
 				lst = lst->next;
 			}
 			lst = head;
-			close_fds(lst); // при ошибке закрытия будет ждать процессов и будет жить дальше. вопрос: стоит ли ему дальше жить
-			while_wait(lst);
-			clean_main_list(lst);
-			lst = NULL;
-			parent_sign_redif();
+			exit_print(&lst, false);
 		}
 	}
 	return 0;
