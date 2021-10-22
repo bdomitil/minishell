@@ -7,8 +7,6 @@ void	child_hd(int *pfd, t_parse_lst *lst)
 
 	tmp = lst->stop_list;
 	close (pfd[0]);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, ctrl_c_heredoc);
 	while (tmp)
 	{
 		while (1)
@@ -39,13 +37,13 @@ bool	here_doc(t_parse_lst *lst, int *pfd)
 		error_sh_cmd_msg(1, "pipe", NULL, strerror(errno));
 		return (false);
 	}
+
 	pid = fork();
 	if (pid == -1)
 	{
 		error_sh_cmd_msg(1, "fork", NULL, strerror(errno));
 		return (false);
 	}
-	// сюда сигнал
 	if (!pid)
 	{
 		child_hd(pfd, lst);
@@ -56,7 +54,6 @@ bool	here_doc(t_parse_lst *lst, int *pfd)
 	// сюда сигнал
 	if (!wait_process(pid))
 		return (false);// выставить сигналы как в родительском проц
-	signal(SIGQUIT, ctrl_slsh);
 	close(pfd[1]);
 	lst->fd_in = pfd[0];
 	return (true);

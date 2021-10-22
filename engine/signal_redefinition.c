@@ -14,5 +14,6 @@ void	exex_sign_redif()
 
 void	hd_sig_redif()
 {
-
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, ctrl_c_heredoc);
 }

@@ -28,19 +28,8 @@ void	ctrl_c_forked(int signal)
 			printf("\e[C");
 		printf("\e[K\n");
 		rl_replace_line("", 0);
-		rl_redisplay();
+//		rl_redisplay();
 	}
-}
-void	ctrl_d(int signal)
-{
-	int			i;
-
-	//	i = 18 + rl_end;
-	printf("\e[A");
-	while (i--)
-		printf("\e[C");
-	printf("\nexit\n");
-	exit(g_exit_status);
 }
 
 void ctrl_slsh(int signal)

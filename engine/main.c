@@ -34,8 +34,7 @@ int main(int argc, char **argv, char **env)
 				if (lst->built_in)
 				{
 					if (lst->next || lst->previous)
-					{
-						signal(SIGINT, ctrl_c_forked); // ват
+					{// ват
 						builtin_fork_call(lst);
 					}
 					else
@@ -45,6 +44,7 @@ int main(int argc, char **argv, char **env)
 				{
 					exex_sign_redif();
 					exex(&lst);
+					parent_sign_redif();
 				}
 				lst = lst->next;
 			}

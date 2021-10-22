@@ -21,7 +21,6 @@ bool		close_fds(t_parse_lst *lst);
 void		clean_main_list(t_parse_lst *lst);
 char		**arrjoin(char **arr, char *str);
 void		get_fd_of_hd(t_parse_lst *lst);
-char		**envprint(t_env *env);
 /*
  * built-in
  */
@@ -57,6 +56,7 @@ void	ctrl_c_heredoc(int signal);
 
 void	parent_sign_redif();
 void	exex_sign_redif();
+void	hd_sig_redif();
 
 /*
  * wait
