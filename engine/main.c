@@ -50,14 +50,7 @@ int main(int argc, char **argv, char **env)
 			}
 			lst = head;
 			close_fds(lst); // при ошибке закрытия будет ждать процессов и будет жить дальше. вопрос: стоит ли ему дальше жить
-<<<<<<< HEAD
-			wait_function(lst);
-			signal(SIGINT, ctrl_c);
-			signal(SIGQUIT, SIG_IGN);
-			// rm_here_docs(env, lst);
-=======
 			while_wait(lst);
->>>>>>> fix_pzds
 			clean_main_list(lst);
 			lst = NULL;
 			parent_sign_redif();
