@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:55:56 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/21 19:06:47 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/22 20:51:45 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ t_env	*parse_env(char **env)
 		if (!ft_strcmp(key, "SHLVL"))
 			value = change_sh_lvl(value);
 		free(tmp);
-		add_env_back(&env_lst, key, value, ft_strdup(*env)); // might leak? // ne zafrishitsa
 		env++;
+		add_env_back(&env_lst, key, value, ft_strdup(*env)); // might leak? // ne zafrishitsa
 	}
 	return (env_lst);
 }
