@@ -10,14 +10,14 @@ int main(int argc, char **argv, char **env)
 	(void)argc, (void)argv;
 	if (env)
 		env_lst = parse_env(env);
+	parent_sign_redif();
 	while ((str = readline("mini$heeee$h-1.0$ ")))
 	{
-		printf("kekeke\n");
+
 		if (!str)
 		{
 			exit(1);
 		}
-		parent_sign_redif();
 		if (ft_strcmp(str, "\0"))
 			add_history(str);
 		else
@@ -34,7 +34,7 @@ int main(int argc, char **argv, char **env)
 				{
 					if (lst->next || lst->previous)
 					{
-//						signal(SIGINT, ctrl_c_forked); // ват
+						signal(SIGINT, ctrl_c_forked); // ват
 						builtin_fork_call(lst);
 					}
 					else
@@ -52,8 +52,8 @@ int main(int argc, char **argv, char **env)
 			while_wait(lst);
 			clean_main_list(lst);
 			lst = NULL;
+			parent_sign_redif();
 		}
 	}
-	printf("str = %s\n", str);
 	return 0;
 }
