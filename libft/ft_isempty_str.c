@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isempty_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 20:05:25 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/01 11:29:57 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:51:42 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ft_isempty_str(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
-		{
-			if (ft_isprint(str[i]))
-				return (0);
-			i++;
-		}
+	{
+		if (ft_isprint(str[i]))
+			return (0);
+		i++;
+	}
 	return (1);
 }

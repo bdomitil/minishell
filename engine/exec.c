@@ -6,11 +6,11 @@
 /*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 21:54:59 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 19:06:35 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:33:58 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 char	**envprint(t_env *env)
 {
@@ -67,7 +67,7 @@ void	freesh(t_exec_args *tmp)
 
 void	actually_exec(t_parse_lst *lst, char **cmd_and_args, char **envp)
 {
-	int exec_error;
+	int	exec_error;
 
 	exec_error = 0;
 	if (!redir(lst) || !close_fds(lst))
@@ -76,14 +76,16 @@ void	actually_exec(t_parse_lst *lst, char **cmd_and_args, char **envp)
 	if (errno == 2 && exec_error == -1)
 	{
 		error_sh_cmd_msg(127, lst->command, NULL, \
-        "command not found");
+		"command not found");
 		exit(127);
-	} else if (exec_error == -1 && errno != 13)
+	}
+	else if (exec_error == -1 && errno != 13)
 	{
 		error_sh_cmd_msg(127, lst->command, NULL, \
-        strerror(errno));
+		strerror(errno));
 		exit(errno);
-	} else if (errno == 13)
+	}
+	else if (errno == 13)
 		exit(errno);
 }
 

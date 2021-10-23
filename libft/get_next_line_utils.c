@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 02:38:11 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/01 11:29:57 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 20:08:37 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ char	*gnl_substr(char const *s, unsigned int start, int len)
 	return (to_ret);
 }
 
-int		ft_slash(char *str)
+int	ft_slash(char *str)
 {
-	unsigned long long i;
+	unsigned long long	i;
 
 	i = 0;
 	if (str == NULL)

@@ -6,11 +6,11 @@
 /*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 17:04:26 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 17:51:21 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:33:58 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 void	io_pipes(t_parse_lst *lst)
 {

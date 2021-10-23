@@ -6,11 +6,11 @@
 /*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 15:36:39 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 15:38:34 by frodney          ###   ########.fr       */
+/*   Updated: 2021/10/23 19:33:58 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 char	*tilda(t_parse_lst *lst)
 {

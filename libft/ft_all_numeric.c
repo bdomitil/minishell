@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_all_numeric.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 20:50:54 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/18 22:09:10 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:49:14 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_all_numeric(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '-')

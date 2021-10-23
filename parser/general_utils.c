@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:15:28 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 04:20:26 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:33:58 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 t_args	*init_arg_lst(char *str)
 {

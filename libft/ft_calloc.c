@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 04:07:38 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/08 14:37:20 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:50:43 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void *to_ret;
+	void	*to_ret;
 
 	to_ret = NULL;
 	to_ret = malloc(nmemb * size);

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 02:42:38 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/21 18:39:02 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 20:06:47 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		check(const char *set, char q)
+static	int	check(const char *set, char q)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (set[i] != '\0')
@@ -26,7 +26,7 @@ static	int		check(const char *set, char q)
 	return (0);
 }
 
-char			*ft_strtrim(char const *str, char const *set)
+char	*ft_strtrim(char const *str, char const *set)
 {
 	int		pos;
 	int		start;
