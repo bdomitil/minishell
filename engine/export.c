@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:22:42 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 17:37:34 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 18:43:22 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ bool	change_value(t_env *env_lst, char *value, char *key, bool plus)
 			return (true);
 		}
 		else if (!ft_strcmp(key, env_lst->key))
-				return (true);
+			return (true);
 		env_lst = env_lst->next;
 	}
 	return (false);

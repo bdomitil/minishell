@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signal.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 17:16:02 by frodney           #+#    #+#             */
+/*   Updated: 2021/10/23 17:16:03 by frodney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
 
 void	ctrl_c(int signal)
 {
-	int			k;
+	int	k;
 
 	g_mshl.g_exit_status = 1;
 	k = rl_end + 18;
@@ -19,7 +31,7 @@ void	ctrl_c(int signal)
 
 void	ctrl_c_forked(int signal)
 {
-	int			k;
+	int	k;
 
 	k = rl_end + 18;
 	if (signal == SIGINT)
@@ -32,7 +44,7 @@ void	ctrl_c_forked(int signal)
 	}
 }
 
-void ctrl_slsh(int signal)
+void	ctrl_slsh(int signal)
 {
 	if (signal == SIGQUIT)
 		printf("Quit: 3\n");
@@ -47,6 +59,5 @@ void	ctrl_c_heredoc(int signal)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		// AAAAAA WHY DOES NOT WORK??!?!?!
 	}
 }

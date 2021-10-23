@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 22:09:51 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 04:20:26 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 18:56:49 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	single_redir_fd(char **str, t_deviders *dev_lst, t_found type)
 	[dev_lst->pos_in_str + i] == '>' || (*str)[dev_lst->pos_in_str + i] == '<')
 			return (-1);
 	file_name = get_file_name(&((*str)[dev_lst->pos_in_str + 1]), \
-														str, dev_lst->env_lst);		
+				str, dev_lst->env_lst);
 	if (!file_name)
 		return (-1);
 	if (type == redir_is_next)
@@ -79,8 +79,8 @@ int	double_redir_fd(char **str, t_deviders *dev_lst, \
 	if (!double_back)
 		fd = open(file_name, O_CREAT | O_APPEND | O_WRONLY, 0777);
 	else
-		ft_lstadd_back(&(curr_pars->stop_list), ft_lstnew((void *)ft_strdup(file_name)));
-	free(file_name);
+		ft_lstadd_back(&(curr_pars->stop_list), \
+		 ft_lstnew(ft_strdup(file_name))), free(file_name);
 	return (fd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:39:19 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 18:16:16 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:01:12 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	ultra_pipex(t_parse_lst *lst)
 static void	minishell(t_parse_lst *lst, t_env *env_lst)
 {
 	char	*str;
+
 	while (1)
 	{
 		str = readline("mini$heeee$h-1.0$ ");
@@ -46,7 +47,6 @@ static void	minishell(t_parse_lst *lst, t_env *env_lst)
 			exit_print(&lst, true);
 		else if (lst)
 		{
-			print_pars_lst(&lst);
 			io_pipes(lst);
 			ultra_pipex(lst);
 			exit_print(&lst, false);

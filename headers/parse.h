@@ -1,5 +1,5 @@
-#ifndef PARSE_HEADER_H
-# define PARSE_HEADER_H
+#ifndef PARSE_H
+# define PARSE_H
 # include "./types.h"
 # include <stdlib.h>
 # include <stdio.h>

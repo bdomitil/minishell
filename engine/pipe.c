@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 17:04:26 by frodney           #+#    #+#             */
+/*   Updated: 2021/10/23 17:07:52 by frodney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
 
 void	io_pipes(t_parse_lst *lst)
@@ -6,12 +18,10 @@ void	io_pipes(t_parse_lst *lst)
 	char		a[1];
 	t_parse_lst	*tmp;
 
-
 	tmp = lst;
-
 	a[0] = 1;
 	if (!tmp->next)
-		return;
+		return ;
 	while (tmp)
 	{
 		pipe (pfd);
@@ -30,18 +40,18 @@ void	io_pipes(t_parse_lst *lst)
 	}
 }
 
-bool close_fds(t_parse_lst *lst)
+bool	close_fds(t_parse_lst *lst)
 {
-	t_parse_lst *tmp_lst;
+	t_parse_lst	*tmp_lst;
 
 	tmp_lst = lst->head;
 	while (tmp_lst)
 	{
-	    if (tmp_lst->fd_out != 1)
-	        if (close (tmp_lst->fd_out) == -1)
+		if (tmp_lst->fd_out != 1)
+			if (close (tmp_lst->fd_out) == -1)
 				return (false);
-	    if (tmp_lst->fd_in != 0 && tmp_lst->fd_in != -2)
-	    	if (close (tmp_lst->fd_in) == -1)
+		if (tmp_lst->fd_in != 0 && tmp_lst->fd_in != -2)
+			if (close (tmp_lst->fd_in) == -1)
 				return (false);
 		tmp_lst = tmp_lst->next;
 	}

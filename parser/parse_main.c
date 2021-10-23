@@ -6,10 +6,9 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 00:48:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/21 18:03:37 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 18:50:32 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../headers/parse.h"
 
@@ -20,8 +19,8 @@ int	get_lst_parsed(t_parse_lst *pars_lst)
 	while (pars_lst)
 	{
 		args_tmp = pars_lst->args;
-		if ((!pars_lst->command && !pars_lst->stop_list) ||\
-						parse_str(&pars_lst->command, pars_lst->env_lst) == -1)
+		if ((!pars_lst->command && !pars_lst->stop_list) || \
+			parse_str(&pars_lst->command, pars_lst->env_lst) == -1)
 			return (-1);
 		while (args_tmp != NULL)
 		{

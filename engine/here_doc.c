@@ -6,7 +6,7 @@
 /*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:24:25 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 16:27:07 by frodney          ###   ########.fr       */
+/*   Updated: 2021/10/23 16:52:07 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ bool	hd_exec(t_parse_lst *lst, int *pfd)
 	if (!wait_process(lst))
 		return (false);
 	close(pfd[1]);
-	parent_sign_redif();
 	lst->fd_in = pfd[0];
 	return (true);
 }

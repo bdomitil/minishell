@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: frodney <frodney@student.42.fr>            +#+  +:+       +#+         #
+#    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#   Updated: 2021/10/23 14:28:08 by                  ###   ########.fr       # #
+#    Updated: 2021/10/23 18:59:25 by bdomitil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-files.c = parser/double_link_lst.c parser/test_utils.c \
+files.c = parser/double_link_lst.c  \
 		 parser/parse_main.c parser/string_end.c parser/quotes_release.c parser/screen_chars.c \
 		 parser/get_var_mean.c parser/general_utils.c parser/split_out_quotes.c parser/deviding.c \
 		 parser/deviding_utils.c parser/redir_fill.c parser/clean_utils.c parser/redir_utils.c \
