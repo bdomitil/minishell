@@ -6,8 +6,8 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include <string.h> // strerror
-# include <errno.h> // err macros
+# include <string.h>
+# include <errno.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/types.h>
@@ -62,11 +62,9 @@ void	ctrl_c(int signal);
 void	ctrl_slsh(int signal);
 void	ctrl_c_forked(int signal);
 void	ctrl_c_heredoc(int signal);
-
 void	parent_sign_redif();
 void	exex_sign_redif();
 void	hd_sig_redif();
-
 /*
  * wait
  */
