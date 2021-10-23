@@ -4,7 +4,7 @@ void	ctrl_c(int signal)
 {
 	int			k;
 
-	g_exit_status = 1;
+	g_mshl.g_exit_status = 1;
 	k = rl_end + 18;
 	if (signal == SIGINT)
 	{
@@ -31,16 +31,6 @@ void	ctrl_c_forked(int signal)
 		rl_redisplay();
 	}
 }
-void	ctrl_d(int signal)
-{
-	int			i;
-
-	printf("\e[A");
-	while (i--)
-		printf("\e[C");
-	printf("\nexit\n");
-	exit(g_exit_status);
-}
 
 void ctrl_slsh(int signal)
 {
@@ -51,5 +41,12 @@ void ctrl_slsh(int signal)
 void	ctrl_c_heredoc(int signal)
 {
 	if (signal == SIGINT)
-		exit(-1);
+	{
+		g_mshl.hd_return = 0;
+		g_mshl.g_exit_status = 1;
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		// AAAAAA WHY DOES NOT WORK??!?!?!
+	}
 }

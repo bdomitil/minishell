@@ -44,6 +44,13 @@ typedef struct s_parsed_args
 	char					*arg;
 }				t_args;
 
+typedef struct	s_exec_args
+{
+	char	**cmd_and_args;
+	char 	**env;
+
+}				t_exec_args;
+
 typedef struct 	s_main_parse_list
 {
 	struct s_main_parse_list	*head;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 14:22:42 by frodney           #+#    #+#             */
+/*   Updated: 2021/10/23 14:24:17 by frodney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
 
 static void	print_export(t_env *env_lst)
@@ -21,7 +33,7 @@ static void	print_export(t_env *env_lst)
 
 bool	change_value(t_env *env_lst, char *value, char *key, bool plus)
 {
-	char *tmp;
+	char	*tmp;
 
 	while (env_lst)
 	{
@@ -50,11 +62,10 @@ bool	change_value(t_env *env_lst, char *value, char *key, bool plus)
 
 static void	push_to_env(char *tmp, char *key, char *value, t_parse_lst *lst)
 {
-	bool plus;
-	char *pos;
+	bool	plus;
+	char	*pos;
 
 	plus = false;
-	printf("tmp = %s\n", tmp);
 	pos = ft_strchr(tmp, '=');
 	if (pos && *(--pos) == '+')
 	{
@@ -72,9 +83,9 @@ static void	push_to_env(char *tmp, char *key, char *value, t_parse_lst *lst)
 		free(key);
 }
 
-static void get_value_and_key(char **value, char *tmp, char **key)
+static void	get_value_and_key(char **value, char *tmp, char **key)
 {
-	char 	*pos;
+	char	*pos;
 
 	pos = NULL;
 	pos = ft_strchr(tmp, '=');
@@ -108,5 +119,5 @@ void	ft_export(t_parse_lst *lst)
 		push_to_env(tmp, key, value, lst);
 		tmp_arg = tmp_arg->next;
 	}
-	g_exit_status = 0;
+	g_mshl.g_exit_status = 0;
 }

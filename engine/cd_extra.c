@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd_extra.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 13:54:22 by frodney           #+#    #+#             */
+/*   Updated: 2021/10/23 13:55:43 by frodney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
 
-void cd_change_env(t_parse_lst *lst, char *pwd)
+void	cd_change_env(t_parse_lst *lst, char *pwd)
 {
 	char	*env_pwd_value;
-	char 	*env_oldpwd_value;
+	char	*env_oldpwd_value;
 	char	*tmp;
 
-	env_oldpwd_value = find_env_key(lst->env_lst, "OLDPWD");;
+	env_oldpwd_value = find_env_key(lst->env_lst, "OLDPWD");
 	env_pwd_value = find_env_key (lst->env_lst, "PWD");
 	if (env_pwd_value)
 	{
 		if (ft_strcmp(pwd, env_pwd_value))
-			change_value(lst->env_lst, pwd, "PWD", true); // kjlkjkljlj
+			change_value(lst->env_lst, pwd, "PWD", false);
 	}
 	if (!env_oldpwd_value)
 	{
@@ -21,5 +33,18 @@ void cd_change_env(t_parse_lst *lst, char *pwd)
 		free (tmp);
 	}
 	else
-		change_value(lst->env_lst, env_pwd_value, "OLDPWD", true);
+		change_value(lst->env_lst, env_pwd_value, "OLDPWD", false);
+}
+
+char	*cd_no_args(t_parse_lst *lst)
+{
+	char	*env_home_value;
+
+	env_home_value = find_env_key(lst->env_lst, "HOME");
+	if (!env_home_value)
+	{
+		error_sh_cmd_msg(1, "cd", NULL, "HOME not set");
+		return (NULL);
+	}
+	return (env_home_value);
 }

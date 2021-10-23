@@ -5,7 +5,6 @@ void	parent_sign_redif()
 	signal(SIGINT, ctrl_c);
 	signal(SIGQUIT, SIG_IGN);
 }
-
 void	exex_sign_redif()
 {
 	signal(SIGQUIT, ctrl_slsh);

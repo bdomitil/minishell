@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/20 20:29:37 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 05:40:35 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	fill_lst(char *str, t_parse_lst *pars_lst, t_env *env_lst)
 	{
 		if (get_redir_fd(pars_lst, &dev_lst, &str) == -1)
 		{
-			g_exit_status = errno;
+			g_mshl.g_exit_status = errno;
 			return (0);
 		}
 		else if (!dev_lst)

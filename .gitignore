@@ -59,3 +59,5 @@ file*
 check_leaks.sh
 .herad*
 script.c
+leaks.sh
+.env
