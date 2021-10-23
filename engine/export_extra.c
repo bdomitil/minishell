@@ -58,7 +58,7 @@ bool	valid_export_arg(char *tmp)
 	char 	*pos_plus;
 
 	valid = true;
-	if (!ft_isalpha(tmp[0]))
+	if (!ft_isalpha(tmp[0]) && tmp[0] != '_')
 		valid = false;
 	pos = ft_strchr(tmp, '=');
 	if (pos)

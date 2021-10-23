@@ -21,6 +21,7 @@ int main(int argc, char **argv, char **env)
 				exit_print(&lst, true);
 		else if (lst)
 		{
+			print_pars_lst(&lst);
 			head = lst->head;
 			io_pipes(lst);
 			while (lst)
