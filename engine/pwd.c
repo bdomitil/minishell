@@ -14,5 +14,5 @@ void	ft_pwd(t_parse_lst *lst)
 	free (str);
 	write(1, "\n", 1);
 	write(1, (void *)EOF, 4);
-	g_exit_status = 0;
+	g_mshl.g_exit_status = 0;
 }

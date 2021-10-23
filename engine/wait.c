@@ -7,24 +7,12 @@ bool wait_process(t_parse_lst *lst)
 	if (lst->pid == 0)
 		return (true);
 	waitpid(lst->pid, &status, 0);
-	if (WEXITSTATUS(status))
+	if (!lst->next)
 	{
-		if (status == 512)
-		{
-			printf("status = %d\n" , status);
-			if (lst->command)
-				error_sh_cmd_msg(1, lst->command, NULL, "command not found");
-			g_exit_status = 1;
-			return (false);
-		}
-		else
-		{
-			g_exit_status = 1;
-			return (false);
-		}
+		g_mshl.g_exit_status = WEXITSTATUS(status);
 	}
 	if (WIFSIGNALED(status) != 0)
-		g_exit_status = 128 + status;
+		g_mshl.g_exit_status = 128 + status;
 	return (true);
 }
 

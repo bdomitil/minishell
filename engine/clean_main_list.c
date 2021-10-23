@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean_main_list.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 13:58:03 by frodney           #+#    #+#             */
+/*   Updated: 2021/10/23 13:58:47 by frodney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
 
-static void t_lst_clear(t_list *lst)
+static void	t_lst_clear(t_list *lst)
 {
 	t_list	*tmp;
 
@@ -14,7 +26,6 @@ static void t_lst_clear(t_list *lst)
 		lst = lst->next;
 	}
 }
-
 
 static void	clear_args(t_args *args)
 {

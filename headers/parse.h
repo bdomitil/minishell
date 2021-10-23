@@ -10,7 +10,13 @@
 
 // # include "engine.h" // переделать
 
-int	g_exit_status;
+typedef struct t_msh
+{
+	int	g_exit_status;
+	int	hd_return;
+}	t_msh;
+
+t_msh	g_mshl;
 
 //||
 //||

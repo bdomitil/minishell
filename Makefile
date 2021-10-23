@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
+#    By: frodney <frodney@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/10/22 23:03:05 by bdomitil         ###   ########.fr        #
+#   Updated: 2021/10/23 14:28:08 by                  ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ files.c = parser/double_link_lst.c parser/test_utils.c \
 		 parser/deviding_utils.c parser/redir_fill.c parser/clean_utils.c parser/redir_utils.c \
 		 parser/parse_env.c parser/env_utils.c parser/path_find.c engine/main.c \
 		 engine/rd.c engine/exec.c engine/pipe.c engine/clean_main_list.c \
-		 engine/arr_join.c engine/here_doc.c engine/bi_calling.c engine/bi_utils.c \
+		 engine/arr_join.c engine/here_doc.c engine/bi_calling.c \
 		 engine/cd.c engine/echo.c engine/export.c engine/unset.c engine/pwd.c \
 		 engine/signal.c engine/exit.c engine/error.c engine/cd_extra.c engine/export_extra.c\
 		 engine/env.c engine/wait.c engine/signal_redefinition.c engine/exit_print.c
