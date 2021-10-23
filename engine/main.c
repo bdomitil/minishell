@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:39:19 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 19:58:00 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:23:00 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ int	main(int argc, char **argv, char **env)
 	t_env		*env_lst;
 
 	lst = NULL;
+	str = NULL;
 	head = NULL;
+	env_lst = NULL;
 	rl_outstream = stderr;
 	(void)argc, (void)argv;
 	if (env)

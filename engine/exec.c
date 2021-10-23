@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 21:54:59 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 18:40:38 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:23:47 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**envprint(t_env *env)
 	size = 0;
 	while (tmp_env)
 	{
-		envarray[size++] = ft_strdup(tmp_env->env_type);
+		envarray[size++] = key_value(tmp_env->key, tmp_env->value);
 		tmp_env = tmp_env->next;
 	}
 	envarray[size] = NULL;
@@ -95,6 +95,7 @@ t_exec_args	*array_it_all(t_parse_lst *lst)
 	t_exec_args	*tmp;
 	int			i;
 
+	tmp_args = NULL;
 	if (lst)
 		tmp_args = lst->args;
 	tmp = (t_exec_args *) malloc(sizeof (t_exec_args));

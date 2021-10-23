@@ -32,12 +32,13 @@ void        exit_print(t_parse_lst **lst, bool parse_error);
 void		builtin_unar_call(t_parse_lst *lst);
 void		builtin_fork_call(t_parse_lst *lst);
 void 		ft_echo(t_parse_lst *lst);
-void		ft_pwd(t_parse_lst *lst);
+void		ft_pwd(void);
 void		ft_export(t_parse_lst *lst);
 void		ft_env(t_env *env_lst);
 bool		valid_export_arg(char *tmp);
 void 		ft_cd(t_parse_lst *lst);
 char		*cd_no_args(t_parse_lst *lst);
+char		*key_value(char *key, char *value);
 void		cd_change_env(t_parse_lst *lst, char *pwd);
 void		ft_unset(t_parse_lst *lst);
 /*

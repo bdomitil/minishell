@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_calling.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 13:52:20 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 13:53:43 by frodney          ###   ########.fr       */
+/*   Updated: 2021/10/23 21:24:39 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	choose_func(t_parse_lst *lst)
 	if (lst->built_in == e_echo)
 		ft_echo(lst);
 	else if (lst->built_in == e_pwd)
-		ft_pwd(lst);
+		ft_pwd();
 	else if (lst->built_in == e_cd)
 		ft_cd(lst);
 	else if (lst->built_in == e_export)

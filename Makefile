@@ -6,7 +6,7 @@
 #    By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:13:25 by bdomitil          #+#    #+#              #
-#    Updated: 2021/10/23 18:59:25 by bdomitil         ###   ########.fr        #
+#    Updated: 2021/10/23 21:22:19 by bdomitil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,9 @@ files.c = parser/double_link_lst.c  \
 		 engine/arr_join.c engine/here_doc.c engine/bi_calling.c \
 		 engine/cd.c engine/echo.c engine/export.c engine/unset.c engine/pwd.c \
 		 engine/signal.c engine/exit.c engine/error.c engine/cd_extra.c engine/export_extra.c\
-		 engine/env.c engine/wait.c engine/signal_redefinition.c engine/exit_print.c
+		 engine/env.c engine/wait.c engine/signal_redefinition.c engine/exit_print.c engine/exec_extra.c
 
-#CFLAGS = -g -Wall -Wextra -Werror
-CFLAGS = -g
+CFLAGS = -g -Wall -Wextra -Werror
 HEADERS = headers/parse.h
 
 files.o = $(files.c:.c=.o)

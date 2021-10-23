@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:22:42 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 20:56:29 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:11:44 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static void	push_to_env(char *tmp, char *key, char *value, t_parse_lst *lst)
 	}
 	else
 		free(key);
-	free(tmp);
 }
 
 static void	get_value_and_key(char **value, char *tmp, char **key)
