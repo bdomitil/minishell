@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wait.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 17:16:59 by frodney           #+#    #+#             */
+/*   Updated: 2021/10/23 17:17:16 by frodney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
 
-bool wait_process(t_parse_lst *lst)
+bool	wait_process(t_parse_lst *lst)
 {
 	int	status;
 
@@ -16,11 +28,11 @@ bool wait_process(t_parse_lst *lst)
 	return (true);
 }
 
-void while_wait(t_parse_lst *lst)
+void	while_wait(t_parse_lst *lst)
 {
 	while (lst)
 	{
-		wait_process(lst); // мб сломается все
+		wait_process(lst);
 		lst = lst->next;
 	}
 }

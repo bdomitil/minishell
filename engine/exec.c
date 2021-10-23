@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 21:54:59 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 14:28:08 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 17:44:12 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 char	**envprint(t_env *env)
 {
 	char	**envarray;
-	int		size = 1;
+	int		size;
 	t_env	*tmp_env;
 
+	size = 1;
 	tmp_env = env;
 	while (env)
 	{
@@ -26,7 +27,7 @@ char	**envprint(t_env *env)
 	}
 	envarray = (char **)malloc (sizeof(char *) * size);
 	if (!envarray)
-		return(NULL);
+		return (NULL);
 	size = 0;
 	while (tmp_env)
 	{
@@ -37,24 +38,23 @@ char	**envprint(t_env *env)
 	return (envarray);
 }
 
-int		exex(t_parse_lst **lst)
+int	exex(t_parse_lst **lst)
 {
-
 	pid_t		pid;
 	t_exec_args	*tmp;
 
 	tmp = array_it_all(*lst);
 	if (!here_doc(*lst, tmp))
-			return (0);
+		return (0);
 	pid = fork();
-	if (pid == 0) // child
+	if (pid == 0)
 		actually_exec(*lst, tmp->cmd_and_args, tmp->env);
 	(*lst)->pid = pid;
 	freesh(tmp);
 	return (1);
 }
 
-void 	freesh(t_exec_args *tmp)
+void	freesh(t_exec_args *tmp)
 {
 	if (!tmp)
 		return ;
@@ -74,17 +74,18 @@ void	actually_exec(t_parse_lst *lst, char **cmd_and_args, char **envp)
 	{
 		error_sh_cmd_msg(127, lst->command, NULL, \
 		"command not found");
-						 exit(127);
+		exit(127);
 	}
 	error_sh_cmd_msg(127, lst->command, NULL, \
 	strerror(errno));
-					 exit (errno);
+	exit (errno);
 }
 
-t_exec_args *array_it_all(t_parse_lst *lst)
+t_exec_args	*array_it_all(t_parse_lst *lst)
 {
 	t_args		*tmp_args;
-	t_exec_args *tmp;
+	t_exec_args	*tmp;
+	int			i;
 
 	if (lst)
 		tmp_args = lst->args;
@@ -95,7 +96,7 @@ t_exec_args *array_it_all(t_parse_lst *lst)
 		(tmp_args->tail->id + 3));
 	else
 		tmp->cmd_and_args = (char **)malloc(sizeof(char *) * 2);
-	int i = 1;
+	i = 1;
 	tmp->cmd_and_args[0] = ft_strdup(lst->command);
 	while (tmp_args && i < tmp_args->tail->id + 2)
 	{
