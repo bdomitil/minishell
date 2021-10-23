@@ -6,7 +6,7 @@
 /*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 21:54:59 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 17:51:21 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:06:35 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,24 @@ void	freesh(t_exec_args *tmp)
 
 void	actually_exec(t_parse_lst *lst, char **cmd_and_args, char **envp)
 {
+	int exec_error;
+
+	exec_error = 0;
 	if (!redir(lst) || !close_fds(lst))
-		exit (errno);
-	execve(lst->command, cmd_and_args, envp);
-	if (errno == 2)
+		exit(errno);
+	exec_error = execve(lst->command, cmd_and_args, envp);
+	if (errno == 2 && exec_error == -1)
 	{
 		error_sh_cmd_msg(127, lst->command, NULL, \
-		"command not found");
+        "command not found");
 		exit(127);
-	}
-	error_sh_cmd_msg(127, lst->command, NULL, \
-	strerror(errno));
-	exit (errno);
+	} else if (exec_error == -1 && errno != 13)
+	{
+		error_sh_cmd_msg(127, lst->command, NULL, \
+        strerror(errno));
+		exit(errno);
+	} else if (errno == 13)
+		exit(errno);
 }
 
 t_exec_args	*array_it_all(t_parse_lst *lst)

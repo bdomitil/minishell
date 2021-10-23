@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 01:40:45 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/22 21:12:22 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:07:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ static	int	count_word(const char *str, char q)
 			s_qt++;
 		if (str[i] == q && (str[i + 1] != q && ft_isprint(str[i + 1])) \
 												&& !(d_qt % 2) && !(s_qt % 2))
-				num++;
+			num++;
 	}
 	free((void *) str);
 	return (num + 1);
 }
-
 
 static	int	get_len(const char *str, char q)
 {
@@ -52,12 +51,12 @@ static	int	get_len(const char *str, char q)
 	{
 		if (str[i] == '\"' && (i == 0 || str[i - 1] != '\\'))
 			d_qt++;
-		else if(str[i] == '\'' && (i == 0 || str[i - 1] != '\\'))
+		else if (str[i] == '\'' && (i == 0 || str[i - 1] != '\\'))
 			s_qt++;
-		if ((str[i] == q || !ft_isprint(str[i])) && !(d_qt % 2)  && !(s_qt % 2))
+		if ((str[i] == q || !ft_isprint(str[i])) && !(d_qt % 2) && !(s_qt % 2))
 		{
 			i += (str[i] == '\"' || str[i] == '\'');
-			break ;
+			break;
 		}
 		i++;
 	}

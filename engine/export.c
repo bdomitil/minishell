@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:22:42 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 14:24:17 by frodney          ###   ########.fr       */
+/*   Updated: 2021/10/23 19:07:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ bool	change_value(t_env *env_lst, char *value, char *key, bool plus)
 				tmp = env_lst->value;
 				env_lst->value = ft_strjoin(env_lst->value, value);
 				free (tmp);
-				free (value);
-			}
-			else
+				free(value);
+			} else
 			{
 				if (env_lst->value)
 					free(env_lst->value);
 				env_lst->value = value;
 			}
 			return (true);
-		}
+		} else if (!ft_strcmp(key, env_lst->key))
+			return (true);
 		env_lst = env_lst->next;
 	}
 	return (false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_extra.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:15:23 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 14:22:32 by frodney          ###   ########.fr       */
+/*   Updated: 2021/10/23 19:07:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static bool	extra_function(char *tmp, char *pos, char *pos_plus)
 	if (pos)
 		*pos = '=';
 	if (pos_plus)
-		*(--pos_plus) = '+';
+		*(pos_plus) = '+';
 	return (true);
 }
 
@@ -57,7 +57,7 @@ bool	valid_export_arg(char *tmp)
 	char	*pos_plus;
 
 	valid = true;
-	if (!ft_isalpha(tmp[0]))
+	if (!ft_isalpha(tmp[0]) && tmp[0] != '_')
 		valid = false;
 	pos = ft_strchr(tmp, '=');
 	if (pos)
@@ -66,13 +66,13 @@ bool	valid_export_arg(char *tmp)
 	if (pos_plus)
 	{
 		*pos_plus = '\0';
-		if (*(++pos_plus) == '+')
+		if (*(pos_plus + 1) == '+')
 			valid = false;
 	}
-	if (!extra_function(tmp, pos, pos))
+	if (!extra_function(tmp, pos, pos_plus))
 		valid = false;
 	if (!valid)
 		error_sh_cmd_msg(1, "export", tmp, \
-	"not a valid identifier");
+    "not a valid identifier");
 	return (valid);
 }
