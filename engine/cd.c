@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 15:36:39 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 15:38:34 by frodney          ###   ########.fr       */
+/*   Updated: 2021/10/23 19:57:50 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*tilda(t_parse_lst *lst)
 	}
 	if (lst->args)
 	{
-		ret = ft_strjoin(env_home_value, ++(lst->args->arg));
+		ret = ft_strjoin(env_home_value,(lst->args->arg) + 1);
 		free (env_home_value);
 		return (ret);
 	}
