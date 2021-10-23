@@ -1,5 +1,11 @@
 #include "../headers/minishell.h"
 
+void not(int z)
+{
+	(void)z;
+	// write(2, "\r", 1);
+}
+
 void	child_hd(int *pfd, t_parse_lst *lst)
 {
 	char	*line;
@@ -39,6 +45,7 @@ bool	here_doc(t_parse_lst *lst, int *pfd)
 	}
 
 	pid = fork();
+	signal(SIGQUIT, SIG_IGN);
 	if (pid == -1)
 	{
 		error_sh_cmd_msg(1, "fork", NULL, strerror(errno));
@@ -51,8 +58,9 @@ bool	here_doc(t_parse_lst *lst, int *pfd)
 		close (pfd[1]);
 		exit(0);
 	}
+	lst->pid = pid;
 	// сюда сигнал
-	if (!wait_process(pid))
+	if (!wait_process(lst))
 		return (false);// выставить сигналы как в родительском проц
 	close(pfd[1]);
 	lst->fd_in = pfd[0];

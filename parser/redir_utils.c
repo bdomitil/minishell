@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 22:09:51 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/20 20:29:37 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 04:20:26 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	double_redir_fd(char **str, t_deviders *dev_lst, \
 			return (-1);
 	file_name = get_file_name(&((*str)[dev_lst->pos_in_str]), \
 												str, dev_lst->env_lst);
-	if (!file_name)
+	if (!file_name && !double_back)
 		return (-1);
 	if (!double_back)
 		fd = open(file_name, O_CREAT | O_APPEND | O_WRONLY, 0777);

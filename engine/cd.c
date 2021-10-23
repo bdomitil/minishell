@@ -28,7 +28,6 @@ char	*tilda(t_parse_lst *lst)
 	{
 		ret = ft_strjoin(env_home_value, ++(lst->args->arg));
 		free (env_home_value);
-		printf("ret = %s\n", ret);
 		return (ret);
 	}
 	else

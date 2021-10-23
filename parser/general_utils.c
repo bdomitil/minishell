@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:15:28 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/07 13:39:22 by frodney          ###   ########.fr       */
+/*   Updated: 2021/10/23 04:20:26 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_parse_lst	*init_pars_lst(void)
 	lst->head = lst;
 	lst->tail = lst;
 	lst->next = NULL;
+	lst->pid = 0;
 	lst->previous = NULL;
 	lst->args = NULL;
 	lst->pipe = false;

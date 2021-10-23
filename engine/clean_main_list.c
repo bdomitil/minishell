@@ -44,9 +44,7 @@ void	clean_main_list(t_parse_lst *lst)
 	{
 		tmp = lst;
 		lst = lst->next;
-		// printf("free com add = %p\n", tmp->command);
 		free(tmp->command);
 		tmp->command = NULL;
-// free env list
 	}
 }

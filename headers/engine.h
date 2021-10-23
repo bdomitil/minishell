@@ -16,11 +16,13 @@
 
 bool		redir(t_parse_lst *lst);
 void		io_pipes(t_parse_lst *lst);
-void		exex(t_parse_lst **lst);
+int 		exex(t_parse_lst **lst);
 bool		close_fds(t_parse_lst *lst);
 void		clean_main_list(t_parse_lst *lst);
 char		**arrjoin(char **arr, char *str);
 void		get_fd_of_hd(t_parse_lst *lst);
+char		**envprint(t_env *env);
+void        exit_print(t_parse_lst **lst, bool parse_error);
 /*
  * built-in
  */
@@ -61,7 +63,7 @@ void	hd_sig_redif();
 /*
  * wait
  */
-bool	wait_process(int pid);
+bool	wait_process(t_parse_lst *lst);
 void	while_wait(t_parse_lst *lst);
 
 #endif
