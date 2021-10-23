@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 22:45:07 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 17:49:35 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:13:52 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	exit_print(t_parse_lst **lst, bool parse_error)
 	close_fds(*lst);
 	while_wait(*lst);
 	clean_main_list(*lst);
+	free(*lst);
 	*lst = NULL;
 	parent_sign_redif();
 }
