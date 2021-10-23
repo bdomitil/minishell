@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 02:35:18 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/01 11:29:57 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 20:08:09 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ int	to_ret(char **left)
 
 int	get_next_line(int fd, char **line)
 {
-	static char *left;
+	static char	*left;
 	char		buff[BUFFER_SIZE + 1];
 	char		*tmp;
 	int			slash;
 	int			read_res;
 
 	read_res = -1;
-	while ((slash = ft_slash(left)) < 0 && read_res != 0)
+	slash = ft_slash(left);
+	while (slash < 0 && read_res != 0)
 	{
 		read_res = read(fd, buff, BUFFER_SIZE);
 		if (read_res == -1 || BUFFER_SIZE == 0 || !line)

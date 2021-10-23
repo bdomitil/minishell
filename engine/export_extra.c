@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_extra.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:15:23 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 17:30:13 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:33:58 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 static bool	valid_key(char *key)
 {
@@ -75,4 +75,23 @@ bool	valid_export_arg(char *tmp)
 		error_sh_cmd_msg(1, "export", tmp, \
 	"not a valid identifier");
 	return (valid);
+}
+
+void	check_plus(t_env *env_lst, char *value, char *key, bool plus)
+{
+	char	*tmp;
+
+	if (plus)
+	{
+		tmp = env_lst->value;
+		env_lst->value = ft_strjoin(env_lst->value, value);
+		free (tmp);
+		free(value);
+	}
+	else
+	{
+		if (env_lst->value)
+			free(env_lst->value);
+		env_lst->value = value;
+	}
 }

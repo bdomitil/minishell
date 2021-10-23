@@ -6,11 +6,11 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:22:42 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 21:11:44 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:27:05 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 static void	print_export(t_env *env_lst)
 {
@@ -33,26 +33,12 @@ static void	print_export(t_env *env_lst)
 
 bool	change_value(t_env *env_lst, char *value, char *key, bool plus)
 {
-	char	*tmp;
-
 	while (env_lst)
 	{
 		if (!ft_strcmp(key, env_lst->key) && value)
 		{
 			env_lst->visible = true;
-			if (plus)
-			{
-				tmp = env_lst->value;
-				env_lst->value = ft_strjoin(env_lst->value, value);
-				free (tmp);
-				free (value);
-			}
-			else
-			{
-				if (env_lst->value)
-					free(env_lst->value);
-				env_lst->value = value;
-			}
+			check_plus(env_lst, value, key, plus);
 			return (true);
 		}
 		else if (!ft_strcmp(key, env_lst->key))

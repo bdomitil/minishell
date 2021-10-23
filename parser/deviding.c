@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deviding.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 22:13:30 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 05:40:35 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 20:10:37 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int	fill_lst(char *str, t_parse_lst *pars_lst, t_env *env_lst)
 		pars_lst->pipe = dev_lst->type == pipe_is_next;
 		commands_args_fill(pars_lst, command_params, env_lst);
 		pars_lst = pars_lst->next;
-		to_free = dev_lst, free(to_free);
+		to_free = dev_lst;
+		free(to_free);
 		dev_lst = dev_lst->next, free(command_params);
 	}
 	command_params = split_out_quotes(str, ' ');

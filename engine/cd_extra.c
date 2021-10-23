@@ -6,11 +6,11 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 13:54:22 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 19:46:03 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:27:48 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 void	cd_change_env(t_parse_lst *lst, char *pwd)
 {

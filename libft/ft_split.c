@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 17:59:54 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/01 11:29:57 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:58:28 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		count_word(const char *str, char q)
+static	int	count_word(const char *str, char q)
 {
-	int i;
-	int num;
-	int stop;
+	int	i;
+	int	num;
+	int	stop;
 
 	i = 0;
 	stop = ft_strlen(str) - 1;
@@ -37,9 +37,9 @@ static	int		count_word(const char *str, char q)
 	return (num + 1);
 }
 
-static	int		get_len(const char *str, char q)
+static	int	get_len(const char *str, char q)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0' && str[i] != q)
@@ -61,14 +61,14 @@ static	char	*get_next_word(const char *str, char q)
 	return (word);
 }
 
-static void		ft_free(char **mass, int pos)
+static void	ft_free(char **mass, int pos)
 {
 	while (pos >= 0)
 		free(mass[pos--]);
 	free(mass);
 }
 
-char			**ft_split(const char *str, char q)
+char	**ft_split(const char *str, char q)
 {
 	int		word_num;
 	int		i;
@@ -79,7 +79,7 @@ char			**ft_split(const char *str, char q)
 	if (!str)
 		return (NULL);
 	word_num = count_word(str, q);
-	to_ret = malloc((word_num + 1) * sizeof(char*));
+	to_ret = malloc((word_num + 1) * sizeof(char *));
 	if (!to_ret)
 		return (NULL);
 	while (i < word_num)

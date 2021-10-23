@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 01:40:45 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 18:58:04 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:07:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static	int	get_len(const char *str, char q)
 		if ((str[i] == q || !ft_isprint(str[i])) && !(d_qt % 2) && !(s_qt % 2))
 		{
 			i += (str[i] == '\"' || str[i] == '\'');
-			break ;
+			break;
 		}
 		i++;
 	}

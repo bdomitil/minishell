@@ -17,7 +17,7 @@ void print_pars_lst(t_parse_lst **lst)
 {
 	int i = 1;
 	t_parse_lst *pars_tmp = *lst;
-	t_args		*arg_temp;
+	t_args *arg_temp;
 	printf("\n|_______________________________________________|\n");
 	printf("|                                               |\n");
 	while (pars_tmp)
@@ -31,11 +31,11 @@ void print_pars_lst(t_parse_lst **lst)
 		redir_in = ||%d|| \
 		redir_out = ||%d|| \
 		stop_word = ||%p|| \n",
-		pars_tmp->command, \
-		pars_tmp->pipe, \
-		pars_tmp->fd_in, \
-		pars_tmp->fd_out, \
-		pars_tmp->stop_list);
+			   pars_tmp->command, \
+        pars_tmp->pipe, \
+        pars_tmp->fd_in, \
+        pars_tmp->fd_out, \
+        pars_tmp->stop_list);
 		while (arg_temp)
 		{
 			printf("|%d arg = ||%s||  id = || %d ||\n", i, arg_temp->arg, arg_temp->id);

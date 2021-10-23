@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 00:38:52 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/15 20:52:03 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:28:41 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -67,7 +67,7 @@ t_list			*ft_lstmap(t_list *l, void *(*f)(void *), void(*del)(void *));
 void			ft_lstadd_front(t_list **lst, t_list *new);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstclear(t_list **lst, void (*del)(void*));
-void			ft_lstdelone(t_list *lst, void(*del)(void*));
+void			ft_lstdelone(t_list *lst, void (*del)(void*));
 int				ft_lstsize(t_list *lst);
 void			ft_lstprint_bonus(t_list **lst);
 void			ft_lstiter(t_list *lst, void (*f)(void *));

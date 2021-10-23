@@ -6,11 +6,11 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 13:52:20 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 21:24:39 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:26:29 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 static void	choose_func(t_parse_lst *lst)
 {

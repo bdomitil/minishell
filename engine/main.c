@@ -6,11 +6,11 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 14:39:19 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 21:23:00 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:26:43 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 static void	ultra_pipex(t_parse_lst *lst)
 {

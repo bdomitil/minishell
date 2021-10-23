@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   types.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 19:36:01 by frodney           #+#    #+#             */
+/*   Updated: 2021/10/23 19:38:28 by frodney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef TYPES_H
 # define TYPES_H
 # include <stdbool.h>
 # include "libft.h"
 
-//#define
 typedef enum e_types_of_found
 {
 	pipe_is_next,
@@ -25,7 +36,7 @@ typedef enum e_built_in
 	e_exit
 }				t_built_in;
 
-typedef struct	s_env
+typedef struct s_env
 {
 	struct s_env	*next;
 	char			*value;
@@ -40,18 +51,18 @@ typedef struct s_parsed_args
 	struct s_parsed_args	*previous;
 	struct s_parsed_args	*head;
 	struct s_parsed_args	*tail;
-	int						id; // выпилить id
+	int						id;
 	char					*arg;
 }				t_args;
 
-typedef struct	s_exec_args
+typedef struct s_exec_args
 {
 	char	**cmd_and_args;
-	char 	**env;
+	char	**env;
 
 }				t_exec_args;
 
-typedef struct 	s_main_parse_list
+typedef struct s_main_parse_list
 {
 	struct s_main_parse_list	*head;
 	struct s_main_parse_list	*tail;
@@ -61,23 +72,20 @@ typedef struct 	s_main_parse_list
 	t_args						*args;
 	t_list						*stop_list;
 	bool						pipe;
-	int 						built_in;
+	int							built_in;
 	int							fd_out;
 	int							fd_in;
-	int 						pid;
+	int							pid;
 	int							exit_status;
 	char						*command;
 }				t_parse_lst;
 
-//typedef void	(*func)(t_parse_lst *lst);
-//typedef	func t_func;
-
-typedef struct	s_spec_deviders
+typedef struct s_spec_deviders
 {
-	t_found	type;
-	int		pos_in_str;
-	t_env	*env_lst;
-	struct	s_spec_deviders *next;
+	t_found						type;
+	int							pos_in_str;
+	t_env						*env_lst;
+	struct s_spec_deviders		*next;
 }				t_deviders;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:17:16 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 18:45:27 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 19:07:51 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,24 @@ static char	*join_var(int *i, char *str, char *var, int end_pos)
 	return (new_str);
 }
 
-char	*get_var_mean(char *str, int *i, t_env *env_lst)
+char *get_var_mean(char *str, int *i, t_env *env_lst)
 {
-	char	*temp;
-	char	*var;
-	char	*new_str;
-	int		end_pos;
+	char *temp;
+	char *var;
+	char *new_str;
+	int end_pos;
 
 	new_str = NULL;
 	end_pos = *i + 1;
 	while (ft_isalpha(str[end_pos]) || ft_isalnum(str[end_pos]) \
-											|| str[end_pos] == '_')
+ || str[end_pos] == '_')
 		end_pos++;
 	end_pos = end_pos - *i - 1;
 	temp = ft_substr(str, *i + 1, end_pos);
 	var = find_env_key(env_lst, temp);
 	if (!var && str[*i + 1] != '?')
 		ft_memmove(&str[*i], &str[end_pos + *i + 1], \
-											ft_strlen(&str[end_pos + *i]));
+                                            ft_strlen(&str[end_pos + *i]));
 	else if (var || str[*i + 1] == '?')
 		str = join_var(i, str, var, end_pos);
 	free(temp);

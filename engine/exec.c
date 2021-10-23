@@ -6,11 +6,11 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 21:54:59 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/23 21:23:47 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:26:35 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 char	**envprint(t_env *env)
 {
@@ -71,7 +71,7 @@ void	actually_exec(t_parse_lst *lst, char **cmd_and_args, char **envp)
 
 	exec_error = 0;
 	if (!redir(lst) || !close_fds(lst))
-		exit (errno);
+		exit(errno);
 	exec_error = execve(lst->command, cmd_and_args, envp);
 	if (errno == 2 && exec_error == -1)
 	{
@@ -83,7 +83,7 @@ void	actually_exec(t_parse_lst *lst, char **cmd_and_args, char **envp)
 	{
 		error_sh_cmd_msg(127, lst->command, NULL, \
 		strerror(errno));
-		exit (errno);
+		exit(errno);
 	}
 	else if (errno == 13)
 		exit(errno);

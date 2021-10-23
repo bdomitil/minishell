@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exit_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 22:45:07 by bdomitil          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/23 19:13:52 by bdomitil         ###   ########.fr       */
+=======
+/*   Updated: 2021/10/23 19:33:58 by frodney          ###   ########.fr       */
+>>>>>>> a03602387d6ae795c9bbcac6fa4a10cce1f57644
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 void	exit_print(t_parse_lst **lst, bool parse_error)
 {

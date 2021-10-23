@@ -6,11 +6,11 @@
 /*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 15:36:39 by frodney           #+#    #+#             */
-/*   Updated: 2021/10/23 19:57:50 by bdomitil         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:27:45 by bdomitil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/engine.h"
 
 char	*tilda(t_parse_lst *lst)
 {

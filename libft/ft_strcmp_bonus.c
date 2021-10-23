@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 03:28:10 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/19 01:33:39 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 20:00:37 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 
-	
 	i = 0;
 	if (!s1 && !s2)
 		return (0);

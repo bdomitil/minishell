@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_long.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdomitil <bdomitil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frodney <frodney@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 18:48:38 by bdomitil          #+#    #+#             */
-/*   Updated: 2021/10/01 11:29:57 by                  ###   ########.fr       */
+/*   Updated: 2021/10/23 19:50:22 by frodney          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		is_sym(char q, int *sym)
+static int	is_sym(char q, int *sym)
 {
 	if (q == '-' || q == '+')
 	{
@@ -23,7 +23,7 @@ static int		is_sym(char q, int *sym)
 		return (0);
 }
 
-static int		enter(char q, int *sym, int to_ret)
+static int	enter(char q, int *sym, int to_ret)
 {
 	if (ft_isdigit(q) || (to_ret == 0 && (is_sym(q, sym) || ft_space(q))))
 		return (1);
